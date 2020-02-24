@@ -1,7 +1,7 @@
 package vo;
 
 public interface ViewNamesVO {
-	public static final String SIGN_IN = StringsVO.SIGN_UP;
-	public static final String SIGN_UP = StringsVO.SIGN_IN;
+	 final String SIGN_IN = StringVO.SIGN_UP;
+	 final String SIGN_UP = StringVO.SIGN_IN;
 	
 }

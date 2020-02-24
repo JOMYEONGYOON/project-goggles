@@ -68,7 +68,7 @@ public class SignInContainer extends JPanel implements MainFrameControlable{
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame mainFrame = MainFrame.getInstance();
-				
+				setContainer(mainFrame, );;
 			}
 		});
 		panel_12.add(signUpBtn);

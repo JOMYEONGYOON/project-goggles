@@ -5,18 +5,7 @@ import java.sql.PreparedStatement;
 import model.Member;
 
 public class MemberDAO extends RootDAO {
-
-//	public static void main(String[] args) {
-//		MemberDAO memberDAO = new MemberDAO();
-//		try {
-//			Member testMember = new Member(null, "asdf" + ((int) (Math.random() * 100000) + 1) + "", "1", "2", "3", "4",
-//					"5", "6", "7");
-//			memberDAO.insert(testMember);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-	public static void insert(Member member) {
+	public  void insert(Member member) {
 
 		String sql;
 		try {

@@ -4,48 +4,40 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class RootDAO {
-	public static Connection connection;
+import vo.MySQLVO;
+import vo.StateVO;
+import vo.StringVO;
 
-	public Connection getConnection() {
+public class RootDAO implements MySQLVO, StateVO, StringVO {
+	private static Connection connection;
+
+	public static Connection getConnection() {
 		return connection;
 	}
+
 	public static Connection open() {
 		if (connection == null) {
-			String dbName = "dictionary";
-			String id = "root";
-			String password = "1234";
-			String selected_dbType = "mysql";
-			String properties = "?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false";
-			String selected_driver = "com.mysql.cj.jdbc.Driver";
-			String selected_url = "jdbc:mysql://localhost:3306/";
+
 			try {
-				Class.forName(selected_driver);
-				connection = DriverManager.getConnection(selected_url + dbName + properties, id, password);
-				System.out.println(selected_dbType + " connected");
+				Class.forName(MYSQL_DRIVER);
+				connection = DriverManager.getConnection(MYSQL_DICTIONARY_URL, MYSQL_ID, MYSQL_PASSWORD);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println(selected_dbType + " error");
 			}
-		}else {
-			System.out.println("already connected mysql");
+		} else {
+			System.out.println(EXSIST);
 		}
 		return connection;
-		
+
 	}
 
 	public static void close() {
 		try {
 			connection.close();
-			System.out.println("mysql closed");
+			System.out.println(MYSQL + CLOSED);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-//		open();
-//		close();
 	}
 }
