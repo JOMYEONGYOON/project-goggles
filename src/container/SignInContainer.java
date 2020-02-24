@@ -1,4 +1,4 @@
-package view.frame.member;
+package container;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import vo.StringVO;
+import vo.StringsVO;
 
-public class MemberSignInFrame extends JFrame {
+public class SignInContainer extends JPanel {
 	public static final long serialVersionUID = 1L;
 	public JPanel bottomPanel;
 	public JPanel centerPanel;
@@ -30,7 +30,7 @@ public class MemberSignInFrame extends JFrame {
 	public JPanel topPanel;
 	public JButton exitButton;
 
-	public MemberSignInFrame() {
+	public SignInContainer() {
 		this.setSize(1024, 768);
 		JLabel lblNewLabel_1;
 		JLabel lblNewLabel_7;
@@ -42,17 +42,15 @@ public class MemberSignInFrame extends JFrame {
 		JPanel panel_12;
 		JPanel panel_8;
 		JPanel panel_9;
-		JLabel lblPhone;
-		getContentPane().setForeground(Color.BLACK);
+		setForeground(Color.BLACK);
 		setForeground(Color.BLACK);
 
-		getContentPane().setLayout(new BorderLayout());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
 		setSize(640, 480);
 
 		rightPanel = new JPanel();
 		rightPanel.setForeground(Color.BLACK);
-		getContentPane().add(rightPanel, BorderLayout.EAST);
+		add(rightPanel, BorderLayout.EAST);
 		rightPanel.setLayout(new GridLayout(4, 2, 0, 0));
 
 		panel_12 = new JPanel();
@@ -83,25 +81,25 @@ public class MemberSignInFrame extends JFrame {
 		exitButton.setBounds(222, 65, 77, 21);
 
 		leftPanel = new JPanel();
-		getContentPane().add(leftPanel, BorderLayout.WEST);
+		add(leftPanel, BorderLayout.WEST);
 		leftPanel.setLayout(new GridLayout(10, 2, 0, 0));
 
 		panel_0 = new JPanel();
 		leftPanel.add(panel_0);
 		panel_0.setLayout(new BorderLayout(0, 0));
 
-		lblNewLabel_1 = new JLabel(StringVO.ID);
+		lblNewLabel_1 = new JLabel(StringsVO.ID);
 		panel_0.add(lblNewLabel_1, BorderLayout.WEST);
 
 		panel_1 = new JPanel();
 		leftPanel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
-		lblNewLabel_7 = new JLabel(StringVO.PASSWORD);
+		lblNewLabel_7 = new JLabel(StringsVO.PASSWORD);
 		panel_1.add(lblNewLabel_7, BorderLayout.CENTER);
 
 		topPanel = new JPanel();
-		getContentPane().add(topPanel, BorderLayout.NORTH);
+		add(topPanel, BorderLayout.NORTH);
 		topPanel.setLayout(new BorderLayout(0, 0));
 
 		signUpLabel = new JLabel("Sign Up");
@@ -112,13 +110,13 @@ public class MemberSignInFrame extends JFrame {
 		topPanel.add(panel_8, BorderLayout.SOUTH);
 
 		bottomPanel = new JPanel();
-		getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+		add(bottomPanel, BorderLayout.SOUTH);
 
 		panel_9 = new JPanel();
 		bottomPanel.add(panel_9);
 
 		centerPanel = new JPanel();
-		getContentPane().add(centerPanel, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
 		centerPanel.setLayout(new GridLayout(10, 1, 0, 0));
 
 		idTF = new JTextField();
@@ -130,9 +128,11 @@ public class MemberSignInFrame extends JFrame {
 		passwordTF.setText("1234");
 		centerPanel.add(passwordTF);
 		passwordTF.setColumns(10);
-		setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setLocationRelativeTo(null);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setVisible(true);
 	}
 
 }

@@ -1,6 +1,6 @@
 package vo;
 
-public class StringVO {
+public class StringsVO {
 	public static final String CANCEL = "취소";
 	public static final String RESET = "초기화";
 	public static final String ID = "아이디";

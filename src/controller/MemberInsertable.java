@@ -1,15 +1,15 @@
-package service;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import container.SignUpContainer;
 import dao.MemberDAO;
 import model.Member;
-import view.frame.member.MemberSignUpFrame;
 
-public class MemberService implements ActionListener {
-	private MemberSignUpFrame memberSignUpFrame;
-	public MemberService(MemberSignUpFrame memberSignUpFrame) {
+public class MemberInsertable implements ActionListener {
+	private SignUpContainer memberSignUpFrame;
+	public MemberInsertable(SignUpContainer memberSignUpFrame) {
 		this.memberSignUpFrame = memberSignUpFrame;
 	}
 
