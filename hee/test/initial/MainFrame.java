@@ -1,3 +1,4 @@
+package test.initial;
 
 
 import java.awt.Color;
