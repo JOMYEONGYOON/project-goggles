@@ -1,7 +1,7 @@
 package vo;
 
 public interface StateVO {
-	final static String INIT = "INIT";
-	final static String EXSIST = "EXSIS";
-	final static String CLOSED = "CLOSED";
+	final String INIT = "INIT";
+	final String EXSIST = "EXSIS";
+	final String CLOSED = "CLOSED";
 }

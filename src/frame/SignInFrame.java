@@ -15,10 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import service.MemberService;
-import vo.CommandVO;
 import vo.StringVO;
 
-public class SignInFrame extends JFrame implements CommandVO, StringVO, MemberService {
+public class SignInFrame extends JFrame implements StringVO, MemberService {
 
 	private static final long serialVersionUID = 1L;
 	protected JPanel bottomPanel;
@@ -76,21 +75,21 @@ public class SignInFrame extends JFrame implements CommandVO, StringVO, MemberSe
 
 		rightPanel.add(panel_12);
 		signInButton = new JButton("Sign In");
-		
-				panel_12.add(signInButton);
-				signInButton.setForeground(Color.BLACK);
+
+		panel_12.add(signInButton);
+		signInButton.setForeground(Color.BLACK);
 		signUpBtn = new JButton(SIGN_UP);
 		panel_12.add(signUpBtn);
-		
-				signUpBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						System.out.println("sign in");
-		
-					}
-				});
-				
-						signUpBtn.setForeground(Color.BLACK);
-						signUpBtn.setBounds(222, 34, 77, 21);
+
+		signUpBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("sign in");
+
+			}
+		});
+
+		signUpBtn.setForeground(Color.BLACK);
+		signUpBtn.setBounds(222, 34, 77, 21);
 
 		panel_12.add(exitButton);
 		exitButton.setForeground(Color.BLACK);
@@ -131,7 +130,6 @@ public class SignInFrame extends JFrame implements CommandVO, StringVO, MemberSe
 		passwordTF.setText("1234");
 		centerPanel.add(passwordTF);
 		passwordTF.setColumns(10);
-	
 
 	}
 
