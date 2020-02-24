@@ -5,3 +5,4 @@ bin/
 .metadata/
 __pycache__/
 .vscode/
+.settings
