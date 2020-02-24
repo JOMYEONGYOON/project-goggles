@@ -1,6 +1,6 @@
-package option;
+package statics;
 
-public interface DBOption {
+public interface DatabaseEnv {
 	public static final String MYSQL_ID = "ROOT";
 	public static final String MYSQL_PASSWORD ="1234";
 	public static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";

@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
-import function.dao.RootDAO;
+import dao.RootDAO;
 import model.Word;
 
 public class WordSelectDAOTest extends RootDAO {
@@ -72,6 +72,30 @@ public class WordSelectDAOTest extends RootDAO {
 		}
 		return word;
 	}
+	
+	public static void updateWordById() {
+		String sql = "";
+		Word word = null;
+		try {
+			sql = "update word set id=?,name,def,category from word WHERE id=?";
+			PreparedStatement pstmt = open().prepareStatement(sql);
+//			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				word = new Word();
+				word.setId(rs.getInt(1));
+				word.setName(rs.getString(2));
+				word.setDef(rs.getString(3));
+				word.setCatagory(rs.getString(4));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		return word;
+	}
+	
+	
 
 	public static void main(String[] args) {
 		Vector<Word> vector = WordSelectDAOTest.select();

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import com.sun.corba.se.pept.transport.Connection;
 
-import function.dao.MemberDAO;
-import function.dao.RootDAO;
+import dao.MemberDAO;
+import dao.RootDAO;
 import model.Member;
 import model.Word;
 

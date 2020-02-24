@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import view.frame.SignUpFrame;
+import view.frame.MemberSignUpFrame;
 import view.panel.ImgPanel;
 
 
@@ -57,7 +57,7 @@ public class MainFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		imgPanel = new ImgPanel(new ImageIcon("image\\photo01.jpg").getImage());
+//		imgPanel = new ImgPanel(new ImageIcon("image\\photo01.jpg").getImage());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.getContentPane().add(imgPanel);
@@ -105,7 +105,7 @@ public class MainFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				new SignUpFrame().getFrame().setVisible(true);
+				new MemberSignUpFrame().getFrame().setVisible(true);
 			}
 		});
 		btnLogout.setBounds(687, 34, 77, 21);

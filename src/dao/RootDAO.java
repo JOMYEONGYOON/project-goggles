@@ -1,11 +1,11 @@
-package function.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class RootDAO {
-	protected static Connection connection;
+	public static Connection connection;
 
 	public Connection getConnection() {
 		return connection;

@@ -3,7 +3,7 @@ package dictionary;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import function.dao.RootDAO;
+import dao.RootDAO;
 
 //WordInsertDAOTest �����ͺ��̽� ������ �����ϴ� 
 //�Է� �޼ҵ� �ۼ�
