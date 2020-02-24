@@ -1,6 +1,6 @@
 package vo;
 
 public interface CommandVO {
-	 final String SIGN_UP = "Sign Up";
-	 final String SIGN_IN = "Login";
+	 final static String SIGN_UP = "Sign Up";
+	 final static String SIGN_IN = "Login";
 }

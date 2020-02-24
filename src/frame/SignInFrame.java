@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +17,6 @@ import javax.swing.JTextField;
 import service.MemberService;
 import vo.CommandVO;
 import vo.StringVO;
-import java.awt.FlowLayout;
 
 public class SignInFrame extends JFrame implements CommandVO, StringVO, MemberService {
 
@@ -81,7 +79,7 @@ public class SignInFrame extends JFrame implements CommandVO, StringVO, MemberSe
 		
 				panel_12.add(signInButton);
 				signInButton.setForeground(Color.BLACK);
-		signUpBtn = new JButton("Sign In");
+		signUpBtn = new JButton(SIGN_UP);
 		panel_12.add(signUpBtn);
 		
 				signUpBtn.addActionListener(new ActionListener() {
