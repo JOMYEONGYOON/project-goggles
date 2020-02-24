@@ -1,4 +1,4 @@
-package view.frame;
+package view.frame.member;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,19 +6,14 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Panel;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
-import service.MemberService;
-import statics.Strings;
-import javax.swing.SwingConstants;
+import vo.StringVO;
 
 public class MemberSignInFrame extends JFrame {
 	public static final long serialVersionUID = 1L;
@@ -36,9 +31,7 @@ public class MemberSignInFrame extends JFrame {
 	public JButton exitButton;
 
 	public MemberSignInFrame() {
-		JLabel lblBio;
-		JLabel lblBirth;
-		JLabel lblEmail;
+		this.setSize(1024, 768);
 		JLabel lblNewLabel_1;
 		JLabel lblNewLabel_7;
 		Panel panel;
@@ -47,8 +40,6 @@ public class MemberSignInFrame extends JFrame {
 		Panel panel_10;
 		Panel panel_11;
 		JPanel panel_12;
-		JPanel panel_14;
-		JPanel panel_6;
 		JPanel panel_8;
 		JPanel panel_9;
 		JLabel lblPhone;
@@ -57,7 +48,7 @@ public class MemberSignInFrame extends JFrame {
 
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(617, 613);
+		setSize(640, 480);
 
 		rightPanel = new JPanel();
 		rightPanel.setForeground(Color.BLACK);
@@ -95,22 +86,18 @@ public class MemberSignInFrame extends JFrame {
 		getContentPane().add(leftPanel, BorderLayout.WEST);
 		leftPanel.setLayout(new GridLayout(10, 2, 0, 0));
 
-		panel_6 = new JPanel();
-		leftPanel.add(panel_6);
-		panel_6.setLayout(new BorderLayout(0, 0));
-
 		panel_0 = new JPanel();
 		leftPanel.add(panel_0);
 		panel_0.setLayout(new BorderLayout(0, 0));
 
-		lblNewLabel_1 = new JLabel(Strings.ID);
+		lblNewLabel_1 = new JLabel(StringVO.ID);
 		panel_0.add(lblNewLabel_1, BorderLayout.WEST);
 
 		panel_1 = new JPanel();
 		leftPanel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
-		lblNewLabel_7 = new JLabel(Strings.PASSWORD);
+		lblNewLabel_7 = new JLabel(StringVO.PASSWORD);
 		panel_1.add(lblNewLabel_7, BorderLayout.CENTER);
 
 		topPanel = new JPanel();
@@ -134,9 +121,6 @@ public class MemberSignInFrame extends JFrame {
 		getContentPane().add(centerPanel, BorderLayout.CENTER);
 		centerPanel.setLayout(new GridLayout(10, 1, 0, 0));
 
-		panel_14 = new JPanel();
-		centerPanel.add(panel_14);
-
 		idTF = new JTextField();
 		idTF.setText("example");
 		centerPanel.add(idTF);
@@ -147,6 +131,8 @@ public class MemberSignInFrame extends JFrame {
 		centerPanel.add(passwordTF);
 		passwordTF.setColumns(10);
 		setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }

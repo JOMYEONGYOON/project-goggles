@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import dao.MemberDAO;
 import model.Member;
-import view.frame.MemberSignUpFrame;
+import view.frame.member.MemberSignUpFrame;
 
 public class MemberService implements ActionListener {
 	private MemberSignUpFrame memberSignUpFrame;
