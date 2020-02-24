@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -15,29 +17,30 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controller.MemberInsertable;
+import dao.MemberDAO;
+import model.Member;
 import vo.StringsVO;
 
 public class SignUpContainer extends JPanel {
-	public static final long serialVersionUID = 1L;
-	public JTextField birthTF;
-	public JTextField etcTF;
-	public JPanel bottomPanel;
-	public JPanel centerPanel;
-	public JTextField emailTF;
-	public JFrame frame;
-	public JComboBox genderCB;
-	public JTextField idTF;
-	public JPanel leftPanel;
-	public JTextField nameTF;
-	public JPasswordField passwordTF;
-	public JButton resetButton;
-	public JPanel rightPanel;
-	public JButton signUpBtn;
-	public JLabel signUpLabel;
-	public JTextField phoneTF;
-	public JPanel topPanel;
-	public JButton cancelButton;
+	private static final long serialVersionUID = 1L;
+	private JTextField birthTF;
+	private JTextField etcTF;
+	private JPanel bottomPanel;
+	private JPanel centerPanel;
+	private JTextField emailTF;
+	private JFrame frame;
+	private JComboBox genderCB;
+	private JTextField idTF;
+	private JPanel leftPanel;
+	private JTextField nameTF;
+	private JPasswordField passwordTF;
+	private JButton resetButton;
+	private JPanel rightPanel;
+	private JButton signUpBtn;
+	private JLabel signUpLabel;
+	private JTextField phoneTF;
+	private JPanel topPanel;
+	private JButton cancelButton;
 
 	public SignUpContainer() {
 		this.setSize(600, 480);
@@ -91,7 +94,31 @@ public class SignUpContainer extends JPanel {
 		signUpBtn = new JButton(StringsVO.SIGN_UP);
 		panel_12.add(signUpBtn);
 		signUpBtn.setForeground(Color.BLACK);
-		signUpBtn.addActionListener(new MemberInsertable(this));
+		signUpBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(e.getSource());
+				if (e.getActionCommand().contains("Sign Up")) {
+					Member member = getMemberSignUpText();
+					MemberDAO.insert(member);
+				}
+
+			}
+
+			private Member getMemberSignUpText() {
+				Member member = new Member();
+				member.setId(idTF.getText());
+				member.setName(nameTF.getText());
+				member.setPhone(phoneTF.getText());
+				member.setBirth(birthTF.getText());
+				member.setEmail(emailTF.getText());
+				member.setGender(genderCB.getSelectedItem().toString());
+				member.setPassword(passwordTF.getText());
+				member.setEtc(etcTF.getText());
+				return member;
+			}
+		});
 		signUpBtn.setBounds(222, 34, 77, 21);
 
 		panel_10 = new Panel();
@@ -230,7 +257,6 @@ public class SignUpContainer extends JPanel {
 		etcTF.setColumns(10);
 
 		panel_14 = new JPanel();
-		centerPanel.add(panel_14);
 //		setLocationRelativeTo(null);
 //		this.setVisible(true);
 	}

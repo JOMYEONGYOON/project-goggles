@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,9 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.MainFrameControlable;
+import frame.MainFrame;
 import vo.StringsVO;
 
-public class SignInContainer extends JPanel {
+public class SignInContainer extends JPanel implements MainFrameControlable{
 	public static final long serialVersionUID = 1L;
 	public JPanel bottomPanel;
 	public JPanel centerPanel;
@@ -61,6 +65,12 @@ public class SignInContainer extends JPanel {
 		panel_12.add(panel);
 
 		signUpBtn = new JButton("Sign Up");
+		signUpBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame mainFrame = MainFrame.getInstance();
+				
+			}
+		});
 		panel_12.add(signUpBtn);
 		signUpBtn.setForeground(Color.BLACK);
 		signUpBtn.setBounds(222, 34, 77, 21);
