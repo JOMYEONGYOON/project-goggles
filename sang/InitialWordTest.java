@@ -1,6 +1,6 @@
 import java.util.Vector;
 
-public class Dictionary {
+public class InitialWordTest {
 	/*****************
 	 * Member Fields
 	 *****************/

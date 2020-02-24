@@ -77,7 +77,7 @@ public class SignUpFrame {
 			public void actionPerformed(ActionEvent e) {
 				 
 				Member member = new Member();
-				member.setId(idTF.getText());
+//				member.setId(idTF.getText());
 				member.setName(nameTF.getText());
 				member.setPhone(phoneTF.getText());
 				member.setBirth(birthTF.getText());
@@ -86,6 +86,7 @@ public class SignUpFrame {
 				member.setPassword(passwordTF.getText());
 				member.setEtc(etcTP.getText());
 				System.out.println(member.toString());
+				
 			}
 		});
 		signUpBtn.setFont(new Font("굴림", Font.PLAIN, 10));
