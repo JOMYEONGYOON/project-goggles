@@ -1,13 +1,13 @@
-package test.dao;
+package function.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
-import function.dao.RootDAO;
 import model.Word;
 
-public class WordSelectDAOTest extends RootDAO {
+public class WordDAO extends RootDAO {
 	public static Vector<Word> select() {
 		Vector<Word> words = null;
 		String sql = "";
@@ -73,18 +73,36 @@ public class WordSelectDAOTest extends RootDAO {
 		return word;
 	}
 
-	public static void main(String[] args) {
-		Vector<Word> vector = WordSelectDAOTest.select();
-		System.out.println(vector.size());
-		for (int i = 0; i < vector.size(); i++) {
-			Word word = vector.get(i);
-			
-			
+	public static void insert(Word word) {
+		String sql = "";
+
+		try {
+			sql = "INSERT INTO word(name, def, category) VALUES(?,?,?)";
+			PreparedStatement pstmt = open().prepareStatement(sql);
+
+			System.out.println("---");
+
+			pstmt.setString(1, word.getName());
+
+			pstmt.setString(2, word.getDef());
+			pstmt.setString(3, word.getCatagory());
+			pstmt.execute();
+
 		}
-		Word word = WordSelectDAOTest.selectById(1);
-		System.out.println(word.getCatagory());
-		System.out.println(word.getDef());
-		System.out.println(word.getId());
-		System.out.println(word.getName());
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+
+	public static void main(String[] args) {
+		Word word = new Word();
+		word.setName("java");
+		word.setDef("프로그래밍");
+		word.setCatagory("IT");
+		WordDAO.insert(word);
+
+	}
+
 }
