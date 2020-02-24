@@ -1,11 +1,12 @@
 package core;
 
-import controller.MainFrameControlable;
+import frame.SignInFrame;
 
-public class App implements MainFrameControlable {
+public class App {
 	public App() {
-		run();
+		SignInFrame signInFrame = new SignInFrame();
 	}
+
 	public static void main(String[] args) {
 		new App();
 	}

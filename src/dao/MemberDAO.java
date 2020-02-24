@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import model.Member;
 
 public class MemberDAO extends RootDAO {
-	public  void insert(Member member) {
+	public static  void insert(Member member) {
 
 		String sql;
 		try {

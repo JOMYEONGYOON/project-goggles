@@ -1,4 +1,4 @@
-package container;
+package frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,14 +21,13 @@ import dao.MemberDAO;
 import model.Member;
 import vo.StringVO;
 
-public class SignUpContainer extends JPanel {
+public class SignUpFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField birthTF;
 	private JTextField etcTF;
 	private JPanel bottomPanel;
 	private JPanel centerPanel;
 	private JTextField emailTF;
-	private JFrame frame;
 	private JComboBox genderCB;
 	private JTextField idTF;
 	private JPanel leftPanel;
@@ -42,7 +41,7 @@ public class SignUpContainer extends JPanel {
 	private JPanel topPanel;
 	private JButton cancelButton;
 
-	public SignUpContainer() {
+	public SignUpFrame() {
 		this.setSize(600, 480);
 //		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel lblBio;
@@ -99,7 +98,7 @@ public class SignUpContainer extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(e.getSource());
-				if (e.getActionCommand().contains("Sign Up")) {
+				if (e.getActionCommand().contains("Sign In")) {
 					Member member = getMemberSignUpText();
 					MemberDAO.insert(member);
 				}
