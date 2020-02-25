@@ -1,13 +1,43 @@
 package core;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
 import frame.SignInFrame;
 
 public class App {
-	public App() {
-		SignInFrame signInFrame = new SignInFrame();
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					App window = new App();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
-	public static void main(String[] args) {
-		new App();
+	/**
+	 * Create the application.
+	 */
+	public App() {
+		initialize();
 	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new SignInFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
 }

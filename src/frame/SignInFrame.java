@@ -17,8 +17,8 @@ import javax.swing.JTextField;
 import service.MemberService;
 import vo.StringVO;
 
-public class SignInFrame extends JFrame implements StringVO, MemberService {
-
+public class SignInFrame extends RootFrame implements StringVO, MemberService {
+	
 	private static final long serialVersionUID = 1L;
 	protected JPanel bottomPanel;
 	protected JPanel centerPanel;
@@ -83,8 +83,9 @@ public class SignInFrame extends JFrame implements StringVO, MemberService {
 
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("sign in");
-
+				System.out.println("sign up");
+				new SignUpFrame();
+				SignInFrame.this.dispose();
 			}
 		});
 
@@ -134,7 +135,6 @@ public class SignInFrame extends JFrame implements StringVO, MemberService {
 	}
 
 	public SignInFrame() {
-
 		newInstance();
 		init();
 		setVisible(true);
