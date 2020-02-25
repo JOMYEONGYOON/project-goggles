@@ -15,9 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.vo.StringVO;
-import service.impl.MemberCheckable;
+import service.impl.IdExistCheckable;
 
-public class SignInFrame extends RootFrame implements StringVO, MemberCheckable {
+public class SignInFrame extends RootFrame implements StringVO, IdExistCheckable {
 	
 	private static final long serialVersionUID = 1L;
 	protected JPanel bottomPanel;
