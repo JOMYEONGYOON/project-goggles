@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import frame.SignInFrame;
+import view.SignInFrame;
 
 public class App {
 	private JFrame frame;

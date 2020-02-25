@@ -1,4 +1,4 @@
-package frame;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,9 +19,10 @@ import javax.swing.JTextField;
 
 import dao.MemberDAO;
 import model.Member;
+import service.SignUpCheckService;
 import vo.StringVO;
 
-public class SignUpFrame extends RootFrame {
+public class SignUpFrame extends RootFrame implements SignUpCheckService {
 	private static final long serialVersionUID = 1L;
 	private JTextField birthTF;
 	private JPanel bottomPanel;
@@ -45,7 +46,6 @@ public class SignUpFrame extends RootFrame {
 	private JLabel lblPhone;
 	private JPanel leftPanel;
 	private JTextField nameTF;
-	private Panel panel;
 	private JPanel panel_0;
 	private JPanel panel_1;
 	private Panel panel_10;
@@ -67,6 +67,8 @@ public class SignUpFrame extends RootFrame {
 	private JButton signUpBtn;
 	private JLabel signUpLabel;
 	private JPanel topPanel;
+	private JButton button;
+	private JButton checkButton;
 
 	public SignUpFrame() {
 		newInstance();
@@ -155,7 +157,14 @@ public class SignUpFrame extends RootFrame {
 		rightPanel.setLayout(new GridLayout(4, 2, 0, 0));
 		rightPanel.add(panel_12);
 		panel_12.setLayout(new GridLayout(3, 2, 0, 0));
-		panel_12.add(panel);
+
+		checkButton = new JButton("Check");
+		checkButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		panel_12.add(checkButton);
 		panel_12.add(signUpBtn);
 		signUpBtn.setForeground(Color.BLACK);
 		signUpBtn.addActionListener(new ActionListener() {
@@ -163,9 +172,15 @@ public class SignUpFrame extends RootFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(e.getSource());
-				if (e.getActionCommand().contains("Sign In")) {
-					Member member = getMemberSignUpText();
-					MemberDAO.insert(member);
+				if (e.getActionCommand().contains(StringVO.SIGN_UP)) {
+//					String checkSignUpForm()
+//					if ( == null) {
+//						Member member = getMemberSignUpText();
+//						MemberDAO.insert(member);	
+//					}else {
+//						
+//					}
+					
 				}
 
 			}
@@ -191,6 +206,12 @@ public class SignUpFrame extends RootFrame {
 
 		panel_12.add(panel_11);
 
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SignInFrame();
+				SignUpFrame.this.dispose();
+			}
+		});
 		panel_12.add(cancelButton);
 		cancelButton.setForeground(Color.BLACK);
 		cancelButton.setBounds(222, 65, 77, 21);
@@ -212,17 +233,10 @@ public class SignUpFrame extends RootFrame {
 
 		rightPanel = new JPanel();
 		panel_12 = new JPanel();
-		panel = new Panel();
 		panel_10 = new Panel();
 		resetButton = new JButton("Reset");
 		panel_11 = new Panel();
 		cancelButton = new JButton(StringVO.CANCEL);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new SignInFrame();
-				SignUpFrame.this.dispose();
-			}
-		});
 		leftPanel = new JPanel();
 		panel_0 = new JPanel();
 		lblNewLabel_1 = new JLabel(StringVO.ID);
@@ -257,7 +271,5 @@ public class SignUpFrame extends RootFrame {
 		etcTF = new JTextField();
 		panel_14 = new JPanel();
 	}
-
-	
 
 }
