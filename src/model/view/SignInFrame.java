@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import model.vo.StringVO;
-import service.impl.IdExistCheckable;
+import impl.method.IdExistCheckable;
+import impl.vo.StringVO;
 
 public class SignInFrame extends RootFrame implements StringVO, IdExistCheckable {
 	

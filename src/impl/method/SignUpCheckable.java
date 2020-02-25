@@ -1,12 +1,12 @@
-package service.impl;
+package impl.method;
 
 import javax.swing.JTextField;
 
 import com.google.gson.Gson;
 
 import dto.MemberDTO;
+import impl.vo.StringVO;
 import model.view.SignUpFrame;
-import model.vo.StringVO;
 
 public interface SignUpCheckable extends StringVO {
 	public default boolean checkMemberIdByName(JTextField idTF) {

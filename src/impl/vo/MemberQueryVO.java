@@ -1,4 +1,4 @@
-package model.vo;
+package impl.vo;
 
 public interface MemberQueryVO {
 	final String SELECT_MEMBER_BY_ID_SQL= "SELECT id,name,def,category FROM word WHERE id=?";

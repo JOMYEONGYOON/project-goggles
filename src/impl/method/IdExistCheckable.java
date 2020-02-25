@@ -1,4 +1,4 @@
-package service.impl;
+package impl.method;
 
 import dao.MemberDAO;
 import dto.MemberDTO;

@@ -1,7 +1,7 @@
 package service;
 
-import model.vo.StringVO;
-import service.impl.SignUpCheckable;
+import impl.method.SignUpCheckable;
+import impl.vo.StringVO;
 
 public class SignUpService implements SignUpCheckable, StringVO{
 

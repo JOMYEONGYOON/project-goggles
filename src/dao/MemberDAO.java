@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dto.MemberDTO;
-import model.vo.MemberQueryVO;
-import model.vo.StringVO;
+import impl.vo.MemberQueryVO;
+import impl.vo.StringVO;
 
 public class MemberDAO extends RootDAO implements MemberQueryVO,StringVO{
 	public static MemberDTO selectById(String id) {

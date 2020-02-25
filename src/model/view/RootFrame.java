@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import model.vo.SizeVO;
+import impl.vo.SizeVO;
 
 public class RootFrame extends JFrame implements SizeVO{
 	public RootFrame() {

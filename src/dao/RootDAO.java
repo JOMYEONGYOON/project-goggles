@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import model.vo.MySQLVO;
-import model.vo.StringVO;
+import impl.vo.MySQLVO;
+import impl.vo.StringVO;
 
 public class RootDAO implements MySQLVO,  StringVO {
 	private static Connection connection;

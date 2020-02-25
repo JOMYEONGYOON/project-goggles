@@ -1,4 +1,4 @@
-package model.vo;
+package impl.vo;
 
 public interface StringVO {
 	final String EXSIST = "EXSIST";

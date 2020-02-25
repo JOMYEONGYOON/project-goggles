@@ -1,4 +1,4 @@
-package service.test;
+package service;
 
 public class TestService{
 

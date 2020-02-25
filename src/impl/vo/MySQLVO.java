@@ -1,4 +1,4 @@
-package model.vo;
+package impl.vo;
 
 public interface MySQLVO {
 	final String MYSQL_DB_NAME = "dictionary";

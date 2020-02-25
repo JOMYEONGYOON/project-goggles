@@ -1,4 +1,4 @@
-package model.vo;
+package impl.vo;
 
 public interface WordQueryVO {	
 	final String INSERT_WORD_AUTO_INCREMENT_ID_SQL = "INSERT INTO word(name, def, category) VALUES(?, ?, ?)";
