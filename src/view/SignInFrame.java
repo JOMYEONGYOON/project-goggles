@@ -1,4 +1,4 @@
-package frame;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -75,6 +75,12 @@ public class SignInFrame extends RootFrame implements StringVO, MemberService {
 
 		rightPanel.add(panel_12);
 		signInButton = new JButton("Sign In");
+		signInButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("로그인버튼 확인");
+				
+			}
+		});
 
 		panel_12.add(signInButton);
 		signInButton.setForeground(Color.BLACK);
