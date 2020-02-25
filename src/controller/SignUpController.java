@@ -98,19 +98,19 @@ public class SignUpController implements StringVO {
 
 		view.getGenderCB().setModel(new DefaultComboBoxModel(new String[] { StringVO.MALE, StringVO.FEMALE }));
 		view.getCenterPanel().add(view.getGenderCB());
-		phoneTF.setText(StringVO._010_000_0000);
-		view.getCenterPanel().add(phoneTF);
-		phoneTF.setColumns(10);
+		view.getPhoneTF().setText(StringVO._010_000_0000);
+		view.getCenterPanel().add(view.getPhoneTF());
+		view.getPhoneTF().setColumns(10);
 
-		emailTF.setText(StringVO.EXAMPLE_EMAIL);
-		view.getCenterPanel().add(emailTF);
-		emailTF.setColumns(10);
+		view.getEmailTF().setText(StringVO.EXAMPLE_EMAIL);
+		view.getCenterPanel().add(view.getEmailTF());
+		view.getEmailTF().setColumns(10);
 
-		etcTF.setText("etc....");
-		view.getCenterPanel().add(etcTF);
-		etcTF.setColumns(10);
+		view.getEtcTF().setText("etc....");
+		view.getCenterPanel().add(view.getEtcTF());
+		view.getEtcTF().setColumns(10);
 
-		this.setVisible(true);
+		view.setVisible(true);
 
 	}
 
