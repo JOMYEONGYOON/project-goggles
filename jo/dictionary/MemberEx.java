@@ -12,63 +12,41 @@ import model.Member;
 import model.Word;
 
 public class MemberEx extends MemberDAO {
-	public static void Select(int id) {
+	public static void select(int no) {
 		Member mem = null;
 		String sql = "";
 
 		try {
-			sql = "SELECT id,birth,eamil,etc,gender,no,password,phone,name FROM member WHERE id=?";
+			sql = "SELECT * FROM member WHERE no=?";
 			PreparedStatement pstmt = open().prepareStatement(sql);
-			pstmt.setInt(1, id);
+			System.out.println("연결");
+			pstmt.setInt(1, no);
 			ResultSet rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				mem = new mem();
-//				mem.setBirth(birth);
-//				mem.setEmail(email);				
-//				mem.setEtc(etc);
-//				mem.setGender(gender);
-//				mem.setId(id);
-//				mem.setNo(no);
-//				mem.setPassword(password);
-//				mem.setPhone(phone);
-//				mem.setName(name);
-//				
-//			}
-		
+			while (rs.next()) {
+				mem = new Member();
+				mem.setNo(rs.getInt(1));
+				mem.setId(rs.getString(2));
+				mem.setName(rs.getString(3));
+				mem.setPhone(rs.getString(4));
+				mem.setEtc(rs.getString(5));
+				mem.setBirth(rs.getString(6));
+				mem.setEmail(rs.getString(7));
+				mem.setGender(rs.getString(8));
+				mem.setPassword(rs.getString(9));
 
-			
+			}
 
-		}
-
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-//	public static Word selectById(int id) {
-//		Word word = null;
-//		String sql = "";
-//		try {
-//			sql = "select id,name,def,category from word WHERE id=?";
-//			PreparedStatement pstmt = open().prepareStatement(sql);
-//			pstmt.setInt(1, id);
-//			ResultSet rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				word = new Word();
-//				word.setId(rs.getInt(1));
-//				word.setName(rs.getString(2));
-//				word.setDef(rs.getString(3));
-//				word.setCatagory(rs.getString(4));
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return word;
-//	}
-//}
-//}
-	public static void main(String[] args) {
+		} 
 
+		
+		
+	}
+
+
+	public static void main(String[] args) {
+		select(1);
 	}
 }
