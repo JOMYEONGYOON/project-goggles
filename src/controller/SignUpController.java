@@ -33,6 +33,8 @@ public class SignUpController implements StringVO {
 	private SignUpFrame view;
 
 	public SignUpController() {
+		this.service = new SignUpService();
+		this.view = new SignUpFrame();
 		newInstanceView();
 		setInstanceView();
 		addInstanceView();
