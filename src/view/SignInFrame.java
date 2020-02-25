@@ -89,7 +89,6 @@ public class SignInFrame extends RootFrame implements StringVO, MemberService {
 
 		signUpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("sign up");
 				new SignUpFrame();
 				SignInFrame.this.dispose();
 			}

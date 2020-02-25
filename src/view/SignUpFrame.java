@@ -163,7 +163,11 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService, StateV
 		checkButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Member member = getMemberSignUpText();
-				String checkResult = checkSignUpForm(member);
+				String signUpFormState = getSignUpFormState(member);
+				System.out.println(signUpFormState);
+				System.out.println("---------------------------");
+				String checkResult = checkSignUpFormState(signUpFormState);
+				System.out.println(checkResult);
 				if (checkResult.contains(SUCCESS)) {
 					System.out.println(SUCCESS);
 					MemberDAO.insert(member);
