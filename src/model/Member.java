@@ -13,22 +13,33 @@ public class Member {
 
 	public Member(Integer no, String id, String name, String phone, String birth, String email, String gender,
 			String password, String etc) {
-		this.no=no;
-		this.id=id;
-		this.name=name;
-		this.phone=phone;
-		this.birth=birth;
-		this.email=email;
-		this.gender=gender;
-		this.password=password;
-		this.etc=etc;
+		this.no = no;
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.birth = birth;
+		this.email = email;
+		this.gender = gender;
+		this.password = password;
+		this.etc = etc;
 	}
 
 	public Member() {
-		
+
 	}
-	
-	
+
+	public Member(String id, String name, String phone, String email, String birth, String gender, String password,
+			String etc) {
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.birth = birth;
+		this.email = email;
+		this.gender = gender;
+		this.password = password;
+		this.etc = etc;
+
+	}
 
 	public void setNo(Integer no) {
 		this.no = no;

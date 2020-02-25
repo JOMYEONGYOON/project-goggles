@@ -20,9 +20,10 @@ import javax.swing.JTextField;
 import dao.MemberDAO;
 import model.Member;
 import service.SignUpCheckService;
+import vo.StateVO;
 import vo.StringVO;
 
-public class SignUpFrame extends RootFrame implements SignUpCheckService {
+public class SignUpFrame extends RootFrame implements SignUpCheckService, StateVO, StringVO {
 	private static final long serialVersionUID = 1L;
 	private JTextField birthTF;
 	private JPanel bottomPanel;
@@ -158,49 +159,50 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService {
 		rightPanel.add(panel_12);
 		panel_12.setLayout(new GridLayout(3, 2, 0, 0));
 
-		checkButton = new JButton("Check");
+		checkButton = new JButton(CHECK);
 		checkButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				Member member = getMemberSignUpText();
+				String checkResult = checkSignUpForm(member);
+				if (checkResult.contains(SUCCESS)) {
+					System.out.println(SUCCESS);
+					MemberDAO.insert(member);
+				} else {
+					System.out.println(checkResult);
+//					Modal modal = new Modal(checkResult);
+				}
 			}
 		});
 		panel_12.add(checkButton);
 		panel_12.add(signUpBtn);
+		signUpBtn.setEnabled(false);
 		signUpBtn.setForeground(Color.BLACK);
 		signUpBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(e.getSource());
 				if (e.getActionCommand().contains(StringVO.SIGN_UP)) {
-//					String checkSignUpForm()
-//					if ( == null) {
-//						Member member = getMemberSignUpText();
-//						MemberDAO.insert(member);	
-//					}else {
-//						
-//					}
-					
+
 				}
 
 			}
 
-			private Member getMemberSignUpText() {
-				Member member = new Member();
-				member.setId(idTF.getText());
-				member.setName(nameTF.getText());
-				member.setPhone(phoneTF.getText());
-				member.setBirth(birthTF.getText());
-				member.setEmail(emailTF.getText());
-				member.setGender(genderCB.getSelectedItem().toString());
-				member.setPassword(passwordTF.getText());
-				member.setEtc(etcTF.getText());
-				return member;
-			}
 		});
 		signUpBtn.setBounds(222, 34, 77, 21);
 		panel_12.add(panel_10);
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				idTF.setText("");
+				nameTF.setText("");
+				phoneTF.setText("");
+				birthTF.setText("");
+				emailTF.setText("");
 
+				passwordTF.setText("");
+				etcTF.setText("");
+				signUpBtn.setEnabled(false);
+			}
+		});
 		panel_12.add(resetButton);
 		resetButton.setForeground(Color.BLACK);
 
@@ -235,6 +237,7 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService {
 		panel_12 = new JPanel();
 		panel_10 = new Panel();
 		resetButton = new JButton("Reset");
+		
 		panel_11 = new Panel();
 		cancelButton = new JButton(StringVO.CANCEL);
 		leftPanel = new JPanel();
@@ -272,4 +275,16 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService {
 		panel_14 = new JPanel();
 	}
 
+	private Member getMemberSignUpText() {
+		Member member = new Member();
+		member.setId(idTF.getText());
+		member.setName(nameTF.getText());
+		member.setPhone(phoneTF.getText());
+		member.setBirth(birthTF.getText());
+		member.setEmail(emailTF.getText());
+		member.setGender(genderCB.getSelectedItem().toString());
+		member.setPassword(passwordTF.getText());
+		member.setEtc(etcTF.getText());
+		return member;
+	}
 }

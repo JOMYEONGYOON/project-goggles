@@ -1,5 +1,10 @@
 package service;
 
-public interface MemberService {
+import dao.MemberDAO;
+import model.Member;
 
+public interface MemberService {
+	public default Member selectById(String id) {
+		return MemberDAO.selectById(id);
+	}
 }

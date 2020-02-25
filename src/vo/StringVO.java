@@ -1,6 +1,11 @@
 package vo;
 
 public interface StringVO {
+
+	final String EMPTY_STR = "EMPTY";
+	final String CHECK = "CHECK";
+	final String __ = ".";
+	final String ENTER = "\n";
 	final String MYSQL = "MYSQL";
 	final String CANCEL = "CANCEL";
 	final String RESET = "RESET";

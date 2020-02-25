@@ -4,18 +4,28 @@ public class Word {
 	private int id;
 	private String name;
 	private String def;
-	private String catagory;
+	private String category;
 
-//	public Word() {
-//
-//		
-//		this.id = id;
-//		this.name = name;
-//		this.def = def;
-//		this.catagory = catagory;	
-//		
-//		
-//	}
+	public Word() {
+
+	}
+
+	public Word(String name, String def, String category) {
+
+		this.name = name;
+		this.def = def;
+		this.category = category;
+
+	}
+
+	public Word(int id, String name, String def, String category) {
+
+		this.id = id;
+		this.name = name;
+		this.def = def;
+		this.category = category;
+
+	}
 
 	public int getId() {
 		return id;
@@ -42,14 +52,11 @@ public class Word {
 	}
 
 	public String getCatagory() {
-		return catagory;
+		return category;
 	}
 
 	public void setCatagory(String catagory) {
-		this.catagory = catagory;
+		this.category = catagory;
 	}
 
 }
- 
-
-
