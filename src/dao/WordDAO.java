@@ -5,19 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import model.Word;
+import dto.WordDTO;
 
 public class WordDAO extends RootDAO {
-	public static Vector<Word> select() {
-		Vector<Word> words = null;
+	public static Vector<WordDTO> select() {
+		Vector<WordDTO> words = null;
 		String sql = "";
 		try {
 			sql = "select id,name,def,category from word";
 			PreparedStatement pstmt = open().prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			words = new Vector<Word>();
+			words = new Vector<WordDTO>();
 			while (rs.next()) {
-				Word word = new Word();
+				WordDTO word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -30,8 +30,8 @@ public class WordDAO extends RootDAO {
 		return words;
 	}
 
-	public static Word selectById(int id) {
-		Word word = null;
+	public static WordDTO selectById(int id) {
+		WordDTO word = null;
 		String sql = "";
 		try {
 			sql = "select id,name,def,category from word WHERE id=?";
@@ -39,7 +39,7 @@ public class WordDAO extends RootDAO {
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				word = new Word();
+				word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -51,9 +51,9 @@ public class WordDAO extends RootDAO {
 		return word;
 	}
 
-	public static Word selectByName(String name) {
+	public static WordDTO selectByName(String name) {
 		String sql = "";
-		Word word = null;
+		WordDTO word = null;
 		try {
 			sql = "select id,name,def,category from word WHERE name=?";
 			PreparedStatement pstmt = open().prepareStatement(sql);
@@ -61,7 +61,7 @@ public class WordDAO extends RootDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				word = new Word();
+				word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -73,7 +73,7 @@ public class WordDAO extends RootDAO {
 		return word;
 	}
 
-	public static void insert(Word word) {
+	public static void insert(WordDTO word) {
 		String sql = "";
 
 		try {
@@ -97,7 +97,7 @@ public class WordDAO extends RootDAO {
 	}
 
 	public static void main(String[] args) {
-		Word word = new Word();
+		WordDTO word = new WordDTO();
 		word.setName("java");
 		word.setDef("프로그래밍");
 		word.setCatagory("IT");

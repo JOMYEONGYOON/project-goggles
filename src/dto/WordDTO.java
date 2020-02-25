@@ -1,16 +1,16 @@
-package model;
+package dto;
 
-public class Word {
+public class WordDTO {
 	private int id;
 	private String name;
 	private String def;
 	private String category;
 
-	public Word() {
+	public WordDTO() {
 
 	}
 
-	public Word(String name, String def, String category) {
+	public WordDTO(String name, String def, String category) {
 
 		this.name = name;
 		this.def = def;
@@ -18,7 +18,7 @@ public class Word {
 
 	}
 
-	public Word(int id, String name, String def, String category) {
+	public WordDTO(int id, String name, String def, String category) {
 
 		this.id = id;
 		this.name = name;

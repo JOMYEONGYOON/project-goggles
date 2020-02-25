@@ -4,11 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import vo.MySQLVO;
-import vo.StateVO;
-import vo.StringVO;
+import model.vo.MySQLVO;
+import model.vo.StringVO;
 
-public class RootDAO implements MySQLVO, StateVO, StringVO {
+public class RootDAO implements MySQLVO,  StringVO {
 	private static Connection connection;
 
 	public static Connection getConnection() {
@@ -34,7 +33,7 @@ public class RootDAO implements MySQLVO, StateVO, StringVO {
 	public static void close() {
 		try {
 			connection.close();
-			System.out.println(MYSQL + CLOSED);
+			System.out.println(MYSQL +__ +CLOSED);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

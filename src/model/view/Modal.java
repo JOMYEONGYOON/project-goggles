@@ -1,4 +1,4 @@
-package view;
+package model.view;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

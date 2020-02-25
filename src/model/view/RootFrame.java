@@ -1,4 +1,4 @@
-package view;
+package model.view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import vo.SizeVO;
+import model.vo.SizeVO;
 
 public class RootFrame extends JFrame implements SizeVO{
 	public RootFrame() {

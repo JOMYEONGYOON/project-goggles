@@ -1,4 +1,4 @@
-package view;
+package model.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,13 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import dao.MemberDAO;
-import model.Member;
-import service.SignUpCheckService;
-import vo.StateVO;
-import vo.StringVO;
+import model.vo.StringVO;
+import service.impl.SignUpCheckable;
 
-public class SignUpFrame extends RootFrame implements SignUpCheckService, StateVO, StringVO {
+public class SignUpFrame extends RootFrame implements SignUpCheckable, StringVO {
 	private static final long serialVersionUID = 1L;
 	private JTextField birthTF;
 	private JPanel bottomPanel;
@@ -62,6 +59,370 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService, StateV
 	private JPanel panel_8;
 	private JPanel panel_9;
 	private JPasswordField passwordTF;
+	public JTextField getBirthTF() {
+		return birthTF;
+	}
+
+	public void setBirthTF(JTextField birthTF) {
+		this.birthTF = birthTF;
+	}
+
+	public JPanel getBottomPanel() {
+		return bottomPanel;
+	}
+
+	public void setBottomPanel(JPanel bottomPanel) {
+		this.bottomPanel = bottomPanel;
+	}
+
+	public JButton getCancelButton() {
+		return cancelButton;
+	}
+
+	public void setCancelButton(JButton cancelButton) {
+		this.cancelButton = cancelButton;
+	}
+
+	public JPanel getCenterPanel() {
+		return centerPanel;
+	}
+
+	public void setCenterPanel(JPanel centerPanel) {
+		this.centerPanel = centerPanel;
+	}
+
+	public JTextField getEmailTF() {
+		return emailTF;
+	}
+
+	public void setEmailTF(JTextField emailTF) {
+		this.emailTF = emailTF;
+	}
+
+	public JTextField getEtcTF() {
+		return etcTF;
+	}
+
+	public void setEtcTF(JTextField etcTF) {
+		this.etcTF = etcTF;
+	}
+
+	public JComboBox getGenderCB() {
+		return genderCB;
+	}
+
+	public void setGenderCB(JComboBox genderCB) {
+		this.genderCB = genderCB;
+	}
+
+	public JTextField getIdTF() {
+		return idTF;
+	}
+
+	public void setIdTF(JTextField idTF) {
+		this.idTF = idTF;
+	}
+
+	public JLabel getLblBio() {
+		return lblBio;
+	}
+
+	public void setLblBio(JLabel lblBio) {
+		this.lblBio = lblBio;
+	}
+
+	public JLabel getLblBirth() {
+		return lblBirth;
+	}
+
+	public void setLblBirth(JLabel lblBirth) {
+		this.lblBirth = lblBirth;
+	}
+
+	public JLabel getLblEmail() {
+		return lblEmail;
+	}
+
+	public void setLblEmail(JLabel lblEmail) {
+		this.lblEmail = lblEmail;
+	}
+
+	public JLabel getLblNewLabel_1() {
+		return lblNewLabel_1;
+	}
+
+	public void setLblNewLabel_1(JLabel lblNewLabel_1) {
+		this.lblNewLabel_1 = lblNewLabel_1;
+	}
+
+	public JLabel getLblNewLabel_2() {
+		return lblNewLabel_2;
+	}
+
+	public void setLblNewLabel_2(JLabel lblNewLabel_2) {
+		this.lblNewLabel_2 = lblNewLabel_2;
+	}
+
+	public JLabel getLblNewLabel_3() {
+		return lblNewLabel_3;
+	}
+
+	public void setLblNewLabel_3(JLabel lblNewLabel_3) {
+		this.lblNewLabel_3 = lblNewLabel_3;
+	}
+
+	public JLabel getLblNewLabel_4() {
+		return lblNewLabel_4;
+	}
+
+	public void setLblNewLabel_4(JLabel lblNewLabel_4) {
+		this.lblNewLabel_4 = lblNewLabel_4;
+	}
+
+	public JLabel getLblNewLabel_5() {
+		return lblNewLabel_5;
+	}
+
+	public void setLblNewLabel_5(JLabel lblNewLabel_5) {
+		this.lblNewLabel_5 = lblNewLabel_5;
+	}
+
+	public JLabel getLblNewLabel_6() {
+		return lblNewLabel_6;
+	}
+
+	public void setLblNewLabel_6(JLabel lblNewLabel_6) {
+		this.lblNewLabel_6 = lblNewLabel_6;
+	}
+
+	public JLabel getLblNewLabel_7() {
+		return lblNewLabel_7;
+	}
+
+	public void setLblNewLabel_7(JLabel lblNewLabel_7) {
+		this.lblNewLabel_7 = lblNewLabel_7;
+	}
+
+	public JLabel getLblNewLabel_8() {
+		return lblNewLabel_8;
+	}
+
+	public void setLblNewLabel_8(JLabel lblNewLabel_8) {
+		this.lblNewLabel_8 = lblNewLabel_8;
+	}
+
+	public JLabel getLblPhone() {
+		return lblPhone;
+	}
+
+	public void setLblPhone(JLabel lblPhone) {
+		this.lblPhone = lblPhone;
+	}
+
+	public JPanel getLeftPanel() {
+		return leftPanel;
+	}
+
+	public void setLeftPanel(JPanel leftPanel) {
+		this.leftPanel = leftPanel;
+	}
+
+	public JTextField getNameTF() {
+		return nameTF;
+	}
+
+	public void setNameTF(JTextField nameTF) {
+		this.nameTF = nameTF;
+	}
+
+	public JPanel getPanel_0() {
+		return panel_0;
+	}
+
+	public void setPanel_0(JPanel panel_0) {
+		this.panel_0 = panel_0;
+	}
+
+	public JPanel getPanel_1() {
+		return panel_1;
+	}
+
+	public void setPanel_1(JPanel panel_1) {
+		this.panel_1 = panel_1;
+	}
+
+	public Panel getPanel_10() {
+		return panel_10;
+	}
+
+	public void setPanel_10(Panel panel_10) {
+		this.panel_10 = panel_10;
+	}
+
+	public Panel getPanel_11() {
+		return panel_11;
+	}
+
+	public void setPanel_11(Panel panel_11) {
+		this.panel_11 = panel_11;
+	}
+
+	public JPanel getPanel_12() {
+		return panel_12;
+	}
+
+	public void setPanel_12(JPanel panel_12) {
+		this.panel_12 = panel_12;
+	}
+
+	public JPanel getPanel_14() {
+		return panel_14;
+	}
+
+	public void setPanel_14(JPanel panel_14) {
+		this.panel_14 = panel_14;
+	}
+
+	public JPanel getPanel_2() {
+		return panel_2;
+	}
+
+	public void setPanel_2(JPanel panel_2) {
+		this.panel_2 = panel_2;
+	}
+
+	public JPanel getPanel_3() {
+		return panel_3;
+	}
+
+	public void setPanel_3(JPanel panel_3) {
+		this.panel_3 = panel_3;
+	}
+
+	public JPanel getPanel_4() {
+		return panel_4;
+	}
+
+	public void setPanel_4(JPanel panel_4) {
+		this.panel_4 = panel_4;
+	}
+
+	public JPanel getPanel_5() {
+		return panel_5;
+	}
+
+	public void setPanel_5(JPanel panel_5) {
+		this.panel_5 = panel_5;
+	}
+
+	public JPanel getPanel_6() {
+		return panel_6;
+	}
+
+	public void setPanel_6(JPanel panel_6) {
+		this.panel_6 = panel_6;
+	}
+
+	public JPanel getPanel_7() {
+		return panel_7;
+	}
+
+	public void setPanel_7(JPanel panel_7) {
+		this.panel_7 = panel_7;
+	}
+
+	public JPanel getPanel_8() {
+		return panel_8;
+	}
+
+	public void setPanel_8(JPanel panel_8) {
+		this.panel_8 = panel_8;
+	}
+
+	public JPanel getPanel_9() {
+		return panel_9;
+	}
+
+	public void setPanel_9(JPanel panel_9) {
+		this.panel_9 = panel_9;
+	}
+
+	public JPasswordField getPasswordTF() {
+		return passwordTF;
+	}
+
+	public void setPasswordTF(JPasswordField passwordTF) {
+		this.passwordTF = passwordTF;
+	}
+
+	public JTextField getPhoneTF() {
+		return phoneTF;
+	}
+
+	public void setPhoneTF(JTextField phoneTF) {
+		this.phoneTF = phoneTF;
+	}
+
+	public JButton getResetButton() {
+		return resetButton;
+	}
+
+	public void setResetButton(JButton resetButton) {
+		this.resetButton = resetButton;
+	}
+
+	public JPanel getRightPanel() {
+		return rightPanel;
+	}
+
+	public void setRightPanel(JPanel rightPanel) {
+		this.rightPanel = rightPanel;
+	}
+
+	public JButton getSignUpBtn() {
+		return signUpBtn;
+	}
+
+	public void setSignUpBtn(JButton signUpBtn) {
+		this.signUpBtn = signUpBtn;
+	}
+
+	public JLabel getSignUpLabel() {
+		return signUpLabel;
+	}
+
+	public void setSignUpLabel(JLabel signUpLabel) {
+		this.signUpLabel = signUpLabel;
+	}
+
+	public JPanel getTopPanel() {
+		return topPanel;
+	}
+
+	public void setTopPanel(JPanel topPanel) {
+		this.topPanel = topPanel;
+	}
+
+	public JButton getButton() {
+		return button;
+	}
+
+	public void setButton(JButton button) {
+		this.button = button;
+	}
+
+	public JButton getCheckButton() {
+		return checkButton;
+	}
+
+	public void setCheckButton(JButton checkButton) {
+		this.checkButton = checkButton;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	private JTextField phoneTF;
 	private JButton resetButton;
 	private JPanel rightPanel;
@@ -162,19 +523,8 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService, StateV
 		checkButton = new JButton(CHECK);
 		checkButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Member member = getMemberSignUpText();
-				String signUpFormState = getSignUpFormState(member);
-				System.out.println(signUpFormState);
-				System.out.println("---------------------------");
-				String checkResult = checkSignUpFormState(signUpFormState);
-				System.out.println(checkResult);
-				if (checkResult.contains(SUCCESS)) {
-					System.out.println(SUCCESS);
-					MemberDAO.insert(member);
-				} else {
-					System.out.println(checkResult);
-//					Modal modal = new Modal(checkResult);
-				}
+//				MemberDTO member = getMemberSignUpText();
+				//##
 			}
 		});
 		panel_12.add(checkButton);
@@ -186,7 +536,7 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService, StateV
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getActionCommand().contains(StringVO.SIGN_UP)) {
-
+					//##
 				}
 
 			}
@@ -279,16 +629,4 @@ public class SignUpFrame extends RootFrame implements SignUpCheckService, StateV
 		panel_14 = new JPanel();
 	}
 
-	private Member getMemberSignUpText() {
-		Member member = new Member();
-		member.setId(idTF.getText());
-		member.setName(nameTF.getText());
-		member.setPhone(phoneTF.getText());
-		member.setBirth(birthTF.getText());
-		member.setEmail(emailTF.getText());
-		member.setGender(genderCB.getSelectedItem().toString());
-		member.setPassword(passwordTF.getText());
-		member.setEtc(etcTF.getText());
-		return member;
-	}
 }

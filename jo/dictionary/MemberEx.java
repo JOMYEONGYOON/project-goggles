@@ -8,12 +8,12 @@ import com.sun.corba.se.pept.transport.Connection;
 
 import dao.MemberDAO;
 import dao.RootDAO;
-import model.Member;
-import model.Word;
+import dto.MemberDTO;
+import dto.WordDTO;
 
 public class MemberEx extends MemberDAO {
 	public static void select(int no) {
-		Member mem = null;
+		MemberDTO mem = null;
 		String sql = "";
 
 		try {
@@ -23,7 +23,7 @@ public class MemberEx extends MemberDAO {
 			pstmt.setInt(1, no);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				mem = new Member();
+				mem = new MemberDTO();
 				mem.setNo(rs.getInt(1));
 				mem.setId(rs.getString(2));
 				mem.setName(rs.getString(3));

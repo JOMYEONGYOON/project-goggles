@@ -1,7 +1,11 @@
-package vo;
+package model.vo;
 
 public interface StringVO {
-
+	final String EXSIST = "EXSIST";
+	final String EMPTY = "";
+	final String TEST_Capitalcase = "Test";
+	final String TEST_lowercase = "test";
+	final String TEST_uppercase = "TEST";
 	final String EMPTY_STR = "EMPTY";
 	final String CHECK = "CHECK";
 	final String __ = ".";
@@ -29,5 +33,6 @@ public interface StringVO {
 	final String _010_000_0000 = "010-0000-0000";
 	final String _1234 = "1234";
 	final String _1989_03_01 = "1989-03-01";
+	final String CLOSED = "CLOSED";
 
 }

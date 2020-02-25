@@ -1,4 +1,4 @@
-package vo;
+package model.vo;
 
 public interface ViewNamesVO {
 	final String SIGN_IN = "Sign In";

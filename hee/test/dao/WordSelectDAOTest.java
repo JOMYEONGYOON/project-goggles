@@ -5,19 +5,19 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import dao.RootDAO;
-import model.Word;
+import dto.WordDTO;
 
 public class WordSelectDAOTest extends RootDAO {
-	public static Vector<Word> select() {
-		Vector<Word> words = null;
+	public static Vector<WordDTO> select() {
+		Vector<WordDTO> words = null;
 		String sql = "";
 		try {
 			sql = "select id,name,def,category from word";
 			PreparedStatement pstmt = open().prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			words = new Vector<Word>();
+			words = new Vector<WordDTO>();
 			while (rs.next()) {
-				Word word = new Word();
+				WordDTO word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -30,8 +30,8 @@ public class WordSelectDAOTest extends RootDAO {
 		return words;
 	}
 
-	public static Word selectById(int id) {
-		Word word = null;
+	public static WordDTO selectById(int id) {
+		WordDTO word = null;
 		String sql = "";
 		try {
 			sql = "select id,name,def,category from word WHERE id=?";
@@ -39,7 +39,7 @@ public class WordSelectDAOTest extends RootDAO {
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				word = new Word();
+				word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -51,9 +51,9 @@ public class WordSelectDAOTest extends RootDAO {
 		return word;
 	}
 
-	public static Word selectByName(String name) {
+	public static WordDTO selectByName(String name) {
 		String sql = "";
-		Word word = null;
+		WordDTO word = null;
 		try {
 			sql = "select id,name,def,category from word WHERE name=?";
 			PreparedStatement pstmt = open().prepareStatement(sql);
@@ -61,7 +61,7 @@ public class WordSelectDAOTest extends RootDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				word = new Word();
+				word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -75,7 +75,7 @@ public class WordSelectDAOTest extends RootDAO {
 	
 	public static void updateWordById() {
 		String sql = "";
-		Word word = null;
+		WordDTO word = null;
 		try {
 			sql = "update word set id=?,name,def,category from word WHERE id=?";
 			PreparedStatement pstmt = open().prepareStatement(sql);
@@ -83,7 +83,7 @@ public class WordSelectDAOTest extends RootDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				word = new Word();
+				word = new WordDTO();
 				word.setId(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
@@ -98,14 +98,14 @@ public class WordSelectDAOTest extends RootDAO {
 	
 
 	public static void main(String[] args) {
-		Vector<Word> vector = WordSelectDAOTest.select();
+		Vector<WordDTO> vector = WordSelectDAOTest.select();
 		System.out.println(vector.size());
 		for (int i = 0; i < vector.size(); i++) {
-			Word word = vector.get(i);
+			WordDTO word = vector.get(i);
 			
 			
 		}
-		Word word = WordSelectDAOTest.selectById(1);
+		WordDTO word = WordSelectDAOTest.selectById(1);
 		System.out.println(word.getCatagory());
 		System.out.println(word.getDef());
 		System.out.println(word.getId());

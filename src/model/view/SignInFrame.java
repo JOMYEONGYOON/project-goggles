@@ -1,4 +1,4 @@
-package view;
+package model.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import service.MemberService;
-import vo.StringVO;
+import model.vo.StringVO;
+import service.impl.MemberCheckable;
 
-public class SignInFrame extends RootFrame implements StringVO, MemberService {
+public class SignInFrame extends RootFrame implements StringVO, MemberCheckable {
 	
 	private static final long serialVersionUID = 1L;
 	protected JPanel bottomPanel;

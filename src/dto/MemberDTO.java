@@ -1,6 +1,6 @@
-package model;
+package dto;
 
-public class Member {
+public class MemberDTO {
 	private Integer no;
 	private String id;
 	private String name;
@@ -11,7 +11,7 @@ public class Member {
 	private String password;
 	private String etc;
 
-	public Member(Integer no, String id, String name, String phone, String birth, String email, String gender,
+	public MemberDTO(Integer no, String id, String name, String phone, String birth, String email, String gender,
 			String password, String etc) {
 		this.no = no;
 		this.id = id;
@@ -24,11 +24,11 @@ public class Member {
 		this.etc = etc;
 	}
 
-	public Member() {
+	public MemberDTO() {
 
 	}
 
-	public Member(String id, String name, String phone, String email, String birth, String gender, String password,
+	public MemberDTO(String id, String name, String phone, String email, String birth, String gender, String password,
 			String etc) {
 		this.id = id;
 		this.name = name;

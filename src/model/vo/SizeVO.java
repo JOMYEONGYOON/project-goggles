@@ -1,4 +1,4 @@
-package vo;
+package model.vo;
 
 public interface SizeVO {
 	final int FRAME_WIDTH= 640;
