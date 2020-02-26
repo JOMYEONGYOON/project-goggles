@@ -59,15 +59,18 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 			@Override
 			public void run() {
 				int alpha = 0;
-				int leftX = 50;
+				int leftX = 25;
 				Color color = null;
-				int rightX = SizeManager.FRAME_WIDTH - 50;
+				int rightX = SizeManager.FRAME_WIDTH - 100;
+				int flag = -1;
 				while (true) {
-					if (alpha > 192) {
-						leftX = 50;
-						rightX = SizeManager.FRAME_WIDTH - 50;
-						alpha = 0;
+					if (alpha > 128 || alpha < 0) {
+						flag = flag * -1;
 					}
+					leftX = leftX + flag;
+					rightX = rightX - flag;
+					alpha = alpha + flag;
+
 					try {
 						color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
 						leftFocusLabel.setForeground(color);
@@ -75,10 +78,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 						leftFocusLabel.setLocation(leftX, 300);
 						rightFocusLabel.setLocation(rightX, 300);
 						repaint();
-						leftX++;
-						rightX--;
-						alpha++;
-						sleep(15);
+
+						sleep(10);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -113,6 +114,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 							while (true) {
 								if (alpha < 0) {
 									particleButton.setVisible(false);
+									leftFocusLabel.setVisible(false);
+									rightFocusLabel.setVisible(false);
 									break;
 								}
 								color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
