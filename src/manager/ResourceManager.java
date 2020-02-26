@@ -1,7 +1,7 @@
 package manager;
 
 public class ResourceManager {
-	private String particleImagePath = "resources\\particle.jpg";
+	private String particleImagePath = "resources\\image\\particle.jpg";
 	private String projectPath;
 
 	public String getParticleImagePath() {

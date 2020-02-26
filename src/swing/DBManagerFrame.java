@@ -1,4 +1,5 @@
 package swing;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -9,7 +10,8 @@ import manager.SizeManager;
 
 public class DBManagerFrame extends JFrame {
 	private Manager manager;
-	public DBManagerFrame(Manager Manager) {
+
+	public DBManagerFrame(Manager manager) {
 		this.manager = manager;
 		ImagePanel flowerPanel = new ImagePanel(manager.getResourceManager().getParticleImagePath());
 		getContentPane().setLayout(new BorderLayout());
@@ -21,4 +23,5 @@ public class DBManagerFrame extends JFrame {
 		setResizable(false);
 		setVisible(true);
 	}
+
 }
