@@ -1,8 +1,9 @@
+package manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBManager {
+public class DatabaseManager {
 	// 데이터베이스 연결 객체
 	private Connection connection;
 
@@ -27,7 +28,7 @@ public class DBManager {
 	private final String MYSQL_URL = "jdbc:mysql://localhost:3306";
 	private final String MYSQL_DICTIONARY_PROPERTY = "?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 
-	public DBManager() {
+	public DatabaseManager() {
 		try {
 			Class.forName(MYSQL_DRIVER);
 			connection = DriverManager.getConnection(MYSQL_URL + MYSQL_DICTIONARY_PROPERTY, MYSQL_ID, MYSQL_PASSWORD);
