@@ -71,6 +71,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 					try {
 						color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
 						leftFocusLabel.setForeground(color);
+						rightFocusLabel.setForeground(color);
 						leftFocusLabel.setLocation(leftX, 300);
 						rightFocusLabel.setLocation(rightX, 300);
 						repaint();
