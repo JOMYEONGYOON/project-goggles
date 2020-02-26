@@ -1,8 +1,9 @@
 package manager;
 
-public class ResourceManager{
-	private String particleImagePath;
-	
+public class ResourceManager {
+	private String particleImagePath = "resources\\particle.jpg";
+	private String projectPath;
+
 	public String getParticleImagePath() {
 		return particleImagePath;
 	}
@@ -12,7 +13,9 @@ public class ResourceManager{
 	}
 
 	public ResourceManager() {
-		System.out.println(System.getProperty("user.dir"));
+		projectPath = System.getProperty("user.dir");
+		particleImagePath = projectPath+"\\" + particleImagePath;
+		System.out.println(particleImagePath);
 	}
 
 	public static void main(String[] args) {
