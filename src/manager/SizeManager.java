@@ -1,6 +1,8 @@
 package manager;
 
 public class SizeManager {
-	public static int FRAME_WIDTH=1280;
-	public static int FRAME_HEIGHT=768;
+
+	public static final int FRAME_WIDTH = 1344;
+	public static final int FRAME_HEIGHT = 768;
+
 }
