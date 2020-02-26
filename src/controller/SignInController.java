@@ -103,15 +103,15 @@ public class SignInController implements StringVO {
 
 		view.getBottomPanel().add(view.getPanel_9());
 
-		view.add(view.getCenterPanel, BorderLayout.CENTER);
-		view.getCenterPanel.setLayout(new GridLayout(10, 1, 0, 0));
+		view.add(view.getCenterPanel(), BorderLayout.CENTER);
+		view.getCenterPanel().setLayout(new GridLayout(10, 1, 0, 0));
 
-		idTF.setText("example");
-		view.getCenterPanel.add(idTF);
-		idTF.setColumns(10);
+		view.getIdTF().setText("example");
+		view.getCenterPanel().add(view.getIdTF());
+		view.getIdTF().setColumns(10);
 
-		passwordTF.setText("1234");
-		view.getCenterPanel.add(passwordTF);
-		passwordTF.setColumns(10);
+		view.getPasswordTF().setText("1234");
+		view.getCenterPanel().add(view.getPasswordTF());
+		view.getPasswordTF().setColumns(10);
 	}
 }
