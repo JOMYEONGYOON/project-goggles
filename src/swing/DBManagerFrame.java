@@ -17,6 +17,7 @@ public class DBManagerFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout());
 		setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
 		getContentPane().add(flowerPanel, BorderLayout.CENTER);
+		setUndecorated(true);
 		flowerPanel.setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
