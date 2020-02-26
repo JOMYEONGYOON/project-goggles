@@ -1,10 +1,13 @@
 # dictionary
-### team
-#### louisevil	https://github.com/louisevil
-#### jomyungyoon	https://github.com/JOMYEONGYOON
-#### power8128	https://github.com/power8128
-#### thm121	https://github.com/thm121
-###
+#### team
+##### louisevil	
+##### https://github.com/louisevil
+##### jomyungyoon	
+##### https://github.com/JOMYEONGYOON
+##### power8128
+##### https://github.com/power8128
+##### thm121	https://github.com/thm121
+####
 
 <hr><br>
 
