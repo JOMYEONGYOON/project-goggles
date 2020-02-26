@@ -17,10 +17,10 @@
 ##### 2020.02.24	SQL 	데이터베이스 쿼리 클래스	Github 소스코드관리
 ### 
 
-#### team
-<br>
 <hr><br>
-<br>
+
+#### team
+
 ##### louisevil	
 ##### https://github.com/louisevil
 ##### jomyungyoon	
