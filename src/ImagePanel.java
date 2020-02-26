@@ -8,12 +8,10 @@ import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
 	private Image bgMainImage = null;
-	private int width;
-	private int height;
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(bgMainImage, 0, 0, null);
+		g.drawImage(bgMainImage, 0, 0, SIZE.FRAME_WIDTH, SIZE.FRAME_HEIGHT, null);
 	}
 
 	public Dimension getDimension() {
@@ -21,13 +19,10 @@ public class ImagePanel extends JPanel {
 	}
 
 	public ImagePanel(String path) {
-//		setSize(1280,931);
 		try {
 			this.bgMainImage = ImageIO.read(new File(path));
-			width = bgMainImage.getWidth(null);
-			height = bgMainImage.getHeight(null);
-			setSize(new Dimension(width,height));
-			setPreferredSize(new Dimension(width, height));
+			setSize(new Dimension(SIZE.FRAME_WIDTH, SIZE.FRAME_HEIGHT));
+			setPreferredSize(new Dimension(SIZE.FRAME_WIDTH, SIZE.FRAME_HEIGHT));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
