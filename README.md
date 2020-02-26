@@ -11,7 +11,7 @@
 ##### 2020.02.23	데이터베이스 작성	테이블 작성	
 ##### 2020.02.24	SQL 	데이터베이스 쿼리 클래스	Github 소스코드관리
 ### 
-### team
+### 참여자
 ##### louisevil	https://github.com/louisevil
 ##### jomyungyoon	 https://github.com/JOMYEONGYOON
 ##### power8128  https://github.com/power8128
