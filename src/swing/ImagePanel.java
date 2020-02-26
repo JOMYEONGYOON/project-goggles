@@ -14,7 +14,7 @@ public class ImagePanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(bgMainImage, 0, 0, SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT, null);
+		g.drawImage(bgMainImage, 0, 0, null);
 	}
 
 	public Dimension getDimension() {

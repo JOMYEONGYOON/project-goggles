@@ -2,47 +2,79 @@ package swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import manager.ColorManager;
 import manager.PathManager;
 import manager.SizeManager;
-import manager.StringManager;
 
-public class MainFrame extends JFrame {
-	private Container container;
+public class MainFrame extends JFrame implements KeyListener {
+	private JPanel rootPanel;
+	private JTextField textField;
 
 	public MainFrame() {
-		container = getContentPane();
-		container.setLayout(new BorderLayout());
-		ImagePanel rootPanel = new ImagePanel(PathManager.particleImagePath);
-
-		rootPanel.setLayout(null);
+		rootPanel = new ImagePanel(PathManager.PARTICLE_IMG_PATH);
+		rootPanel.setBackground(new Color(240, 240, 240));
+		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
-		getContentPane().add(rootPanel, BorderLayout.CENTER);
-		setUndecorated(true);
-		container.add(rootPanel);
-		
-		JPanel mainPanel = new ColorPanel(ColorManager.blackAlpha);
-		mainPanel.setBounds(12, 74, 1320, 682);
-		rootPanel.add(mainPanel);
-		mainPanel.setLayout(null);
-		
-		JLabel projectNameLabel = new JLabel("Particle");
-		projectNameLabel.setForeground(Color.WHITE);
-		projectNameLabel.setFont(new Font("Indie Flower", Font.PLAIN, 64));
-		projectNameLabel.setBackground(Color.WHITE);
-		projectNameLabel.setBounds(12, 12, 238, 62);
-		rootPanel.add(projectNameLabel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		getContentPane().add(rootPanel);
+		rootPanel.setLayout(null);
+
+		textField = new JTextField(10);
+		textField.setForeground(ColorManager.WHITE);
+		textField.setBounds(147, 111, 175, 32);
+		textField.setBackground(ColorManager.WHITE_ALPHA);
+		textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		textField.addKeyListener(this);
+		rootPanel.add(textField);
+
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
+		Thread repaintThread = new Thread() {
+			@Override
+			public void run() {
+				while(true) {
+					repaint();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		repaintThread.start();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		rootPanel.repaint();
+		textField.repaint();
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		rootPanel.repaint();
+		textField.repaint();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		rootPanel.repaint();
+		textField.repaint();
+
 	}
 }
