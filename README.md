@@ -1,4 +1,4 @@
-# dictionary
+# dictionary -> Goggles
 ###
 ### 사전
 ##### 2020.02.22	설계	google sheet 작성	
