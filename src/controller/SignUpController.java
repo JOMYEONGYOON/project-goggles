@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import impl.method.SignUpActionListener;
+import impl.event.SignUpActionListener;
 import impl.vo.StringVO;
 import model.view.SignInFrame;
 import model.view.SignUpFrame;
