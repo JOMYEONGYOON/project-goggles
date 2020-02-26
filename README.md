@@ -5,7 +5,9 @@
 #### power8128	https://github.com/power8128
 #### thm121	https://github.com/thm121
 ###
+
 <hr><br>
+
 ###
 ### 유튜브 음악
 ##### 2020.02.19	youtube rss xml 	웹 데이터 수집	
@@ -13,7 +15,9 @@
 ##### 2020.02.21	음악플레이어	유튜브데이터수집	
 ##### 2020.02.02  프로젝트 dictinoary 사전으로 변경
 ###
+
 <hr><br>
+
 ###
 ### 사전
 ##### 2020.02.22	설계	google sheet 작성	
