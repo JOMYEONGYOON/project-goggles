@@ -25,15 +25,58 @@ import manager.PathManager;
 import manager.SizeManager;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
-	private JPanel rootPanel;
-	private JTextField textField;
-	private JButton particleButton;
-	private boolean safeMode = true;
 	private JLabel leftFocusLabel;
+	private JButton particleButton;
 	private JLabel rightFocusLabel;
+	private JPanel rootPanel;
+	private boolean safeMode = true;
+	private JTextField textField;
 
 	public MainFrame() {
-		setBackground(ColorManager.BLACK);
+		initComponent();
+		setLocationComponents();
+		setTheme();
+		startFocusLabel();
+		setParticleButton();
+		sertRootPanel();
+		addComponents();
+		setMainFrame();
+		runUIRepaintThread();
+	}
+
+	private void runUIRepaintThread() {
+		Thread repaintThread = new Thread() {
+			@Override
+			public void run() {
+				while (true) {
+					repaint();
+					try {
+						sleep(60);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		repaintThread.start();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		System.out.println(command);
+
+	}
+
+	private void addComponents() {
+		rootPanel.add(leftFocusLabel);
+		rootPanel.add(rightFocusLabel);
+		rootPanel.add(particleButton);
+		textField.addKeyListener(this);
+	}
+
+	private void initComponent() {
 		rootPanel = new ImagePanel(PathManager.PARTICLE_IMG_PATH);
 		rootPanel.setBackground(ColorManager.BLACK);
 		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -42,57 +85,79 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		rightFocusLabel = new JLabel("<<");
 		leftFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
 		rightFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
-		setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new BorderLayout(0, 0));
-		getContentPane().add(rootPanel);
-		rootPanel.setLayout(null);
+	}
 
-		leftFocusLabel.setBounds(25, 309, 100, 100);
-		leftFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
+	@Override
+	public void keyPressed(KeyEvent e) {
+		repaint();
+	}
 
-		rightFocusLabel.setBounds(1160, 309, 100, 100);
-		rightFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			setTextFieldLocationThread();
+		}
+	}
 
-		Thread focusLabelThread = new Thread() {
-
+	private void setTextFieldLocationThread() {
+		Thread th = new Thread() {
 			@Override
 			public void run() {
-				int alpha = 0;
-				int leftX = 25;
-				Color color = null;
-				int rightX = SizeManager.FRAME_WIDTH - 100;
-				int flag = -1;
+				int step = 1;
+				int x = textField.getX();
+				int y = textField.getY();
 				while (true) {
-					if (alpha > 128 || alpha < 0) {
-						flag = flag * -1;
+					if (y < 50) {
+						System.out.println(x + "/" + y);
+						JTextArea resultArea = new JTextArea();
+						rootPanel.add(resultArea);
+						break;
 					}
-					leftX = leftX + flag;
-					rightX = rightX - flag;
-					alpha = alpha + flag;
-
+					y -= step;
 					try {
-						color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
-						leftFocusLabel.setForeground(color);
-						rightFocusLabel.setForeground(color);
-						leftFocusLabel.setLocation(leftX, 300);
-						rightFocusLabel.setLocation(rightX, 300);
+						sleep(15);
 						repaint();
-
-						sleep(10);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+					textField.setLocation(x, y);
 				}
 			}
 
 		};
-		focusLabelThread.start();
+		th.start();
+		
+	}
 
-		rootPanel.add(leftFocusLabel);
-		rootPanel.add(rightFocusLabel);
+	@Override
+	public void keyTyped(KeyEvent e) {
+		repaint();
+
+	}
+
+	private void sertRootPanel() {
+		rootPanel.setLayout(null);
+	}
+
+	private void setLocationComponents() {
+		leftFocusLabel.setBounds(25, 309, 100, 100);
+		rightFocusLabel.setBounds(1160, 309, 100, 100);
+	}
+
+	private void setMainFrame() {
+		setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
+		setBackground(ColorManager.BLACK);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		getContentPane().add(rootPanel);
+
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
+	}
+
+	private void setParticleButton() {
 		particleButton = new JButton("Particle");
 		particleButton.setBorderPainted(false);
 		particleButton.setBorder(null);
@@ -173,82 +238,50 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		particleButton.setForeground(Color.WHITE);
 		particleButton.setSize(1235, 668);
 		particleButton.setSize(SizeManager.FRAME_WIDTH - 100, SizeManager.FRAME_HEIGHT - 100);
-		rootPanel.add(particleButton);
-		textField.addKeyListener(this);
+	}
 
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setVisible(true);
+	private void setTheme() {
 
-		Thread repaintThread = new Thread() {
+		leftFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
+		rightFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
+	}
+
+	private void startFocusLabel() {
+		Thread focusLabelThread = new Thread() {
+
 			@Override
 			public void run() {
+				int alpha = 0;
+				int leftX = 25;
+				Color color = null;
+				int rightX = SizeManager.FRAME_WIDTH - 100;
+				int flag = -1;
 				while (true) {
-					repaint();
+					if (alpha > 128 || alpha < 0) {
+						flag = flag * -1;
+					}
+					leftX = leftX + flag;
+					rightX = rightX - flag;
+					alpha = alpha + flag;
+
 					try {
-						sleep(60);
+						color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
+						leftFocusLabel.setForeground(color);
+						rightFocusLabel.setForeground(color);
+						leftFocusLabel.setLocation(leftX, 300);
+						rightFocusLabel.setLocation(rightX, 300);
+						repaint();
+
+						sleep(10);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
 			}
+
 		};
-		repaintThread.start();
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			Thread th = new Thread() {
-
-				@Override
-				public void run() {
-					int step = 1;
-					int x = textField.getX();
-					int y = textField.getY();
-					while (true) {
-						if (y < 50) {
-							// 147,49
-							System.out.println(x + "/" + y);
-							JTextArea resultArea = new JTextArea();
-							rootPanel.add(resultArea);
-							break;
-						}
-						y -= step;
-						try {
-							sleep(15);
-
-							repaint();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						textField.setLocation(x, y);
-					}
-				}
-
-			};
-			th.start();
-		}
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		repaint();
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		repaint();
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String command = e.getActionCommand();
-		System.out.println(command);
-
+		focusLabelThread.start();
 	}
 }
