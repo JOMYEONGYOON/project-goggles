@@ -1,9 +1,12 @@
-package manager;
+package manager.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
+	public DBManager() {
+		init();
+	}
 	// 데이터베이스 연결 객체
 	public static Connection connection;
 
@@ -18,7 +21,7 @@ public class DBManager {
 	private final static String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
 
 	// 데이터베이스 접속 주소, 자신의 컴퓨터
-	private final static String MYSQL_URL = "jdbc:mysql://localhost:3306";
+	private final static String MYSQL_URL = "jdbc:mysql://localhost:3306/dictionary";
 	private final static String MYSQL_DICTIONARY_PROPERTY = "?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 
 	public static void init() {
