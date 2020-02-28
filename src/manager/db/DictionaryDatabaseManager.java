@@ -8,8 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import manager.PathManager;
-import manager.StringManager;
+import manager.ResourceManager;
 
 public class DictionaryDatabaseManager {
 
@@ -18,61 +17,63 @@ public class DictionaryDatabaseManager {
 
 	public DictionaryDatabaseManager() {
 		setDatabase();
+		insertRows(ResourceManager.INSERT_WORD_SQL_PATH);
 	}
 
 	private void newDatabase() throws Exception {
 		PreparedStatement prepareStatement = connection
-				.prepareStatement(StringManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
+				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
 		prepareStatement.execute();
 	}
 
 	private void setDatabase() {
 		try {
-			Class.forName(StringManager.MYSQL_DRIVER);
-			connection = DriverManager.getConnection(StringManager.MYSQL_URL + StringManager.MYSQL_DICTIONARY_PROPERTY,
-					StringManager.MYSQL_ID, StringManager.MYSQL_PASSWORD);
+			Class.forName(ResourceManager.MYSQL_DRIVER);
+			connection = DriverManager.getConnection(ResourceManager.MYSQL_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY,
+					ResourceManager.MYSQL_ID, ResourceManager.MYSQL_PASSWORD);
 			
 			Scanner sc = new Scanner(System.in);
-			System.out.print(StringManager.YES_NO_CREATE_DATABASE_DICTIONARY);
+			System.out.print(ResourceManager.YES_NO_CREATE_DATABASE_DICTIONARY);
 			String answer = sc.nextLine();
 			if (answer.equals("y") || answer.equals("Y")) {
 				newDatabase();
 				useDatabase();
 			}else {
-				System.err.println(StringManager.PROGRAM_SHUTDOWN);
+				System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 				System.exit(0);
 			}
-			System.out.print(StringManager.YES_NO_CREATE_TABLE);
+			System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
 			
 			answer = sc.nextLine();
 			if (answer.equals("y") || answer.equals("Y")) {
 				newDatabase();
 				useDatabase();
 			}else {
-				System.err.println(StringManager.PROGRAM_SHUTDOWN);
+				System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 				System.exit(0);
 			}
 			createTable();
 		} catch (SQLException e) {
-			System.err.printf("%s %s %s",getClass().getName(), StringManager.ERROR);
-			System.err.println(StringManager.PROGRAM_SHUTDOWN);
+			System.err.printf("%s %s %s",getClass().getName(), ResourceManager.ERROR);
+			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.printf("%s %s %s",getClass().getName(), StringManager.SET_DATA_BASE,StringManager.ERROR);
-			System.err.println(StringManager.PROGRAM_SHUTDOWN);
+			System.err.printf("%s %s %s",getClass().getName(), ResourceManager.SET_DATA_BASE,ResourceManager.ERROR);
+			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		}
-		System.out.println(StringManager.DATABASE_SETTING_SUCCESS);
+		System.out.println(ResourceManager.DATABASE_SETTING_SUCCESS);
+		
 	}
 
 	private void createTable() {
 		try {
-			createTable(PathManager.CREATE_MEMBER_SQL_PATH);
-			createTable(PathManager.CREATE_WORD_SQL_PATH);
+			createTable(ResourceManager.CREATE_MEMBER_SQL_PATH);
+			createTable(ResourceManager.CREATE_WORD_SQL_PATH);
 		} catch (SQLException e) {
-			dropTable(StringManager.MEMBER);
-			dropTable(StringManager.WORD);
+			dropTable(ResourceManager.MEMBER);
+			dropTable(ResourceManager.WORD);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,16 +81,16 @@ public class DictionaryDatabaseManager {
 	}
 
 	private void useDatabase() throws Exception {
-		Class.forName(StringManager.MYSQL_DRIVER);
+		Class.forName(ResourceManager.MYSQL_DRIVER);
 		connection = DriverManager.getConnection(
-				StringManager.MYSQL_DATABASE_URL + StringManager.MYSQL_DICTIONARY_PROPERTY, StringManager.MYSQL_ID,
-				StringManager.MYSQL_PASSWORD);
+				ResourceManager.MYSQL_DATABASE_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY, ResourceManager.MYSQL_ID,
+				ResourceManager.MYSQL_PASSWORD);
 
 	}
 
 	private void createTable(String sqlPath) throws Exception {
 		Scanner sc = null;
-		System.out.println(PathManager.CREATE_SQL_PATH);
+		System.out.println(ResourceManager.CREATE_SQL_PATH);
 		sc = new Scanner(new File(sqlPath));
 		String sql = "";
 
@@ -111,22 +112,27 @@ public class DictionaryDatabaseManager {
 	private void dropTable(String tableName) {
 		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = connection.prepareStatement(StringManager.SQL_DROP_TABLE + tableName);
+			prepareStatement = connection.prepareStatement(ResourceManager.SQL_DROP_TABLE + tableName);
 			prepareStatement.execute();
 		} catch (SQLException e) {
-			System.err.printf("%s %s %s",getClass().getName(), Exception.class.getName(), StringManager.ERROR);
+			System.err.printf("%s %s %s",getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
 		}
 	}
 
 	private void insertRows(String sqlPath) {
 		Scanner sc = null;
 		try {
-			System.out.println(PathManager.INSERT_WORD_SQL_PATH);
+			System.out.println(ResourceManager.INSERT_WORD_SQL_PATH);
 			sc = new Scanner(new File(sqlPath));
 			String sql = "";
-
+			int count = 0;
 			while (sc.hasNext()) {
 				PreparedStatement prepareStatement = null;
+				System.out.print(".");
+				if (count % 10 == 0) {
+					System.out.println();
+					System.out.println(count);
+				}
 				try {
 					sql = sc.nextLine();
 					prepareStatement = connection.prepareStatement(sql);

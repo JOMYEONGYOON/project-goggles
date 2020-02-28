@@ -20,9 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import manager.ColorManager;
-import manager.PathManager;
-import manager.SizeManager;
+import manager.ResourceManager;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private JLabel leftFocusLabel;
@@ -77,8 +75,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	}
 
 	private void initComponent() {
-		rootPanel = new ImagePanel(PathManager.PARTICLE_IMG_PATH);
-		rootPanel.setBackground(ColorManager.BLACK);
+		rootPanel = new ImagePanel(ResourceManager.PARTICLE_IMG_PATH);
+		rootPanel.setBackground(ResourceManager.BLACK);
 		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		textField = new JTextField(10);
 		leftFocusLabel = new JLabel(">>");
@@ -146,8 +144,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	}
 
 	private void setMainFrame() {
-		setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
-		setBackground(ColorManager.BLACK);
+		setSize(new Dimension(ResourceManager.FRAME_WIDTH, ResourceManager.FRAME_HEIGHT));
+		setBackground(ResourceManager.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(rootPanel);
@@ -161,7 +159,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		particleButton = new JButton("Particle");
 		particleButton.setBorderPainted(false);
 		particleButton.setBorder(null);
-		particleButton.setBackground(ColorManager.BLACK_ALPHA);
+		particleButton.setBackground(ResourceManager.BLACK_ALPHA);
 		particleButton.setOpaque(false);
 		particleButton.setFocusPainted(false);
 		particleButton.setContentAreaFilled(false);
@@ -175,7 +173,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 						@Override
 						public void run() {
 							int alpha = 255;
-							Color color = ColorManager.WHITE;
+							Color color = ResourceManager.WHITE;
 							while (true) {
 								if (alpha < 0) {
 									particleButton.setVisible(false);
@@ -203,10 +201,10 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 						public void run() {
 							rootPanel.add(textField);
 							textField.setBounds(147, 111, 175, 32);
-							textField.setBackground(ColorManager.NONE);
+							textField.setBackground(ResourceManager.NONE);
 							textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 							textField.setFocusable(true);
-							Color color = ColorManager.NONE;
+							Color color = ResourceManager.NONE;
 							int alpha = color.getAlpha();
 
 							while (true) {
@@ -237,13 +235,13 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		particleButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
 		particleButton.setForeground(Color.WHITE);
 		particleButton.setSize(1235, 668);
-		particleButton.setSize(SizeManager.FRAME_WIDTH - 100, SizeManager.FRAME_HEIGHT - 100);
+		particleButton.setSize(ResourceManager.FRAME_WIDTH - 100, ResourceManager.FRAME_HEIGHT - 100);
 	}
 
 	private void setTheme() {
 
-		leftFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
-		rightFocusLabel.setForeground(ColorManager.WHITE_ALPHA);
+		leftFocusLabel.setForeground(ResourceManager.WHITE_ALPHA);
+		rightFocusLabel.setForeground(ResourceManager.WHITE_ALPHA);
 	}
 
 	private void startFocusLabel() {
@@ -254,7 +252,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				int alpha = 0;
 				int leftX = 25;
 				Color color = null;
-				int rightX = SizeManager.FRAME_WIDTH - 100;
+				int rightX = ResourceManager.FRAME_WIDTH - 100;
 				int flag = -1;
 				while (true) {
 					if (alpha > 128 || alpha < 0) {

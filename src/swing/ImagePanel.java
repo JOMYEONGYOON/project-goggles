@@ -7,7 +7,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import manager.SizeManager;
+import manager.ResourceManager;
 
 public class ImagePanel extends JPanel {
 	private Image bgMainImage = null;
@@ -24,8 +24,8 @@ public class ImagePanel extends JPanel {
 	public ImagePanel(String path) {
 		try {
 			this.bgMainImage = ImageIO.read(new File(path));
-			setSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
-			setPreferredSize(new Dimension(SizeManager.FRAME_WIDTH, SizeManager.FRAME_HEIGHT));
+			setSize(new Dimension(ResourceManager.FRAME_WIDTH, ResourceManager.FRAME_HEIGHT));
+			setPreferredSize(new Dimension(ResourceManager.FRAME_WIDTH, ResourceManager.FRAME_HEIGHT));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
