@@ -27,13 +27,38 @@ public class DBManager {
 	// MySQL 접속할 떄 필요한 드라이버 이름
 	private final static String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
 	// 데이터베이스 접속 아이디
-	private final static String MYSQL_ID = "root";
+	private static String MYSQL_ID = "root";
 	// 데이터베이스 비밀번호
-	private final static String MYSQL_PASSWORD = "1234";
+	private static String MYSQL_PASSWORD = "1234";
 	// 데이터베이스 접속 주소, 자신의 컴퓨터
-	private final static String MYSQL_URL = "jdbc:mysql://localhost:3306";
+	private static String MYSQL_URL = "jdbc:mysql://localhost:3306";
 	private static final String PROGRAM_SHUTDOWN = "프로그램을 종료합니다";
 	private static final String USER_DATABASE_SQL_ERROR = "데이터베이스 SQL 오류";
+
+	public static String getMYSQL_ID() {
+		return MYSQL_ID;
+	}
+
+	public static void setMYSQL_ID(String mYSQL_ID) {
+		MYSQL_ID = mYSQL_ID;
+	}
+
+	public static String getMYSQL_PASSWORD() {
+		return MYSQL_PASSWORD;
+	}
+
+	public static void setMYSQL_PASSWORD(String mYSQL_PASSWORD) {
+		MYSQL_PASSWORD = mYSQL_PASSWORD;
+	}
+
+	public static String getMYSQL_URL() {
+		return MYSQL_URL;
+	}
+
+	public static void setMYSQL_URL(String mYSQL_URL) {
+		MYSQL_URL = mYSQL_URL;
+	}
+
 	public static void main(String[] args) {
 		new DBManager();
 	}
@@ -84,6 +109,7 @@ public class DBManager {
 	}
 
 	private boolean useDatabase() {
+
 		try {
 			Class.forName(MYSQL_DRIVER);
 			connection = DriverManager.getConnection(MYSQL_DATABASE_URL + MYSQL_DICTIONARY_PROPERTY, MYSQL_ID,
@@ -98,4 +124,5 @@ public class DBManager {
 		}
 		return true;
 	}
+
 }
