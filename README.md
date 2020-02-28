@@ -1,4 +1,4 @@
-# Particle
+# Dictionary - Particle
 - [x] 2020.02.22	설계	google sheet 작성	
 - [x] 2020.02.23	데이터베이스 작성	테이블 작성	
 - [x] 2020.02.24	SQL 데이터베이스 쿼리 클래스	Github 소스코드관리
