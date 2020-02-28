@@ -31,7 +31,7 @@ public class DatabaseManagerFrame extends JFrame {
 	private JPanel textAreaCenterPanel;
 	private JTextArea textArea;
 	private JPanel iconCenterPanel;
-	private JTextField textField;
+	private JTextField textFiel	private JLabel emptyLabel;
 
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
@@ -55,15 +55,12 @@ public class DatabaseManagerFrame extends JFrame {
 		northPanel = new JPanel();
 		panel.add(northPanel, BorderLayout.NORTH);
 		northPanel.setLayout(new BorderLayout(0, 0));
-		
-		textField = new JTextField();
-		northPanel.add(textField, BorderLayout.CENTER);
-		textField.setColumns(10);
 
 		JButton runButton = new JButton("Run");
 		northPanel.add(runButton, BorderLayout.EAST);
-
-		southPanel = new JPanel();
+		
+		emptyLabel = new JLabel("");
+		northPanel.add(emptyLabel, BorderLayout.CENTERnel();
 		panel.add(southPanel, BorderLayout.SOUTH);
 		southPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		sqlTree.addMouseListener(new MouseAdapter() {
