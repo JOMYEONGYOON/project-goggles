@@ -1,7 +1,6 @@
 package task1;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -22,6 +21,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 public class DatabaseManagerFrame extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
 	private JPanel panel;
 	private JScrollPane textAreaScrollPane;
@@ -29,7 +29,6 @@ public class DatabaseManagerFrame extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel textAreaCenterPanel;
 	private JTextArea textArea;
-	private JPanel iconCenterPanel;
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
