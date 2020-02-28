@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 import object.Member;
 
-public class MemberDBManager extends DBManager{
-	final static String SELECT_MEMBER_BY_ID_SQL= "SELECT id,name,def,category FROM word WHERE id=?";
-	final static  String SELECT_MEMBER_BY_NAME_SQL = "SELECT id,name,def,category FROM word WHERE name=?";
-	final static  String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
-	final static  String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
-	
-	public  Member selectById(String id) {
+public class MemberDBManager extends DBManager {
+	final static String SELECT_MEMBER_BY_ID_SQL = 				"SELECT id,name,def,category FROM word WHERE id=?";
+	final static String SELECT_MEMBER_BY_NAME_SQL = 			"SELECT id,name,def,category FROM word WHERE name=?";
+	final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL =	"INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
+	final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = 	"SELECT * FROM member WHERE id=? AND password=?";
+
+	public Member selectById(String id) {
 		Member member = null;
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_BY_ID_SQL);
@@ -31,7 +31,7 @@ public class MemberDBManager extends DBManager{
 		return member;
 	}
 
-	public  void insert(Member member) {
+	public void insert(Member member) {
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(INSERT_MEMBER_AUTO_INCREMENT_NO_SQL);
@@ -49,7 +49,7 @@ public class MemberDBManager extends DBManager{
 		}
 	}
 
-	public  boolean checkIdPassword(String id, String password) {
+	public boolean checkIdPassword(String id, String password) {
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_CHECK_ID_PASSWORD_SQL);
 			pstmt.setString(1, id);
