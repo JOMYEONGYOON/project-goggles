@@ -1,4 +1,4 @@
-CREATE TABLE word (
+CREATE TABLE IF NOT EXISTS word (
   no int NOT NULL AUTO_INCREMENT,
   name varchar(255),
   def text,

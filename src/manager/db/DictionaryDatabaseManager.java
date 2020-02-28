@@ -38,6 +38,7 @@ public class DictionaryDatabaseManager {
 			if (answer.equals("y") || answer.equals("Y")) {
 				newDatabase();
 				useDatabase();
+				createTable();
 			}else {
 				System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 				System.exit(0);
@@ -53,6 +54,7 @@ public class DictionaryDatabaseManager {
 				System.exit(0);
 			}
 			createTable();
+			sc.close();
 		} catch (SQLException e) {
 			System.err.printf("%s %s %s",getClass().getName(), ResourceManager.ERROR);
 			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
@@ -72,8 +74,7 @@ public class DictionaryDatabaseManager {
 			createTable(ResourceManager.CREATE_MEMBER_SQL_PATH);
 			createTable(ResourceManager.CREATE_WORD_SQL_PATH);
 		} catch (SQLException e) {
-			dropTable(ResourceManager.MEMBER);
-			dropTable(ResourceManager.WORD);
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,15 +126,10 @@ public class DictionaryDatabaseManager {
 			System.out.println(ResourceManager.INSERT_WORD_SQL_PATH);
 			sc = new Scanner(new File(sqlPath));
 			String sql = "";
-			int count = 0;
 			while (sc.hasNext()) {
 				PreparedStatement prepareStatement = null;
-				System.out.print(".");
-				if (count % 10 == 0) {
-					System.out.println();
-					System.out.println(count);
-				}
 				try {
+					System.out.println(sql);
 					sql = sc.nextLine();
 					prepareStatement = connection.prepareStatement(sql);
 					prepareStatement.executeUpdate();
@@ -145,7 +141,7 @@ public class DictionaryDatabaseManager {
 			}
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println(ResourceManager.ALREADY_INSERTED_TABLE_DATA);
 		}
 		sc.close();
 	}
