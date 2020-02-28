@@ -1,0 +1,1 @@
+CREATE DATABASE if not exists `dictionary` DEFAULT CHARSET=utf8;
