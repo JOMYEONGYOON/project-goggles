@@ -37,6 +37,7 @@ public class StringManager {
 	public static final String YES_NO_CREATE_DATABASE_DICTIONARY = "`dictinoary` 사전 데이터 베이스를 생성하시겠습니까? (y/n)";
 	public static final String YES_NO_CREATE_TABLE_MEMBER = "`member` 회원 테이블을 생성하시겠습니까? (y/n)";
 	public static final String YES_NO_CREATE_TABLE_WORD = "`word` 사전 테이블을 생성하시겠습니까? (y/n)";
+	public static final String YES_NO_CREATE_TABLE = "테이블을 생성하시겠습니까?(y/n)";
 	public static String MYSQL_ID = "root";
 	public static String MYSQL_PASSWORD = "1234";
 	public static String MYSQL_URL = "jdbc:mysql://localhost:3306";

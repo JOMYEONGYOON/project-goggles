@@ -33,25 +33,34 @@ public class DictionaryDatabaseManager {
 					StringManager.MYSQL_ID, StringManager.MYSQL_PASSWORD);
 			
 			Scanner sc = new Scanner(System.in);
-			System.out.print(StringManager.YES_NO_CREATE_TABLE_WORD);
+			System.out.print(StringManager.YES_NO_CREATE_DATABASE_DICTIONARY);
 			String answer = sc.nextLine();
 			if (answer.equals("y") || answer.equals("Y")) {
-				System.out.println(answer);
+				newDatabase();
+				useDatabase();
 			}else {
-				System.out.println(answer);
+				System.err.println(StringManager.PROGRAM_SHUTDOWN);
+				System.exit(0);
 			}
-			sc.close();
-			newDatabase();
-			useDatabase();
+			System.out.print(StringManager.YES_NO_CREATE_TABLE);
+			
+			answer = sc.nextLine();
+			if (answer.equals("y") || answer.equals("Y")) {
+				newDatabase();
+				useDatabase();
+			}else {
+				System.err.println(StringManager.PROGRAM_SHUTDOWN);
+				System.exit(0);
+			}
 			createTable();
 		} catch (SQLException e) {
 			System.err.printf("%s %s %s",getClass().getName(), StringManager.ERROR);
-			System.err.println(StringManager.APP_EXIT);
+			System.err.println(StringManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.printf("%s %s %s",getClass().getName(), StringManager.SET_DATA_BASE,StringManager.ERROR);
-			System.err.println(StringManager.APP_EXIT);
+			System.err.println(StringManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		}
 		System.out.println(StringManager.DATABASE_SETTING_SUCCESS);
