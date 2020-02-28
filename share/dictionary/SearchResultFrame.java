@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import manager.SizeManager;
-import manager.db.WordDBManager;
+import manager.db.WordTableManager;
 import object.Word;
 
 public class SearchResultFrame extends JFrame {
@@ -22,7 +22,7 @@ public class SearchResultFrame extends JFrame {
 		// textField.setText(변수); 값 바꾸는 방법
 		// 샘플데이터 , 나중에 데이터베이스로 가져올 것임
 
-		WordDBManager wordDBManager = new WordDBManager();
+		WordTableManager wordDBManager = new WordTableManager();
 
 		Vector<Word> searchResultList = wordDBManager.select();
 		System.out.println(searchResultList);

@@ -7,7 +7,7 @@ import java.util.Vector;
 
 import object.Word;
 
-public class WordDBManager extends DBManager {
+public class WordTableManager extends DictionaryDatabaseManager {
 	private static final String INSERT_WORD_AUTO_INCREMENT_ID_SQL = "INSERT INTO word(name, def, category) VALUES(?, ?, ?)";
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
 	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";

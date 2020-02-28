@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `member` (
+CREATE TABLE `member` (
   `no` int NOT NULL AUTO_INCREMENT,
   `id` varchar(45) NOT NULL,
   `name` text,
@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS `member` (
   `etc` text,
   PRIMARY KEY (`no`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)

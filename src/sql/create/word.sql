@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS `word` (
-  `no` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255),
-  `def` text,
-  `category` text,
-  PRIMARY KEY (`no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE word (
+  no int NOT NULL AUTO_INCREMENT,
+  name varchar(255),
+  def text,
+  category text,
+  PRIMARY KEY (no)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

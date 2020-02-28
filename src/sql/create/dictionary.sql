@@ -1,1 +1,1 @@
-CREATE DATABASE if not exists `dictionary` DEFAULT CHARSET=utf8;
+CREATE DATABASE `dictionary` DEFAULT CHARSET=utf8

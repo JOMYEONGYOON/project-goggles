@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import object.Member;
 
-public class MemberDBManager extends DBManager {
+public class MemberTableManager extends DictionaryDatabaseManager {
 	final static String SELECT_MEMBER_BY_ID_SQL = 				"SELECT id,name,def,category FROM word WHERE id=?";
 	final static String SELECT_MEMBER_BY_NAME_SQL = 			"SELECT id,name,def,category FROM word WHERE name=?";
 	final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL =	"INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
