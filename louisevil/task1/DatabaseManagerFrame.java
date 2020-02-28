@@ -1,6 +1,7 @@
 package task1;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,9 +29,12 @@ public class DatabaseManagerFrame extends JFrame {
 	private JScrollPane textAreaScrollPane;
 	private JPanel northPanel;
 	private JScrollPane scrollPane;
-
+	private JPanel textAreaCenterPanel;
+	private JTextArea textArea ;
+	private JPanel iconCenterPanel;
+	
 	public DatabaseManagerFrame() {
-
+		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setFont(new Font("Dialog", Font.PLAIN, 10));
 		setSize(800, 500);
@@ -37,11 +42,7 @@ public class DatabaseManagerFrame extends JFrame {
 		panel = new JPanel();
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		panel.setLayout(new BorderLayout(0, 0));
-		JTextArea textArea = new JTextArea();
-		textAreaScrollPane = new JScrollPane(textArea);
-		textArea.setEditable(false);
-		panel.add(textAreaScrollPane, BorderLayout.CENTER);
-		getContentPane().add(panel);
+		addTextAreaCenterPanel();
 
 		scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -105,14 +106,18 @@ public class DatabaseManagerFrame extends JFrame {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-
+						textArea.setText(sb.toString());
+						
 					} else {
-						String [] fileNames = f.list();
-						for (String s : fileNames) {
-							sb.append(s+"\n");
-						}
+						textAreaCenterPanel.removeAll();
+						addIconAreaCenterPanel();
+						repaint();
+						ImageIcon imageIcon = new ImageIcon();
+//						String [] fileNames = f.list();
+//						for (String s : fileNames) {
+//							sb.append(s+"\n");
+//						}
 					}
-					textArea.setText(sb.toString());
 
 				}
 			}
@@ -120,6 +125,22 @@ public class DatabaseManagerFrame extends JFrame {
 		});
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	private void addIconAreaCenterPanel() {
+		iconCenterPanel = new JPanel();
+		iconCenterPanel.setLayout(new FlowLayout());
+		iconCenterPanel.add(textAreaScrollPane, BorderLayout.CENTER);
+		getContentPane().add(iconCenterPanel);
+	}
+	private void addTextAreaCenterPanel() {
+		textAreaCenterPanel = new JPanel();
+		textAreaCenterPanel.setLayout(new BorderLayout());
+		textAreaScrollPane = new JScrollPane(textArea);
+		textArea.setEditable(false);
+		textAreaCenterPanel.add(textAreaScrollPane, BorderLayout.CENTER);
+		panel.add(textAreaCenterPanel, BorderLayout.CENTER);
+		getContentPane().add(panel);
 	}
 
 	public static void main(String[] args) {
