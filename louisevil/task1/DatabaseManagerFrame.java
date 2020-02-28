@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import javax.swing.JTextField;
 
 public class DatabaseManagerFrame extends JFrame {
 	private JPanel southPanel;
@@ -31,6 +32,7 @@ public class DatabaseManagerFrame extends JFrame {
 	private JPanel textAreaCenterPanel;
 	private JTextArea textArea;
 	private JPanel iconCenterPanel;
+	private JTextField textField;
 
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
@@ -53,19 +55,14 @@ public class DatabaseManagerFrame extends JFrame {
 
 		northPanel = new JPanel();
 		panel.add(northPanel, BorderLayout.NORTH);
-		northPanel.setLayout(new GridLayout(1, 2, 0, 0));
+		northPanel.setLayout(new BorderLayout(0, 0));
+		
+		textField = new JTextField();
+		northPanel.add(textField, BorderLayout.CENTER);
+		textField.setColumns(10);
 
 		JButton runButton = new JButton("Run");
-		northPanel.add(runButton);
-
-		JButton tableButton = new JButton("Table");
-		northPanel.add(tableButton);
-
-		JLabel emptyLabel = new JLabel("");
-		northPanel.add(emptyLabel);
-
-		JButton exitButton = new JButton("Exit");
-		northPanel.add(exitButton);
+		northPanel.add(runButton, BorderLayout.EAST);
 
 		southPanel = new JPanel();
 		panel.add(southPanel, BorderLayout.SOUTH);
@@ -76,43 +73,56 @@ public class DatabaseManagerFrame extends JFrame {
 			public void mouseClicked(MouseEvent me) {
 				int clickCount = me.getClickCount();
 				if (clickCount == 1) {
-					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
-					TreePath treePath = treeModel.getLeadSelectionPath();
-					System.out.println(treePath);
-					if (treePath.toString().equals("[resources\\sql, insert, word.sql]")) {
-						tableButton.setEnabled(true);
-					} else {
-						tableButton.setEnabled(false);
-					}
-					String path = sqlTree.getPath(treePath);
-					System.out.println(path);
-					StringBuilder sb = new StringBuilder(new String(""));
-					File selectedFileByJTree = null;
-					selectedFileByJTree = new File(path);
-					FileReader fr = null;
-					BufferedReader br = null;
-					if (!selectedFileByJTree.isDirectory()) {
-						try {
-							fr = new FileReader(selectedFileByJTree);
-							br = new BufferedReader(fr);
-							String s;
-							while ((s = br.readLine()) != null) {
-								sb.append(s + "\n");
+					Thread th = new Thread() {
+
+						@Override
+						public void run() {
+							TreeSelectionModel treeModel = sqlTree.getSelectionModel();
+							TreePath treePath = treeModel.getLeadSelectionPath();
+							System.out.println(treePath);
+							if (treePath.toString().equals("[resources\\sql, insert, word.sql]")) {
+								tableButton.setEnabled(true);
+							} else {
+								tableButton.setEnabled(false);
 							}
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							String path = sqlTree.getPath(treePath);
+							System.out.println(path);
+							StringBuilder sb = new StringBuilder(new String(""));
+							File selectedFileByJTree = null;
+							selectedFileByJTree = new File(path);
+							FileReader fr = null;
+							BufferedReader br = null;
+							if (!selectedFileByJTree.isDirectory()) {
+								try {
+									fr = new FileReader(selectedFileByJTree);
+									br = new BufferedReader(fr);
+									String s;
+									while ((s = br.readLine()) != null) {
+										sb.append(s + "\n");
+									}
+								} catch (FileNotFoundException e) {
+									e.printStackTrace();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								textArea.setText(sb.toString());
+
+							} else {
+								File[] folderFiles = selectedFileByJTree.listFiles();
+								for (File f : folderFiles) {
+									String fName = f.getName();
+									sb.append(fName+"\n");
+								}
+								textArea.setText(sb.toString());
+								repaint();
+
+							}
 						}
-						textArea.setText(sb.toString());
-
-					} else {
-						textAreaCenterPanel.removeAll();
-						repaint();
-
-						File[] folderFiles = selectedFileByJTree.listFiles();
-					}
+						
+						
+					};
+					th.start();
 				}
 			}
 		});
