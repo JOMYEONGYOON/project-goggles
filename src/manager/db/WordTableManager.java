@@ -1,10 +1,13 @@
 package manager.db;
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.Vector;
 
+import manager.ResourceManager;
 import object.Word;
 
 public class WordTableManager extends DictionaryDatabaseManager {
@@ -14,6 +17,26 @@ public class WordTableManager extends DictionaryDatabaseManager {
 	private static final String SELECT_WORD_BY_NAME_SQL = "select id,name,def,category from word WHERE name=?";
 	public WordTableManager() {
 		useDatabase();
+	}
+	public void createWordTable() {
+		Scanner sc = null;
+		String sql = "";
+		try {
+			sc = new Scanner(new File(ResourceManager.CREATE_WORD_SQL_PATH));
+			while (sc.hasNext()) {
+				String temp = sc.nextLine() + " ";
+				if (temp.equals("")) {
+					continue;
+				}
+				sql += temp;
+			}
+			PreparedStatement prepareStatement = null;
+			prepareStatement = connection.prepareStatement(sql);
+			prepareStatement.execute();
+			sc.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public Vector<Word> select() {
 		Vector<Word> words = null;
