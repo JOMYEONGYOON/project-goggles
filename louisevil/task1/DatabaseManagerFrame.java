@@ -118,12 +118,6 @@ public class DatabaseManagerFrame extends JFrame {
 		setVisible(true);
 	}
 
-	private void addIconAreaCenterPanel() {
-		iconCenterPanel = new JPanel();
-		iconCenterPanel.setLayout(new FlowLayout());
-		iconCenterPanel.add(textAreaScrollPane, BorderLayout.CENTER);
-		getContentPane().add(iconCenterPanel);
-	}
 
 	private void addTextAreaCenterPanel() {
 		textAreaCenterPanel = new JPanel();
