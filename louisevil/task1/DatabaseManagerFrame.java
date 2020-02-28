@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -31,8 +30,6 @@ public class DatabaseManagerFrame extends JFrame {
 	private JPanel textAreaCenterPanel;
 	private JTextArea textArea;
 	private JPanel iconCenterPanel;
-	private JTextField textFiel	private JLabel emptyLabel;
-
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,12 +52,11 @@ public class DatabaseManagerFrame extends JFrame {
 		northPanel = new JPanel();
 		panel.add(northPanel, BorderLayout.NORTH);
 		northPanel.setLayout(new BorderLayout(0, 0));
-
-		JButton runButton = new JButton("Run");
-		northPanel.add(runButton, BorderLayout.EAST);
 		
-		emptyLabel = new JLabel("");
-		northPanel.add(emptyLabel, BorderLayout.CENTERnel();
+		JButton runButton = new JButton("Run");
+		northPanel.add(runButton);
+
+		southPanel = new JPanel();
 		panel.add(southPanel, BorderLayout.SOUTH);
 		southPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		sqlTree.addMouseListener(new MouseAdapter() {
@@ -76,7 +72,6 @@ public class DatabaseManagerFrame extends JFrame {
 							TreeSelectionModel treeModel = sqlTree.getSelectionModel();
 							TreePath treePath = treeModel.getLeadSelectionPath();
 							System.out.println(treePath);
-						
 							String path = sqlTree.getPath(treePath);
 							System.out.println(path);
 							StringBuilder sb = new StringBuilder(new String(""));
