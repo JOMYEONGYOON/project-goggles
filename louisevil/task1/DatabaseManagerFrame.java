@@ -14,14 +14,13 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
-import javax.swing.JTextField;
 
 public class DatabaseManagerFrame extends JFrame {
 	private JPanel southPanel;
@@ -80,11 +79,7 @@ public class DatabaseManagerFrame extends JFrame {
 							TreeSelectionModel treeModel = sqlTree.getSelectionModel();
 							TreePath treePath = treeModel.getLeadSelectionPath();
 							System.out.println(treePath);
-							if (treePath.toString().equals("[resources\\sql, insert, word.sql]")) {
-								tableButton.setEnabled(true);
-							} else {
-								tableButton.setEnabled(false);
-							}
+						
 							String path = sqlTree.getPath(treePath);
 							System.out.println(path);
 							StringBuilder sb = new StringBuilder(new String(""));
