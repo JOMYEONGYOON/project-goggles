@@ -97,12 +97,10 @@ public class ManagerFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int clickCount = e.getClickCount();
 				if (clickCount == 1) {
-////					System.out.println(sqlTree);
-//					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
-//					
-//					TreePath treePath = treeModel.getLeadSelectionPath();
-//					String path = sqlTree.getTreeMap().get(treePath);
-//					System.out.println(path);
+					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
+					TreePath treePath = treeModel.getLeadSelectionPath();
+					String path = sqlTree.getPath(treePath);
+					System.out.println(path);
 				}
 			}
 

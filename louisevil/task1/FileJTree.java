@@ -1,13 +1,10 @@
 package task1;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 public class FileJTree extends JTree {
@@ -15,8 +12,6 @@ public class FileJTree extends JTree {
 	private String rootPath;
 	private DefaultMutableTreeNode rootNode;
 	private DefaultTreeModel model;
-	private Map<TreePath, String> treeMap;
-	private Map<String, TreePath> pathMap;
 
 	public String getRootPath() {
 		return rootPath;
@@ -26,17 +21,7 @@ public class FileJTree extends JTree {
 		this.rootPath = rootPath;
 	}
 
-	public Map<String, TreePath> getPathMap() {
-		return pathMap;
-	}
-
-	public void setPathMap(Map<String, TreePath> pathMap) {
-		this.pathMap = pathMap;
-	}
-
 	public FileJTree(String rootPath) {
-		pathMap = new HashMap<String, TreePath>();
-		treeMap = new HashMap<TreePath, String>();
 		rootNode = new DefaultMutableTreeNode(rootPath);
 		model = new DefaultTreeModel(rootNode);
 		setModel(model);
@@ -50,11 +35,10 @@ public class FileJTree extends JTree {
 		for (File f : files) {
 			if (f.isDirectory()) {
 				String directoryPath = f.getPath();
-				System.out.println(directoryPath);
 				DefaultMutableTreeNode folderNode = new DefaultMutableTreeNode(f.getName());
 				node.add(folderNode);
 				setTree(directoryPath, folderNode);
-			}else {
+			} else {
 				DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(f.getName());
 				node.add(fileNode);
 			}
@@ -71,25 +55,13 @@ public class FileJTree extends JTree {
 		}
 	}
 
-	public void addNode(DefaultMutableTreeNode node) {
-		DefaultMutableTreeNode child = new DefaultMutableTreeNode();
-	}
-
-	public Map<TreePath, String> getTreeMap() {
-		return treeMap;
-	}
-
-	public void setTreeMap(Map<TreePath, String> treeMap) {
-		this.treeMap = treeMap;
-	}
-
-	public void setFileMap(Map<String, TreePath> fileMap) {
-		this.pathMap = fileMap;
-	}
-
-	public TreePath getTreePath(TreeNode node) {
-		TreeNode[] nodes = model.getPathToRoot(node);
-		TreePath path = new TreePath(nodes);
+	public String getPath(TreePath treePath) {
+		String tempPath1 = treePath.toString().replace("[", "");
+//		System.out.println(tempPath1);
+		String tempPath2 = tempPath1.replace("]", "");
+//		System.out.println(tempPath2);
+		String path = tempPath2.replace(", ", "\\");
 		return path;
 	}
+	
 }
