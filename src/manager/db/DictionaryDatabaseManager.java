@@ -16,7 +16,15 @@ public class DictionaryDatabaseManager {
 	public static Connection connection;
 
 	public DictionaryDatabaseManager() {
-		setDatabase();
+		try {
+			Class.forName(ResourceManager.MYSQL_DRIVER);
+			connection = DriverManager.getConnection(
+					ResourceManager.MYSQL_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY, ResourceManager.MYSQL_ID,
+					ResourceManager.MYSQL_PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void newDatabase() throws Exception {
@@ -25,12 +33,14 @@ public class DictionaryDatabaseManager {
 		prepareStatement.execute();
 	}
 
-	private void setDatabase() {
+	private void initDatabase() {
+		
 		try {
 			Class.forName(ResourceManager.MYSQL_DRIVER);
-			connection = DriverManager.getConnection(ResourceManager.MYSQL_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY,
-					ResourceManager.MYSQL_ID, ResourceManager.MYSQL_PASSWORD);
-			
+			connection = DriverManager.getConnection(
+					ResourceManager.MYSQL_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY, ResourceManager.MYSQL_ID,
+					ResourceManager.MYSQL_PASSWORD);
+
 			Scanner sc = new Scanner(System.in);
 			System.out.print(ResourceManager.YES_NO_CREATE_DATABASE_DICTIONARY);
 			String answer = sc.nextLine();
@@ -38,34 +48,34 @@ public class DictionaryDatabaseManager {
 				newDatabase();
 				useDatabase();
 				createTable();
-			}else {
+			} else {
 				System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 				System.exit(0);
 			}
 			System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
-			
+
 			answer = sc.nextLine();
 			if (answer.equals("y") || answer.equals("Y")) {
 				newDatabase();
 				useDatabase();
-			}else {
+			} else {
 				System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 				System.exit(0);
 			}
 			createTable();
 			sc.close();
 		} catch (SQLException e) {
-			System.err.printf("%s %s %s",getClass().getName(), ResourceManager.ERROR);
+			System.err.printf("%s %s %s", getClass().getName(), ResourceManager.ERROR);
 			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.printf("%s %s %s",getClass().getName(), ResourceManager.SET_DATA_BASE,ResourceManager.ERROR);
+			System.err.printf("%s %s %s", getClass().getName(), ResourceManager.SET_DATA_BASE, ResourceManager.ERROR);
 			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
 		}
 		System.out.println(ResourceManager.DATABASE_SETTING_SUCCESS);
-		
+
 	}
 
 	private void createTable() {
@@ -80,11 +90,15 @@ public class DictionaryDatabaseManager {
 
 	}
 
-	private void useDatabase() throws Exception {
-		Class.forName(ResourceManager.MYSQL_DRIVER);
-		connection = DriverManager.getConnection(
-				ResourceManager.MYSQL_DATABASE_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY, ResourceManager.MYSQL_ID,
-				ResourceManager.MYSQL_PASSWORD);
+	protected void useDatabase() {
+		try {
+			Class.forName(ResourceManager.MYSQL_DRIVER);
+			connection = DriverManager.getConnection(
+					ResourceManager.MYSQL_DATABASE_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY,
+					ResourceManager.MYSQL_ID, ResourceManager.MYSQL_PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -115,7 +129,7 @@ public class DictionaryDatabaseManager {
 			prepareStatement = connection.prepareStatement(ResourceManager.SQL_DROP_TABLE + tableName);
 			prepareStatement.execute();
 		} catch (SQLException e) {
-			System.err.printf("%s %s %s",getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
+			System.err.printf("%s %s %s", getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
 		}
 	}
 

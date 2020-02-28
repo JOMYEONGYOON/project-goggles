@@ -12,7 +12,9 @@ public class WordTableManager extends DictionaryDatabaseManager {
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
 	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";
 	private static final String SELECT_WORD_BY_NAME_SQL = "select id,name,def,category from word WHERE name=?";
-
+	public WordTableManager() {
+		useDatabase();
+	}
 	public Vector<Word> select() {
 		Vector<Word> words = null;
 		try {
