@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -98,14 +97,12 @@ public class ManagerFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int clickCount = e.getClickCount();
 				if (clickCount == 1) {
-//					System.out.println(sqlTree);
-					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
-
-					TreePath treePath = treeModel.getLeadSelectionPath();
-//					Map<String,TreePath> pathMap = sqlTree.getPathMap();
-					Map<TreePath, String> treeMap = sqlTree.getTreeMap();
-//					System.out.println(pathMap.get(treePath));
-					System.out.println(treeMap.get(treePath));
+////					System.out.println(sqlTree);
+//					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
+//					
+//					TreePath treePath = treeModel.getLeadSelectionPath();
+//					String path = sqlTree.getTreeMap().get(treePath);
+//					System.out.println(path);
 				}
 			}
 

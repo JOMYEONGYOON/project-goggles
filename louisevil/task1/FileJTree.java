@@ -26,62 +26,61 @@ public class FileJTree extends JTree {
 		this.rootPath = rootPath;
 	}
 
+	public Map<String, TreePath> getPathMap() {
+		return pathMap;
+	}
+
+	public void setPathMap(Map<String, TreePath> pathMap) {
+		this.pathMap = pathMap;
+	}
+
 	public FileJTree(String rootPath) {
 		pathMap = new HashMap<String, TreePath>();
 		treeMap = new HashMap<TreePath, String>();
 		rootNode = new DefaultMutableTreeNode(rootPath);
 		model = new DefaultTreeModel(rootNode);
-		
 		setModel(model);
 		setTree(rootPath, rootNode);
-		expandAllNodes(this, 0,this.getRowCount());
+		expandAllNodes(this, 0, this.getRowCount());
 	}
-	private void expandAllNodes(JTree tree, int startingIndex, int rowCount){
-	    for(int i=startingIndex;i<rowCount;++i){
-	        tree.expandRow(i);
-	    }
 
-	    if(tree.getRowCount()!=rowCount){
-	        expandAllNodes(tree, rowCount, tree.getRowCount());
-	    }
-	}
-	public void setTree(String path, DefaultMutableTreeNode node) {
+	private void setTree(String path, DefaultMutableTreeNode node) {
 		File file = new File(path);
 		File[] files = file.listFiles();
 		for (File f : files) {
 			if (f.isDirectory()) {
-				String p = f.getPath();
-//				System.out.println(f.getPath());
+				String directoryPath = f.getPath();
+				System.out.println(directoryPath);
 				DefaultMutableTreeNode folderNode = new DefaultMutableTreeNode(f.getName());
-			
 				node.add(folderNode);
-//				treeMap.put(getTreePath(folderNode), f.getPath());
-//				pathMap.put(f.getPath(), getTreePath(folderNode));
-				setTree(p, folderNode);
-			} else {
-//				System.out.println(f.getPath());
+				setTree(directoryPath, folderNode);
+			}else {
 				DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(f.getName());
-				treeMap.put(getTreePath(fileNode), f.getPath());
-				pathMap.put(f.getPath(), getTreePath(fileNode));
 				node.add(fileNode);
 			}
 		}
-//		System.out.println(treeMap);
-//		System.out.println(fileMap);
-
 	}
 
-	
+	private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
+		for (int i = startingIndex; i < rowCount; ++i) {
+			tree.expandRow(i);
+		}
+
+		if (tree.getRowCount() != rowCount) {
+			expandAllNodes(tree, rowCount, tree.getRowCount());
+		}
+	}
+
+	public void addNode(DefaultMutableTreeNode node) {
+		DefaultMutableTreeNode child = new DefaultMutableTreeNode();
+	}
+
 	public Map<TreePath, String> getTreeMap() {
 		return treeMap;
 	}
 
 	public void setTreeMap(Map<TreePath, String> treeMap) {
 		this.treeMap = treeMap;
-	}
-
-	public Map<String, TreePath> getFileMap() {
-		return pathMap;
 	}
 
 	public void setFileMap(Map<String, TreePath> fileMap) {
