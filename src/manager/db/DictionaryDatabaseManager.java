@@ -17,7 +17,6 @@ public class DictionaryDatabaseManager {
 
 	public DictionaryDatabaseManager() {
 		setDatabase();
-		insertRows(ResourceManager.INSERT_WORD_SQL_PATH);
 	}
 
 	private void newDatabase() throws Exception {
