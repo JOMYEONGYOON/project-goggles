@@ -3,7 +3,9 @@ package task1;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,9 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import manager.db.DictionaryDatabaseManager;
 import object.MySQL;
@@ -27,6 +28,7 @@ public class ManagerFrame extends JFrame {
 	private JPasswordField pwTextField;
 	private JTextField ipTextField;
 	private JTextField propertiesTextField;
+
 	public ManagerFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -86,42 +88,31 @@ public class ManagerFrame extends JFrame {
 		panel.setBounds(12, 186, 756, 245);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
-//		JTree tree = new JTree();
-//		tree.setModel(new DefaultTreeModel(
-//			new DefaultMutableTreeNode("sql") {
-//				{
-//					DefaultMutableTreeNode node_1;
-//					node_1 = new DefaultMutableTreeNode("create");
-//						node_1.add(new DefaultMutableTreeNode("dictionary.sql"));
-//						
-//						node_1.add(new DefaultMutableTreeNode("member.sql"));
-//						node_1.add(new DefaultMutableTreeNode("word.sql"));
-//					add(node_1);
-//					node_1 = new DefaultMutableTreeNode("insert");
-//						node_1.add(new DefaultMutableTreeNode("member.sql"));
-//						node_1.add(new DefaultMutableTreeNode("word.sql"));
-//					add(node_1);
-//				}
-//			}
-//		));
-//		tree.setBounds(0, 0, 223, 245);
-//		tree.addMouseListener(new MouseAdapter() {
-//
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				int clickCount = e.getClickCount();
-//				if (clickCount == 1) {
-//					TreeSelectionModel treeSelectionModel = tree.getSelectionModel();
-//					TreePath path = treeSelectionModel.getSelectionPath().getPath();
-//					System.out.println(path);
-//				}
-//			}
-//			
-//		});
+
+		FileJTree sqlTree = new FileJTree("resources\\sql");
+		System.out.println(sqlTree);
+		sqlTree.setBounds(0, 0, 223, 245);
+		sqlTree.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int clickCount = e.getClickCount();
+				if (clickCount == 1) {
+//					System.out.println(sqlTree);
+					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
+
+					TreePath treePath = treeModel.getLeadSelectionPath();
+//					Map<String,TreePath> pathMap = sqlTree.getPathMap();
+					Map<TreePath, String> treeMap = sqlTree.getTreeMap();
+//					System.out.println(pathMap.get(treePath));
+					System.out.println(treeMap.get(treePath));
+				}
+			}
+
+		});
 //		
-//		panel.add(tree);
-		
+		panel.add(sqlTree);
+
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBounds(237, 0, 519, 245);
@@ -153,30 +144,7 @@ public class ManagerFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	public  void setJTree(JTree tree, String path, DefaultMutableTreeNode node) {
-		if (tree == null) {
-			node = new DefaultMutableTreeNode(path);
-			tree = new JTree();
-			DefaultTreeModel model = new DefaultTreeModel(node);
-			tree.setModel(model);
-		}
-		File file = new File(path);
-		File[] files = file.listFiles();
-		for (File f : files) {
-			if (f.isDirectory()) {
-				String p = f.getPath();
-				System.out.println(f.getPath());
-				DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(f.getName());
-				node.add(fileNode);
-				setJTree(tree,p, node);
-			} else {
-				System.out.println(f.getPath());
-				DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(f.getName());
-				node.add(fileNode);
-			}
-		}
 
-	}
 	// test
 	public static void main(String[] args) {
 		new ManagerFrame();
