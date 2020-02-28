@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS`member` (
+CREATE TABLE IF NOT EXISTS `member` (
   `no` int NOT NULL AUTO_INCREMENT,
-  `id` varchar(30) DEFAULT NULL,
+  `id` varchar(45) NOT NULL,
   `name` text,
   `phone` text,
   `birth` text,

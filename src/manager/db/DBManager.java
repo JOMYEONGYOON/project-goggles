@@ -18,11 +18,14 @@ public class DBManager {
 	private static final String DATABASE_INIT_ERROR = "데이터베이스 생성 오류";
 	private static final String DATABASE_SETTING_SUCCESS = "데이터베이스 설정 완료";
 	private static final String DATABASE_USE_ERROR = "데이터베이스 사용 오류";
+	private static final String SQL_DROP_TABLE = "DROP TABLE ";
+	private static final String MEMBER = "member";
+	private static final String WORD = "word";
 
 	// 데이터베이스 연결 객체
 	public static Connection connection;
 
-	private final static String CREATE_DATABASE_IF_NOT_EXISTS_SQL = "CREATE DATABASE if not exists dictionary DEFAULT CHARSET=utf8";
+	private final static String SQL_CREATE_DATABASE_IF_NOT_EXISTS = "CREATE DATABASE if not exists dictionary DEFAULT CHARSET=utf8";
 
 	// 데이터베이스 접속 주소, 자신의 컴퓨터
 	private final static String MYSQL_DATABASE_URL = "jdbc:mysql://localhost:3306/dictionary";
@@ -36,16 +39,12 @@ public class DBManager {
 	// 데이터베이스 접속 주소, 자신의 컴퓨터
 	private static String MYSQL_URL = "jdbc:mysql://localhost:3306";
 
-	public static void main(String[] args) {
-		new DBManager();
-	}
-
 	public DBManager() {
 		setDatabase();
 	}
 
 	private void newDatabase() throws Exception {
-		PreparedStatement prepareStatement = connection.prepareStatement(CREATE_DATABASE_IF_NOT_EXISTS_SQL);
+		PreparedStatement prepareStatement = connection.prepareStatement(SQL_CREATE_DATABASE_IF_NOT_EXISTS);
 		prepareStatement.execute();
 	}
 
@@ -67,7 +66,7 @@ public class DBManager {
 
 		createTable(PathManager.CREATE_MEMBER_SQL_PATH);
 		createTable(PathManager.CREATE_WORD_SQL_PATH);
-
+		insertRows(PathManager.INSERT_WORD_SQL_PATH);
 	}
 
 	private void useDatabase() throws Exception {
@@ -77,7 +76,7 @@ public class DBManager {
 
 	}
 
-	private boolean createTable(String sqlPath) throws Exception {
+	private void createTable(String sqlPath) throws Exception {
 		Scanner sc = null;
 		try {
 			System.out.println(PathManager.CREATE_SQL_PATH);
@@ -100,7 +99,47 @@ public class DBManager {
 			e.printStackTrace();
 		}
 		sc.close();
-		return true;
+	}
+
+	private void dropTable(String tableName) {
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = connection.prepareStatement(SQL_DROP_TABLE + tableName);
+			prepareStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void insertRows(String sqlPath) {
+		Scanner sc = null;
+		try {
+			System.out.println(PathManager.INSERT_WORD_SQL_PATH);
+			sc = new Scanner(new File(sqlPath));
+			String sql = "";
+
+			while (sc.hasNext()) {
+				PreparedStatement prepareStatement = null;
+				try {
+					sql = sc.nextLine();
+					prepareStatement = connection.prepareStatement(sql);
+					prepareStatement.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println(sql);
+					return;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		sc.close();
+	}
+
+	public static void main(String[] args) {
+		DBManager dbManager = new DBManager();
+
 	}
 
 }
