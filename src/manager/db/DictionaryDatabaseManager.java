@@ -35,6 +35,11 @@ public class DictionaryDatabaseManager {
 			Scanner sc = new Scanner(System.in);
 			System.out.print(StringManager.YES_NO_CREATE_TABLE_WORD);
 			String answer = sc.nextLine();
+			if (answer.equals("y") || answer.equals("Y")) {
+				System.out.println(answer);
+			}else {
+				System.out.println(answer);
+			}
 			sc.close();
 			newDatabase();
 			useDatabase();
