@@ -20,7 +20,7 @@ import javax.swing.tree.TreeSelectionModel;
 import manager.db.DictionaryDatabaseManager;
 import object.MySQL;
 
-public class ManagerFrame extends JFrame {
+public class ManagerLoginFrame extends JFrame {
 	private DictionaryDatabaseManager dictionaryDatabaseManager;
 	private static final long serialVersionUID = 1L;
 	private JTextField idTextField;
@@ -28,7 +28,7 @@ public class ManagerFrame extends JFrame {
 	private JTextField ipTextField;
 	private JTextField propertiesTextField;
 
-	public ManagerFrame() {
+	public ManagerLoginFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setFont(new Font("Dialog", Font.PLAIN, 10));
@@ -88,30 +88,9 @@ public class ManagerFrame extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		FileJTree sqlTree = new FileJTree("resources\\sql");
-		System.out.println(sqlTree);
-		sqlTree.setBounds(0, 0, 223, 245);
-		sqlTree.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int clickCount = e.getClickCount();
-				if (clickCount == 1) {
-					TreeSelectionModel treeModel = sqlTree.getSelectionModel();
-					TreePath treePath = treeModel.getLeadSelectionPath();
-					String path = sqlTree.getPath(treePath);
-					System.out.println(path);
-				}
-			}
-
-		});
+		
 //		
-		panel.add(sqlTree);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(237, 0, 519, 245);
-		panel.add(textArea);
 
 		JButton connectButton = new JButton("연결");
 		connectButton.addActionListener(new ActionListener() {
@@ -130,7 +109,7 @@ public class ManagerFrame extends JFrame {
 					connectResult = "데이터베이스 연결 실패";
 					e.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(ManagerFrame.this, connectResult);
+				JOptionPane.showMessageDialog(ManagerLoginFrame.this, connectResult);
 			}
 		});
 		connectButton.setFont(new Font("Dialog", Font.PLAIN, 10));
@@ -142,6 +121,6 @@ public class ManagerFrame extends JFrame {
 
 	// test
 	public static void main(String[] args) {
-		new ManagerFrame();
+		new ManagerLoginFrame();
 	}
 }

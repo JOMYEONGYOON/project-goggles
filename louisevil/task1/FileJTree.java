@@ -31,18 +31,24 @@ public class FileJTree extends JTree {
 
 	private void setTree(String path, DefaultMutableTreeNode node) {
 		File file = new File(path);
+
 		File[] files = file.listFiles();
 		for (File f : files) {
 			if (f.isDirectory()) {
 				String directoryPath = f.getPath();
 				DefaultMutableTreeNode folderNode = new DefaultMutableTreeNode(f.getName());
-				node.add(folderNode);
-				setTree(directoryPath, folderNode);
+				if (!isDirEmpty(f)) {
+					setTree(directoryPath, folderNode);
+					node.add(folderNode);
+				} else {
+					continue;
+				}
 			} else {
 				DefaultMutableTreeNode fileNode = new DefaultMutableTreeNode(f.getName());
 				node.add(fileNode);
 			}
 		}
+
 	}
 
 	private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
@@ -63,5 +69,16 @@ public class FileJTree extends JTree {
 		String path = tempPath2.replace(", ", "\\");
 		return path;
 	}
-	
+
+	private boolean isDirEmpty(File file) {
+		
+		if (file.isDirectory() && file.list().length == 0) {
+			System.out.println(true);
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }
