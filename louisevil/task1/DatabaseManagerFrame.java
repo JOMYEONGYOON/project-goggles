@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,9 +29,9 @@ public class DatabaseManagerFrame extends JFrame {
 	private JPanel northPanel;
 	private JScrollPane scrollPane;
 	private JPanel textAreaCenterPanel;
-	private JTextArea textArea ;
+	private JTextArea textArea;
 	private JPanel iconCenterPanel;
-	
+
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,13 +87,13 @@ public class DatabaseManagerFrame extends JFrame {
 					String path = sqlTree.getPath(treePath);
 					System.out.println(path);
 					StringBuilder sb = new StringBuilder(new String(""));
-					File f = null;
-					f = new File(path);
+					File selectedFileByJTree = null;
+					selectedFileByJTree = new File(path);
 					FileReader fr = null;
 					BufferedReader br = null;
-					if (!f.isDirectory()) {
+					if (!selectedFileByJTree.isDirectory()) {
 						try {
-							fr = new FileReader(f);
+							fr = new FileReader(selectedFileByJTree);
 							br = new BufferedReader(fr);
 							String s;
 							while ((s = br.readLine()) != null) {
@@ -107,22 +106,17 @@ public class DatabaseManagerFrame extends JFrame {
 							e.printStackTrace();
 						}
 						textArea.setText(sb.toString());
-						
+
 					} else {
 						textAreaCenterPanel.removeAll();
-						addIconAreaCenterPanel();
 						repaint();
-						ImageIcon imageIcon = new ImageIcon();
-//						String [] fileNames = f.list();
-//						for (String s : fileNames) {
-//							sb.append(s+"\n");
-//						}
-					}
 
+						File[] folderFiles = selectedFileByJTree.listFiles();
+					}
 				}
 			}
-
 		});
+
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -133,6 +127,7 @@ public class DatabaseManagerFrame extends JFrame {
 		iconCenterPanel.add(textAreaScrollPane, BorderLayout.CENTER);
 		getContentPane().add(iconCenterPanel);
 	}
+
 	private void addTextAreaCenterPanel() {
 		textAreaCenterPanel = new JPanel();
 		textAreaCenterPanel.setLayout(new BorderLayout());
