@@ -22,6 +22,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.commons.io.FilenameUtils;
+
 public class DatabaseManagerFrame extends JFrame {
 	private JPanel southPanel;
 	private JPanel panel;
@@ -111,7 +113,14 @@ public class DatabaseManagerFrame extends JFrame {
 						textAreaCenterPanel.removeAll();
 						repaint();
 
-						File[] folderFiles = selectedFileByJTree.listFiles();
+						File[] iconPanelfiles = selectedFileByJTree.listFiles();
+						File iconFileFolder = new File("\\resources\\image\\");
+						for (int i = 0; i < iconPanelfiles.length; i++) {
+							String selectedPath = iconPanelfiles[i].getPath().toString();
+							String ext = FilenameUtils.getExtension(selectedPath);
+							System.out.println(ext);
+							
+						}
 					}
 				}
 			}
