@@ -1,4 +1,4 @@
-package view.frame;
+package task6;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

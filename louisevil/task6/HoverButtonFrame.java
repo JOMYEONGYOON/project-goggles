@@ -1,4 +1,4 @@
-package view.frame;
+package task6;
 import java.awt.Container;
 import java.awt.FlowLayout;
 

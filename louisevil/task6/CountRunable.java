@@ -1,10 +1,10 @@
-package service;
+package task6;
 
 public class CountRunable implements Runnable {
 	private int integer;
 	public CountRunable(int integer) {
 		this.integer = integer;
-		Gradg
+	
 	}
 	public int getInteger() {
 		return integer;

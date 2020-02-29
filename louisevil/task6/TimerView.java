@@ -1,4 +1,4 @@
-package view.frame;
+package task6;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -6,8 +6,6 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import service.TimerService;
 
 public class TimerView {
 	private JFrame frame;
