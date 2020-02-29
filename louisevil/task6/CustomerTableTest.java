@@ -1,5 +1,4 @@
-package view.frame;
-
+package task6;
 import java.awt.Font;
 
 import javax.swing.JFrame;

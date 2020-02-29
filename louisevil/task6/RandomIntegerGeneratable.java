@@ -1,4 +1,4 @@
-package view.frame;
+package task6;
 
 interface RandomIntegerGeneratable{
 	public default int getRandomInt(int start,int end) {

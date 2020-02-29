@@ -1,4 +1,4 @@
-package task6;
+package task7;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
