@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS member(
+CREATE TABLE IF NOT EXISTS dictionary.member(
   no int NOT NULL AUTO_INCREMENT,
   id varchar(60) NOT NULL,
   name text  NOT NULL,

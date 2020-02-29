@@ -42,10 +42,8 @@ public class DatabaseManager {
 	public void executeUpdateQueryByFile(File file) throws Exception {
 		String sql = "";
 		Scanner sc = new Scanner(file);
-		System.out.println("test");
 		while (sc.hasNext()) {
 			sql += sc.next() + " ";
-
 		}
 		System.out.println(sql);
 		PreparedStatement prepareStatement = connection.prepareStatement(sql);

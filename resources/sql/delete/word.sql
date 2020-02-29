@@ -1,1 +1,1 @@
-DROP TABLE word
+DROP TABLE dictionary.word

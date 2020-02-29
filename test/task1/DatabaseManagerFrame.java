@@ -72,7 +72,7 @@ public class DatabaseManagerFrame extends JFrame {
 			}
 
 		});
-		northPanel.add(runButton);
+		northPanel.add(runButton, BorderLayout.EAST);
 		
 		stateLabel = new JLabel("");
 		northPanel.add(stateLabel, BorderLayout.NORTH);

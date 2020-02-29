@@ -31,12 +31,6 @@ public class FileRunner {
 				String baseName = FilenameUtils.getBaseName(target);
 				System.out.println(baseName);
 				// 명령과 타겟에 따라 데이터베이스 매니저에서파일로 연결 실행
-				databaseManager.connectServer(mySQL);
-				if (target.equals("resources\\sql\\create\\dictionary.sql")) {
-					databaseManager.connectServer(mySQL);
-				} else {
-					databaseManager.connect(mySQL);
-				}
 				if (command.equals("create")) {
 					databaseManager.executeQueryByFile(new File(target));
 				} else if (command.equals("delete")) {
