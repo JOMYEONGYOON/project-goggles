@@ -2,7 +2,7 @@
 -- Query: SELECT * FROM dictionary.member
 LIMIT 0, 2000
 
--- Date: 2020-02-29 17:52
+-- Date: 2020-02-29 17:53
 */
 INSERT INTO `` (`no`,`id`,`name`,`phone`,`birth`,`email`,`gender`,`password`,`etc`) VALUES (501,'Phil Blevins','Nettie Duncan','(700) 145-0983','275244955-20-23','gustavo.owens@example.com','female','sadipscing','eruditi his vix tincidunt scelerisque solet expetenda curae patrioque wisi maecenas adolescens perpetua pro recteque porta qui convallis sociosqu eos periculis amet graecis noster in egestas accommodare dissentiunt detracto tale errem aptent legere volumus');
 INSERT INTO `` (`no`,`id`,`name`,`phone`,`birth`,`email`,`gender`,`password`,`etc`) VALUES (502,'Eve Washington','Rusty Marquez','(453) 820-4048','85751042-55-25','bessie.wood@example.com','male','detracto','pharetra platea saperet magnis donec causae wisi pertinacia prompta mattis quaerendum etiam referrentur prodesset ex tota senectus cetero scripserit aptent vero');
