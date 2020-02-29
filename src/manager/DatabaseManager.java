@@ -26,24 +26,25 @@ public class DatabaseManager {
 	}
 
 	public void executeQueryByFile(File file) throws Exception {
-		
-		String sql= "";
+
+		String sql = "";
 		Scanner sc = new Scanner(file);
 		System.out.println("test");
-		while(sc.hasNext()) {
-			sql += sc.nextLine()+"\n";
+		while (sc.hasNext()) {
+			sql += sc.nextLine() + "\n";
 		}
 		System.out.println(sql);
-		PreparedStatement prepareStatement = connection
-				.prepareStatement(sql);
+		PreparedStatement prepareStatement = connection.prepareStatement(sql);
 		prepareStatement.execute();
 		sc.close();
 	}
+
 	public void executeUpdateQueryByFile(File file) throws Exception {
 //		PreparedStatement prepareStatement = connection
 //				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
 //		prepareStatement.executeUpdate();
 	}
+
 	public void createTable() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
@@ -60,15 +61,20 @@ public class DatabaseManager {
 			createTable(ResourceManager.CREATE_WORD_SQL_PATH);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 		sc.close();
 
 	}
 
 	public void useDatabase() {
-		PreparedStatement prepareStatement = connection
-				.prepareStatement("use"+ this.mySQL.getDatabase() );
-		prepareStatement.execute();
+		PreparedStatement prepareStatement;
+		try {
+			prepareStatement = connection.prepareStatement("use " + this.mySQL.getDatabaseName());
+			prepareStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
