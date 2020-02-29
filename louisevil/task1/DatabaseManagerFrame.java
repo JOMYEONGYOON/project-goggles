@@ -44,6 +44,7 @@ public class DatabaseManagerFrame extends JFrame {
 //	private JButton autoButton;
 
 	public DatabaseManagerFrame() {
+		setTitle("데이터베이스 관리");
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setFont(new Font("Dialog", Font.PLAIN, 10));
