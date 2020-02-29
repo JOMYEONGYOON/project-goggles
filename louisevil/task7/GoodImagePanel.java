@@ -13,7 +13,7 @@ public class GoodImagePanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(bgMainImage, 0, 0,600,400, null);
+		g.drawImage(bgMainImage, 0, 0,bgMainImage.getWidth(null), bgMainImage.getHeight(null), null);
 	}
 
 	public Dimension getDimension() {
@@ -23,8 +23,7 @@ public class GoodImagePanel extends JPanel {
 	public GoodImagePanel(String path) {
 		try {
 			this.bgMainImage = ImageIO.read(new File(path));
-			setSize(new Dimension(bgMainImage.getWidth(null), bgMainImage.getHeight(null)));
-			setPreferredSize(new Dimension(600,400));
+			setPreferredSize(new Dimension(bgMainImage.getWidth(null), bgMainImage.getHeight(null)));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;

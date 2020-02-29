@@ -10,9 +10,8 @@ public class GoodImagePanelTest extends JFrame {
 		GoodImagePanel imagePanel = new GoodImagePanel(path);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		
-		add(imagePanel);
 		setSize(600, 400);
+		add(imagePanel, BorderLayout.CENTER);
 		setVisible(true);
 	}
 
