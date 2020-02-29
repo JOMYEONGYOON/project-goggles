@@ -54,13 +54,13 @@ public class DatabaseManager {
 	public void createTable() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
-		String answer = sc.next();
-		if (answer.equals("y") || answer.equals("Y")) {
-
-		} else {
-			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
-			System.exit(0);
-		}
+//		String answer = sc.next();
+//		if (answer.equals("y") || answer.equals("Y")) {
+//
+//		} else {
+//			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
+//			System.exit(0);
+//		}
 		createTable();
 		try {
 			createTable(ResourceManager.CREATE_MEMBER_SQL_PATH);

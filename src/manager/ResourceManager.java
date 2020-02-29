@@ -52,11 +52,11 @@ public class ResourceManager {
 	public static final String PATH_NOT_FOUND_ERROR = "파일을 찾지 못하였습니다.";
 	public static final String APP_PATH = System.getProperty("user.dir");
 	public static final String PARTICLE_IMG_PATH = APP_PATH + "\\resources\\image\\particle.jpg";
-	public static final String CREATE_SQL_PATH = APP_PATH + "\\resource\\sql\\create";
+	public static final String CREATE_SQL_PATH = APP_PATH + "\\resources\\sql\\create";
 	public static final String CREATE_MEMBER_SQL_PATH = CREATE_SQL_PATH + "\\member.sql";
 	public static final String CREATE_DICTIONARY_SQL_PATH = CREATE_SQL_PATH + "\\dictionary.sql";
 	public static final String CREATE_WORD_SQL_PATH = CREATE_SQL_PATH + "\\word.sql";
-	public static final String INSERT_SQL_PATH = APP_PATH + "\\resource\\sql\\insert";
+	public static final String INSERT_SQL_PATH = APP_PATH + "\\resources\\sql\\insert";
 	public static final String INSERT_MEMBER_SQL_PATH = INSERT_SQL_PATH + "\\member.sql";
 	public static final String INSERT_WORD_SQL_PATH = INSERT_SQL_PATH + "\\word.sql";
 	public static final String DELETED_TABLE = "테이블을 삭제하였습니다.";
@@ -69,7 +69,8 @@ public class ResourceManager {
 	public static final String YES_NO_CREATE_TABLE_WORD = "`word` 사전 테이블을 생성하시겠습니까? (y/n)";
 	public static final String YES_NO_CREATE_TABLE = "테이블을 생성하시겠습니까?(y/n)";
 	public static final String ALREADY_INSERTED_TABLE_DATA = "이미 데이터가 입력되어 있습니다.";
-	public static final String DELETE_SQL_PATH = APP_PATH + "\\resource\\sql\\delete";
+	public static final String DELETE_SQL_PATH = APP_PATH + "\\resources\\sql\\delete";
+	public static final String DELETE_DATABASE_SQL_PATH = APP_PATH + "\\dictionary.sql";
 	public static String MYSQL_ID = "root";
 	public static String MYSQL_PASSWORD = "1234";
 	public static String MYSQL_JDBC_URL = "jdbc:mysql://";
