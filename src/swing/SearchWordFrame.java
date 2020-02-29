@@ -1,6 +1,7 @@
-package task2;
+package swing;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import manager.ResourceManager;
-import swing.ImagePanel;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
-import java.awt.CardLayout;
 
-public class SearchFrameTest extends JFrame implements KeyListener, ActionListener {
+public class SearchWordFrame extends JFrame implements KeyListener, ActionListener {
 	private JPanel rootPanel;
 	private JTextField textField;
 
-	public SearchFrameTest() {
+	public SearchWordFrame() {
 		initComponent();
 		sertRootPanel();
 		addComponents();
@@ -133,6 +130,6 @@ public class SearchFrameTest extends JFrame implements KeyListener, ActionListen
 	}
 
 	public static void main(String[] args) {
-		new SearchFrameTest();
+		new SearchWordFrame();
 	}
 }

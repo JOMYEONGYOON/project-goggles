@@ -10,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import task2.MainFrameTest;
-
 class LoginFrameTest extends JFrame {
 	public static void main(String[] args) {
 		new LoginFrameTest();

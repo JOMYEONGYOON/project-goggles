@@ -4,10 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,11 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
+import swing.ImagePanel;
 
-public class MainFrame extends JFrame implements KeyListener, ActionListener {
+public class MainFrame extends JFrame {
 	private JLabel leftFocusLabel;
 	private JButton particleButton;
 	private JLabel rightFocusLabel;
@@ -60,18 +56,10 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		repaintThread.start();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String command = e.getActionCommand();
-		System.out.println(command);
-
-	}
-
 	private void addComponents() {
 		rootPanel.add(leftFocusLabel);
 		rootPanel.add(rightFocusLabel);
 		rootPanel.add(particleButton);
-		textField.addKeyListener(this);
 	}
 
 	private void initComponent() {
@@ -83,55 +71,6 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		rightFocusLabel = new JLabel("<<");
 		leftFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
 		rightFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		repaint();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			setTextFieldLocationThread();
-		}
-	}
-
-	private void setTextFieldLocationThread() {
-		Thread th = new Thread() {
-			@Override
-			public void run() {
-				int step = 1;
-				int x = textField.getX();
-				int y = textField.getY();
-				while (true) {
-					if (y < 50) {
-//						System.out.println(x + "/" + y);
-						JTextArea resultArea = new JTextArea();
-						rootPanel.add(resultArea);
-						break;
-					}
-					y -= step;
-					try {
-						sleep(15);
-						repaint();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					textField.setLocation(x, y);
-				}
-			}
-
-		};
-		th.start();
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		repaint();
-
 	}
 
 	private void sertRootPanel() {
@@ -195,37 +134,6 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 					};
 					fadeout.start();
-					Thread textFieldThread = new Thread() {
-
-						@Override
-						public void run() {
-							rootPanel.add(textField);
-							textField.setBounds(147, 111, 175, 32);
-							textField.setBackground(ResourceManager.NONE);
-							textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-							textField.setFocusable(true);
-							Color color = ResourceManager.NONE;
-							int alpha = color.getAlpha();
-
-							while (true) {
-								if (alpha > 192) {
-									break;
-								}
-								alpha++;
-								color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
-								try {
-									Thread.sleep(15);
-									textField.setBackground(color);
-									repaint();
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-							}
-
-						}
-
-					};
-					textFieldThread.start();
 				}
 
 			}
@@ -282,7 +190,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		};
 		focusLabelThread.start();
 	}
+
 	public static void main(String[] args) {
-		
+
 	}
 }
