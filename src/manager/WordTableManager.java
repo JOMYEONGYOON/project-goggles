@@ -1,6 +1,7 @@
 package manager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import java.util.Vector;
 
 import object.Word;
 
-public class WordTableManager extends DictionaryDatabaseManager {
+public class WordTableManager extends DatabaseManager {
 	private static final String INSERT_WORD_AUTO_INCREMENT_ID_SQL = "INSERT INTO word(name, def, category) VALUES(?, ?, ?)";
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
 	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";
@@ -17,6 +18,32 @@ public class WordTableManager extends DictionaryDatabaseManager {
 	public WordTableManager() {
 		useDatabase();
 	}
+	public void insertRows(String sqlPath) {
+		Scanner sc = null;
+		try {
+			System.out.println(ResourceManager.INSERT_WORD_SQL_PATH);
+			sc = new Scanner(new File(sqlPath));
+			String sql = "";
+			while (sc.hasNext()) {
+				PreparedStatement prepareStatement = null;
+				try {
+					System.out.println(sql);
+					sql = sc.nextLine();
+					prepareStatement = connection.prepareStatement(sql);
+					prepareStatement.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println(sql);
+					return;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			System.err.println(ResourceManager.ALREADY_INSERTED_TABLE_DATA);
+		}
+		sc.close();
+	}
+
 	public void createWordTable() {
 		Scanner sc = null;
 		String sql = "";

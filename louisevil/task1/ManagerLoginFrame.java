@@ -13,11 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import manager.DictionaryDatabaseManager;
+import manager.DatabaseManager;
 import object.MySQL;
 
 public class ManagerLoginFrame extends JFrame {
-	private DictionaryDatabaseManager dictionaryDatabaseManager;
+	private DatabaseManager databaseManager;
 	private static final long serialVersionUID = 1L;
 	private JTextField idTextField;
 	private JPasswordField pwTextField;
@@ -93,13 +93,13 @@ public class ManagerLoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 				String connectResult = "";
 				try {
-					dictionaryDatabaseManager = new DictionaryDatabaseManager();
+					databaseManager = new DatabaseManager();
 					MySQL mySQL = new MySQL();
 					mySQL.setIp(ipTextField.getText());
 					mySQL.setId(idTextField.getText());
 					mySQL.setPassword(pwTextField.getText());
 					mySQL.setProperties(propertiesTextField.getText());
-					dictionaryDatabaseManager.connect(mySQL);
+					databaseManager.connect(mySQL);
 					connectResult = "데이터베이스 연결 성공";
 				} catch (Exception e) {
 					connectResult = "데이터베이스 연결 실패";

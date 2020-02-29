@@ -23,6 +23,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.commons.io.FilenameUtils;
+
 public class DatabaseManagerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
@@ -61,6 +63,7 @@ public class DatabaseManagerFrame extends JFrame {
 		northPanel.setLayout(new BorderLayout(0, 0));
 
 		runButton = new JButton("Run");
+		runButton.setEnabled(false);
 		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				runFile();
@@ -94,14 +97,16 @@ public class DatabaseManagerFrame extends JFrame {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
+				// 명령 확인, 대상 설정
 				TreePath parentPath = selectedTreePath.getParentPath();
-				String command = sqlTree.getPath(parentPath).toString();
-				File parentFile = null;
-				parentFile = new File(command);
-//				System.out.println(parentFileName);
-//				System.out.println(selectedFileNameByJTree);
-//				String baseName = FilenameUtils.getBaseName(selectedFileNameByJTree);
-//				System.out.println(baseName);
+				String commandFileName = sqlTree.getPath(parentPath).toString();
+
+				System.out.println(commandFileName);
+				System.out.println(selectedFileNameByJTree);
+				String command = FilenameUtils.getBaseName(commandFileName);
+				System.out.println(command);
+
+				// 실행
 				runService.run(command, selectedFileNameByJTree);
 			}
 
