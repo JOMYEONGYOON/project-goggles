@@ -23,8 +23,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import core.FileRunner;
-
 public class DatabaseManagerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
