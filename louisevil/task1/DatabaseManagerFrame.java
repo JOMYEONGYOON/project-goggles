@@ -75,7 +75,7 @@ public class DatabaseManagerFrame extends JFrame {
 		northPanel.add(runButton, BorderLayout.EAST);
 		
 		stateLabel = new JLabel("");
-		northPanel.add(stateLabel, BorderLayout.NORTH);
+		northPanel.add(stateLabel, BorderLayout.CENTER);
 
 		southPanel = new JPanel();
 		panel.add(southPanel, BorderLayout.SOUTH);

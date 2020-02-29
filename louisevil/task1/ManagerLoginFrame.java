@@ -99,7 +99,7 @@ public class ManagerLoginFrame extends JFrame {
 					mySQL.setId(idTextField.getText());
 					mySQL.setPassword(pwTextField.getText());
 					mySQL.setProperties(propertiesTextField.getText());
-					databaseManager.connect(mySQL);
+					databaseManager.connectServer(mySQL);
 					connectResult = "데이터베이스 연결 성공";
 				} catch (Exception e) {
 					connectResult = "데이터베이스 연결 실패";
