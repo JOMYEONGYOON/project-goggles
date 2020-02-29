@@ -170,6 +170,7 @@ public class DatabaseManagerFrame extends JFrame {
 
 	}
 
+	
 	private void addTextAreaCenterPanel() {
 		textAreaCenterPanel = new JPanel();
 		textAreaCenterPanel.setLayout(new BorderLayout());
