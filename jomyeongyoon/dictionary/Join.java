@@ -9,17 +9,22 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 public class Join extends JFrame{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField id;
+	private JTextField name;
+	private JTextField phone;
+	private JTextField birth;
+	private JTextField email;
 	private JPasswordField passwordField;
+	private JTextField gender;
 
 	/**
 	 * Launch the application.
@@ -55,87 +60,115 @@ public class Join extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 584, 561);
-		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("id");
+		lblNewLabel.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel.setBounds(25, 124, 57, 15);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("name");
+		lblNewLabel_1.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel_1.setBounds(25, 186, 57, 15);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("phone");
+		lblNewLabel_2.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel_2.setBounds(25, 253, 57, 15);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("birth");
+		lblNewLabel_3.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel_3.setBounds(25, 313, 57, 15);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("email");
+		lblNewLabel_4.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel_4.setBounds(25, 377, 57, 15);
 		panel.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(126, 121, 116, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		id = new JTextField();
+		id.setBounds(126, 121, 116, 21);
+		panel.add(id);
+		id.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(126, 183, 116, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		name = new JTextField();
+		name.setBounds(126, 183, 116, 21);
+		panel.add(name);
+		name.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(126, 245, 116, 21);
-		panel.add(textField_2);
+		phone = new JTextField();
+		phone.setColumns(10);
+		phone.setBounds(126, 245, 116, 21);
+		panel.add(phone);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(126, 307, 116, 21);
-		panel.add(textField_3);
+		birth = new JTextField();
+		birth.setColumns(10);
+		birth.setBounds(126, 307, 116, 21);
+		panel.add(birth);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(126, 377, 116, 21);
-		panel.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(126, 439, 116, 21);
-		panel.add(textField_5);
+		email = new JTextField();
+		email.setColumns(10);
+		email.setBounds(126, 377, 116, 21);
+		panel.add(email);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("gender");
-		lblNewLabel_4_1.setBounds(25, 442, 57, 15);
+		lblNewLabel_4_1.setFont(new Font("굴림", Font.ITALIC, 18));
+		lblNewLabel_4_1.setBounds(25, 442, 75, 18);
 		panel.add(lblNewLabel_4_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("password");
-		lblNewLabel_5.setBounds(25, 501, 57, 15);
+		lblNewLabel_5.setFont(new Font("굴림", Font.ITALIC, 18));
+		lblNewLabel_5.setBounds(25, 501, 89, 15);
 		panel.add(lblNewLabel_5);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(126, 498, 116, 21);
 		panel.add(passwordField);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(353, 182, 165, 86);
-		panel.add(textArea);
+		JTextArea etc = new JTextArea();
+		etc.setBounds(353, 182, 165, 86);
+		panel.add(etc);
 		
 		JLabel lblNewLabel_6 = new JLabel("etc");
+		lblNewLabel_6.setFont(new Font("굴림", Font.ITALIC, 18));
 		lblNewLabel_6.setBounds(273, 215, 57, 15);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("회원가입");
-		lblNewLabel_7.setBounds(247, 33, 57, 15);
+		lblNewLabel_7.setFont(new Font("굴림", Font.PLAIN, 22));
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setBounds(126, 33, 366, 55);
+		
+		
 		panel.add(lblNewLabel_7);
 		
+		
+		gender = new JTextField();
+		gender.setBounds(126, 443, 116, 21);
+		panel.add(gender);
+		gender.setColumns(10);
+		
 		JButton btnNewButton = new JButton("회원가입");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idtxt = id.getText();
+				String nametxt = name.getText();
+				String phonetxt = phone.getText();
+				String birthtxt = birth.getText();
+				String emailtxt = email.getText();
+				String gendertxt = gender.getText();
+				String etctxt = etc.getText();
+				String passtxt = passwordField.getText();
+			}
+		});
 		btnNewButton.setBounds(340, 396, 152, 86);
 		panel.add(btnNewButton);
-		add(panel);
+//		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
+		
+		
+		
 		setSize(700,600);
 		setVisible(true);
 	}
