@@ -1,23 +1,24 @@
-package task5;
+package task4;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
 import swing.ImagePanel;
-class UpgradeImagePanel{
-	
-}
-public class ImagePanelTest extends JFrame{
-	public ImagePanelTest() {
-		ImagePanel imagePanel = new ImagePanel("resources/image/particle.jpg");
+import task5.ImagePanelTest;
+
+public class ColorPanelTest extends JFrame {
+	public ColorPanelTest() {
+		ImagePanel imagePanel = new ImagePanel("resources/image/jar.png");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		setSize(600,400);
-		add(imagePanel, BorderLayout.CENTER);
+		add(imagePanel);
+		setSize(600, 400);
 		setVisible(true);
 	}
+
 	public static void main(String[] args) {
 		new ImagePanelTest();
 	}
+
 }
