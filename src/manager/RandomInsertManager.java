@@ -20,7 +20,6 @@ public class RandomInsertManager extends MemberTableManager {
 			String sql = INSERT_MEMBER_AUTO_INCREMENT_NO_SQL;
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			LoremIpsum loremIpsum = new LoremIpsum();
-
 			pstmt.setString(1, loremIpsum.getName());
 			int r = ((int) (Math.random() * 2));
 			String gender = "";
