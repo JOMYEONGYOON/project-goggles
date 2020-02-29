@@ -10,17 +10,19 @@ import manager.DatabaseManager;
 import object.MySQL;
 
 public class FileRunner {
-
+	private DatabaseManager databaseManager;
 	public void run(String command, String target, JLabel stateLabel) {
 		// 실행파일 명령, 대상 출력
 		System.err.println("----------------------------------------------");
 		System.out.printf("%10s %8s \n%10s %20s\n", "command", command, "target", target);
 		String fileExtension = FilenameUtils.getExtension(target);
-
+		databaseManager = new DatabaseManager();
+		databaseManager.connectServer(new MySQL());
 		// 파일 확장자가 SQL일 때만 데이터베이스 연결
+		String result = "";
 		if (fileExtension.equals("sql")) {
 			System.out.println("sql");
-			DatabaseManager databaseManager = new DatabaseManager();
+			
 			try {
 //				MySQL wrongPasswordMySQL = new MySQL();
 //				wrongPasswordMySQL.setPassword("wrong password");
@@ -41,13 +43,15 @@ public class FileRunner {
 				} else {
 
 				}
-				String result = String.format("%s %s %s", command, target, "완료");
+				result = String.format("%s %s %s", command, target, "완료");
 				System.out.println(result);
+				
 			} catch (Exception e) {
-				String result = String.format("%s %s %s", command, target, "실패");
+				result = String.format("%s %s %s", command, target, "실패");
 				System.out.println(result);
 				e.printStackTrace();
 			}
+			stateLabel.setText(result);
 		} else {
 
 		}

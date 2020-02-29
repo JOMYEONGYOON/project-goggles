@@ -157,7 +157,13 @@ public class DatabaseManager {
 	}
 
 	public void executeUpdateInsertQueryByFile(File file, JLabel stateLabel) {
-		Scanner fileLineCheckSC = new Scanner(System.in);
+		Scanner fileLineCheckSC = null;
+		try {
+			fileLineCheckSC = new Scanner(new File(file.getPath()));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int lineTotalCount = 0;
 		while (fileLineCheckSC.hasNext()) {
 			fileLineCheckSC.next();
@@ -189,6 +195,7 @@ public class DatabaseManager {
 			System.err.println(ResourceManager.ALREADY_INSERTED_TABLE_DATA);
 		}
 		sc.close();
+		fileLineCheckSC.close();
 
 	}
 
