@@ -10,31 +10,36 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
+import manager.WordTableManager;
+import object.MySQL;
+import object.Word;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private JLabel leftFocusLabel;
-	private JButton particleButton;
+	private JButton gogglesButton;
 	private JLabel rightFocusLabel;
 	private JPanel rootPanel;
 	private JTextField textField;
 
 	public MainFrame() {
+
 		initComponent();
 		setLocationComponents();
 		setTheme();
 		startFocusLabel();
-		setParticleButton();
+		setGogglesButton();
 		sertRootPanel();
 		addComponents();
 		setMainFrame();
@@ -69,12 +74,12 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private void addComponents() {
 		rootPanel.add(leftFocusLabel);
 		rootPanel.add(rightFocusLabel);
-		rootPanel.add(particleButton);
+		rootPanel.add(gogglesButton);
 		textField.addKeyListener(this);
 	}
 
 	private void initComponent() {
-		rootPanel = new ImagePanel(ResourceManager.PARTICLE_IMG_PATH);
+		rootPanel = new ImagePanel(ResourceManager.KNOWLEDGE_2_IMG_PATH);
 		rootPanel.setBackground(ResourceManager.BLACK);
 		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		textField = new JTextField(10);
@@ -105,14 +110,31 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				int y = textField.getY();
 				while (true) {
 					if (y < 50) {
-//						System.out.println(x + "/" + y);
-						JTextArea resultArea = new JTextArea();
-						rootPanel.add(resultArea);
+
+						JList<Word> wordJList = new JList<Word>();
+						WordTableManager wordTableManager = new WordTableManager();
+						try {
+							wordTableManager.connect(new MySQL());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Word word = wordTableManager.selectByName(textField.getText().trim());
+						Vector<Word> wordVector = new Vector<Word>();
+						if (word == null) {
+							wordVector = wordTableManager.selectByFirstName(textField.getText().charAt(0));
+							wordJList = new JList<Word>(wordVector);
+						} else {
+							wordVector.add(word);
+							wordJList = new JList<Word>(wordVector);
+						}
+						wordJList.setBounds(150, 350, 300, 50);
+						add(wordJList);
 						break;
 					}
 					y -= step;
 					try {
-						sleep(15);
+						sleep(2);
 						repaint();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -124,7 +146,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 		};
 		th.start();
-		
+
 	}
 
 	@Override
@@ -154,86 +176,86 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		setVisible(true);
 	}
 
-	private void setParticleButton() {
-		particleButton = new JButton("Particle");
-		particleButton.setBorderPainted(false);
-		particleButton.setBorder(null);
-		particleButton.setBackground(ResourceManager.BLACK_ALPHA);
-		particleButton.setOpaque(false);
-		particleButton.setFocusPainted(false);
-		particleButton.setContentAreaFilled(false);
-		particleButton.addMouseListener(new MouseAdapter() {
+	private void setGogglesButton() {
+		gogglesButton = new JButton("Goggles");
+		gogglesButton.setBorderPainted(false);
+		gogglesButton.setBorder(null);
+		gogglesButton.setBackground(ResourceManager.BLACK_ALPHA);
+		gogglesButton.setOpaque(false);
+		gogglesButton.setFocusPainted(false);
+		gogglesButton.setContentAreaFilled(false);
+		gogglesButton.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				particleButton.removeMouseListener(this);
-					Thread fadeout = new Thread() {
+				gogglesButton.removeMouseListener(this);
+				Thread fadeout = new Thread() {
 
-						@Override
-						public void run() {
-							int alpha = 255;
-							Color color = ResourceManager.WHITE;
-							while (true) {
-								if (alpha < 0) {
-									particleButton.setVisible(false);
-									leftFocusLabel.setVisible(false);
-									rightFocusLabel.setVisible(false);
-									break;
-								}
-								color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
-								alpha = alpha - 30;
-								try {
-									Thread.sleep(100);
-									particleButton.setForeground(color);
-									repaint();
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
+					@Override
+					public void run() {
+						int alpha = 255;
+						Color color = ResourceManager.WHITE;
+
+						while (true) {
+							if (alpha < 0) {
+								gogglesButton.setVisible(false);
+								leftFocusLabel.setVisible(false);
+								rightFocusLabel.setVisible(false);
+								break;
+							}
+							color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
+							alpha = alpha - 30;
+							try {
+								Thread.sleep(100);
+								gogglesButton.setForeground(color);
+								repaint();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+
+				};
+				fadeout.start();
+				Thread textFieldThread = new Thread() {
+
+					@Override
+					public void run() {
+						rootPanel.add(textField);
+						textField.setBounds(470, 350, 300, 50);
+						textField.setBackground(ResourceManager.NONE);
+						textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+						textField.setFocusable(true);
+						Color color = ResourceManager.NONE;
+						int alpha = color.getAlpha();
+
+						while (true) {
+							if (alpha > 192) {
+								break;
+							}
+							alpha++;
+							color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
+							try {
+								Thread.sleep(15);
+								textField.setBackground(color);
+								repaint();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
 							}
 						}
 
-					};
-					fadeout.start();
-					Thread textFieldThread = new Thread() {
+					}
 
-						@Override
-						public void run() {
-							rootPanel.add(textField);
-							textField.setBounds(470, 350, 300, 50);
-							textField.setBackground(ResourceManager.NONE);
-							textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-							textField.setFocusable(true);
-							Color color = ResourceManager.NONE;
-							int alpha = color.getAlpha();
-
-							while (true) {
-								if (alpha > 192) {
-									break;
-								}
-								alpha++;
-								color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
-								try {
-									Thread.sleep(15);
-									textField.setBackground(color);
-									repaint();
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-							}
-
-						}
-
-					};
-					textFieldThread.start();
-				}
-
+				};
+				textFieldThread.start();
+			}
 
 		});
-		particleButton.setLocation(25, 25);
-		particleButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
-		particleButton.setForeground(Color.WHITE);
-		particleButton.setSize(1235, 668);
-		particleButton.setSize(ResourceManager.FRAME_WIDTH - 100, ResourceManager.FRAME_HEIGHT - 100);
+		gogglesButton.setLocation(25, 25);
+		gogglesButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
+		gogglesButton.setForeground(Color.WHITE);
+		gogglesButton.setSize(1235, 668);
+		gogglesButton.setSize(ResourceManager.FRAME_WIDTH - 100, ResourceManager.FRAME_HEIGHT - 100);
 	}
 
 	private void setTheme() {
@@ -280,7 +302,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		};
 		focusLabelThread.start();
 	}
+
 	public static void main(String[] args) {
-		
+
 	}
 }

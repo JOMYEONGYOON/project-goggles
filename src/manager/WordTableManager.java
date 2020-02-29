@@ -15,9 +15,11 @@ public class WordTableManager extends DatabaseManager {
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
 	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";
 	private static final String SELECT_WORD_BY_NAME_SQL = "select id,name,def,category from word WHERE name=?";
+
 	public WordTableManager() {
-	
+
 	}
+
 	public void insertRows(String sqlPath) {
 		Scanner sc = null;
 		try {
@@ -64,6 +66,7 @@ public class WordTableManager extends DatabaseManager {
 			e.printStackTrace();
 		}
 	}
+
 	public Vector<Word> select() {
 		Vector<Word> words = null;
 		try {
@@ -125,7 +128,6 @@ public class WordTableManager extends DatabaseManager {
 	}
 
 	public void insert(Word word) {
-
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(INSERT_WORD_AUTO_INCREMENT_ID_SQL);
 
@@ -137,16 +139,36 @@ public class WordTableManager extends DatabaseManager {
 			pstmt.setString(3, word.getCatagory());
 			pstmt.execute();
 
-		}
-
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
 
+	}
+
+	public Vector<Word> selectByFirstName(char ch) {
+		Vector<Word> words = null;
+		try {
+			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM word WHERE name like ? LIMIT 1,10");
+			pstmt.setString(1,ch+"%");
+			ResultSet rs = pstmt.executeQuery();
+
+			words = new Vector<Word>();
+			while (rs.next()) {
+				Word word = null;
+				word = new Word();
+				word.setId(rs.getInt(1));
+				word.setName(rs.getString(2));
+				word.setDef(rs.getString(3));
+				word.setCatagory(rs.getString(4));
+				words.add(word);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return words;
 	}
 
 }

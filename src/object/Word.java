@@ -1,7 +1,7 @@
 package object;
 
 public class Word {
-	private int id;
+	private int no;
 	private String name;
 	private String def;
 	private String category;
@@ -18,21 +18,21 @@ public class Word {
 
 	}
 
-	public Word(int id, String name, String def, String category) {
+	public Word(int no, String name, String def, String category) {
 
-		this.id = id;
+		this.no = no;
 		this.name = name;
 		this.def = def;
 		this.category = category;
 
 	}
 
-	public int getId() {
-		return id;
+	public int getNo() {
+		return no;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getName() {
@@ -51,12 +51,13 @@ public class Word {
 		this.def = def;
 	}
 
-	public String getCatagory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCatagory(String catagory) {
-		this.category = catagory;
+	public void setCategory(String category) {
+		this.category = category;
 	}
+
 
 }
