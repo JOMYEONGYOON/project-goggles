@@ -18,7 +18,9 @@ class LoginFrame extends JFrame {
     private JLabel laPass;
     private JPasswordField txtPass;
     private JButton btnLogin;
-
+    public static void main(String[] args) {
+    	new LoginFrame();
+    }
     public LoginFrame() {
         panel = new JPanel();
         laId = new JLabel("ID :");
