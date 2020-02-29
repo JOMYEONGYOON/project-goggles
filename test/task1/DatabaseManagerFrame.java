@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -39,6 +40,7 @@ public class DatabaseManagerFrame extends JFrame {
 	private String selectedFileNameByJTree;
 	private TreePath selectedTreePath;
 	private JButton runButton;
+	private JLabel stateLabel;
 
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
@@ -71,6 +73,9 @@ public class DatabaseManagerFrame extends JFrame {
 
 		});
 		northPanel.add(runButton);
+		
+		stateLabel = new JLabel("");
+		northPanel.add(stateLabel, BorderLayout.NORTH);
 
 		southPanel = new JPanel();
 		panel.add(southPanel, BorderLayout.SOUTH);
@@ -107,7 +112,7 @@ public class DatabaseManagerFrame extends JFrame {
 				System.out.println(command);
 
 				// 실행
-				runService.run(command, selectedFileNameByJTree);
+				runService.run(command, selectedFileNameByJTree, stateLabel);
 			}
 
 		};

@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import javax.swing.JLabel;
+
 import object.MySQL;
 
 public class DatabaseManager {
@@ -16,14 +18,9 @@ public class DatabaseManager {
 	protected static Connection connection;
 
 	public void connect(MySQL mySQL) throws Exception {
-		if (connection == null) {
-			Class.forName(ResourceManager.MYSQL_DRIVER);
-			connection = DriverManager
-					.getConnection(
-							ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":" + mySQL.getPort() + "/"
-									+ mySQL.getDatabaseName() + mySQL.getProperties(),
-							mySQL.getId(), mySQL.getPassword());
-		}
+		Class.forName(ResourceManager.MYSQL_DRIVER);
+		connection = DriverManager.getConnection(ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":" + mySQL.getPort()
+				+ "/" + mySQL.getDatabaseName() + mySQL.getProperties(), mySQL.getId(), mySQL.getPassword());
 
 	}
 
@@ -43,9 +40,17 @@ public class DatabaseManager {
 	}
 
 	public void executeUpdateQueryByFile(File file) throws Exception {
-//		PreparedStatement prepareStatement = connection
-//				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
-//		prepareStatement.executeUpdate();
+		String sql = "";
+		Scanner sc = new Scanner(file);
+		System.out.println("test");
+		while (sc.hasNext()) {
+			sql += sc.next() + " ";
+
+		}
+		System.out.println(sql);
+		PreparedStatement prepareStatement = connection.prepareStatement(sql);
+		prepareStatement.executeUpdate();
+		sc.close();
 	}
 
 	public void createTable() {
@@ -112,6 +117,81 @@ public class DatabaseManager {
 		} catch (SQLException e) {
 			System.err.printf("%s %s %s", getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
 		}
+	}
+
+	public void connectServer(MySQL mySQL) {
+		try {
+			Class.forName(ResourceManager.MYSQL_DRIVER);
+			connection = DriverManager.getConnection(ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":"
+					+ mySQL.getPort() + "/" + mySQL.getProperties(), mySQL.getId(), mySQL.getPassword());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void executeUpdateInsertQueryByFile(File file) {
+		Scanner sc = null;
+		try {
+			System.out.println(ResourceManager.INSERT_WORD_SQL_PATH);
+			sc = new Scanner(file);
+			String sql = "";
+			while (sc.hasNext()) {
+				PreparedStatement prepareStatement = null;
+				try {
+					System.out.println(sql);
+					sql = sc.nextLine();
+					prepareStatement = connection.prepareStatement(sql);
+					prepareStatement.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println(sql);
+					return;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			System.err.println(ResourceManager.ALREADY_INSERTED_TABLE_DATA);
+		}
+		sc.close();
+
+	}
+
+	public void executeUpdateInsertQueryByFile(File file, JLabel stateLabel) {
+		Scanner fileLineCheckSC = new Scanner(System.in);
+		int lineTotalCount = 0;
+		while (fileLineCheckSC.hasNext()) {
+			fileLineCheckSC.next();
+			lineTotalCount++;
+		}
+		Scanner sc = null;
+		try {
+			System.out.println(ResourceManager.INSERT_WORD_SQL_PATH);
+			sc = new Scanner(file);
+			String sql = "";
+			int count = 0;
+			while (sc.hasNext()) {
+				PreparedStatement prepareStatement = null;
+				try {
+					System.out.println(sql);
+					sql = sc.nextLine();
+					prepareStatement = connection.prepareStatement(sql);
+					prepareStatement.executeUpdate();
+					stateLabel.setText(count + "/" + lineTotalCount);
+					Thread.sleep(10);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(sql);
+					return;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			System.err.println(ResourceManager.ALREADY_INSERTED_TABLE_DATA);
+		}
+		sc.close();
+
 	}
 
 }
