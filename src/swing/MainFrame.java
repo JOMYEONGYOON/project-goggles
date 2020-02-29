@@ -110,27 +110,30 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				int y = textField.getY();
 				while (true) {
 					if (y < 50) {
-
-						JList<Word> wordJList = new JList<Word>();
-						WordTableManager wordTableManager = new WordTableManager();
-						try {
-							wordTableManager.connect(new MySQL());
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						Word word = wordTableManager.selectByName(textField.getText().trim());
-						Vector<Word> wordVector = new Vector<Word>();
-						if (word == null) {
-							wordVector = wordTableManager.selectByFirstName(textField.getText().charAt(0));
-							wordJList = new JList<Word>(wordVector);
-						} else {
-							wordVector.add(word);
-							wordJList = new JList<Word>(wordVector);
-						}
-						wordJList.setBounds(150, 350, 300, 50);
-						add(wordJList);
-						break;
+//						JPanel listPanel = new JPanel();
+//						listPanel.setLayout(new BorderLayout());
+//						Vector<Word> wordVector = new Vector<Word>();
+//						WordTableManager wordTableManager = new WordTableManager();
+//						JList<String> jList = new JList<>();
+//						try {
+//							wordTableManager.connect(new MySQL());
+//						} catch (Exception e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//						Word word = wordTableManager.selectByName(textField.getText().trim());
+//						if (word == null) {
+//							wordVector = wordTableManager.selectByFirstName(textField.getText().charAt(0));
+//							for (Word w : wordVector) {
+//								jList.add(new JButton(w.getName()));
+//							}
+//						} else {
+//							wordVector.add(word);
+//							jList.add(new JButton(word.getName()));
+//						}
+//						listPanel.add(jList, BorderLayout.CENTER);
+//						repaint();
+//						break;
 					}
 					y -= step;
 					try {
