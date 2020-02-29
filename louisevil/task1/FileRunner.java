@@ -39,9 +39,9 @@ public class FileRunner {
 					databaseManager.executeUpdateQueryByFile(new File(target));
 					System.out.println(target);
 				} else if (command.equals("insert")) {
-					databaseManager.executeUpdateInsertQueryByFile(new File(target));
+					databaseManager.executeUpdateInsertQueryByFile(new File(target), stateLabel);
 				} else {
-
+					System.out.println("Nothing..");
 				}
 				result = String.format("%s %s %s", command, target, "완료");
 				System.out.println(result);

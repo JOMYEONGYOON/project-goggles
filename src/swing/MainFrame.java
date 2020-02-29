@@ -282,4 +282,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		};
 		focusLabelThread.start();
 	}
+	public static void main(String[] args) {
+		
+	}
 }

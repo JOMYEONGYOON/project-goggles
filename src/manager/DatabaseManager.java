@@ -166,7 +166,7 @@ public class DatabaseManager {
 		}
 		int lineTotalCount = 0;
 		while (fileLineCheckSC.hasNext()) {
-			fileLineCheckSC.next();
+			fileLineCheckSC.nextLine();
 			lineTotalCount++;
 		}
 		Scanner sc = null;
@@ -184,6 +184,7 @@ public class DatabaseManager {
 					prepareStatement.executeUpdate();
 					stateLabel.setText(count + "/" + lineTotalCount);
 					Thread.sleep(10);
+					count++;
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println(sql);
