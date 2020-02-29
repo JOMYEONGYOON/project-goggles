@@ -1,4 +1,4 @@
-package manager.db;
+package manager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,22 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import manager.ResourceManager;
-import object.MySQL;
+public class DictionaryDatabaseManager extends DatabaseManager {
 
-public class DictionaryDatabaseManager {
-
-	// 데이터베이스 연결 객체
-	protected static Connection connection;
-	protected MySQL mySQL;
-
-	public void connect(MySQL mySQL) throws Exception {
-		this.mySQL = mySQL;
-		Class.forName(ResourceManager.MYSQL_DRIVER);
-		connection = DriverManager.getConnection(ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":"
-				+ ResourceManager.MYSQL_PORT + mySQL.getProperties(), mySQL.getId(), ResourceManager.MYSQL_PASSWORD);
-	}
-
+	
 	public void createDatabase() {
 		if (connection == null) {
 			System.err.println("데이터베이스 접속(연결)부터 해야합니다.");

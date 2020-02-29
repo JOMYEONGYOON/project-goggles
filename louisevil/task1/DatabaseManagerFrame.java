@@ -1,8 +1,11 @@
 package task1;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -20,6 +23,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import core.FileRunner;
+
 public class DatabaseManagerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
@@ -29,6 +34,12 @@ public class DatabaseManagerFrame extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel textAreaCenterPanel;
 	private JTextArea textArea;
+	private FileJTree sqlTree;
+	private File selectedFileByJTree;
+	private String selectedFileNameByJTree;
+	private TreePath selectedTreePath;
+	private JButton runButton;
+
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,15 +55,20 @@ public class DatabaseManagerFrame extends JFrame {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel.add(scrollPane, BorderLayout.WEST);
 
-		FileJTree sqlTree = new FileJTree("resources\\sql");
+		sqlTree = new FileJTree("resources\\sql");
 		scrollPane.setViewportView(sqlTree);
-		System.out.println(sqlTree);
 
 		northPanel = new JPanel();
 		panel.add(northPanel, BorderLayout.NORTH);
 		northPanel.setLayout(new BorderLayout(0, 0));
-		
-		JButton runButton = new JButton("Run");
+
+		runButton = new JButton("Run");
+		runButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				runFile();
+			}
+
+		});
 		northPanel.add(runButton);
 
 		southPanel = new JPanel();
@@ -64,59 +80,92 @@ public class DatabaseManagerFrame extends JFrame {
 			public void mouseClicked(MouseEvent me) {
 				int clickCount = me.getClickCount();
 				if (clickCount == 1) {
-					Thread th = new Thread() {
-
-						@Override
-						public void run() {
-							TreeSelectionModel treeModel = sqlTree.getSelectionModel();
-							TreePath treePath = treeModel.getLeadSelectionPath();
-							System.out.println(treePath);
-							String path = sqlTree.getPath(treePath);
-							System.out.println(path);
-							StringBuilder sb = new StringBuilder(new String(""));
-							File selectedFileByJTree = null;
-							selectedFileByJTree = new File(path);
-							FileReader fr = null;
-							BufferedReader br = null;
-							if (!selectedFileByJTree.isDirectory()) {
-								try {
-									fr = new FileReader(selectedFileByJTree);
-									br = new BufferedReader(fr);
-									String s;
-									while ((s = br.readLine()) != null) {
-										sb.append(s + "\n");
-									}
-								} catch (FileNotFoundException e) {
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								textArea.setText(sb.toString());
-
-							} else {
-								File[] folderFiles = selectedFileByJTree.listFiles();
-								for (File f : folderFiles) {
-									String fName = f.getName();
-									sb.append(fName+"\n");
-								}
-								textArea.setText(sb.toString());
-								repaint();
-
-							}
-						}
-						
-						
-					};
-					th.start();
+					readFile();
 				}
+
 			}
+
 		});
 
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
+	private void runFile() {
+		FileRunner runService = new FileRunner();
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				TreePath parentPath = selectedTreePath.getParentPath();
+				String command = sqlTree.getPath(parentPath).toString();
+				File parentFile = null;
+				parentFile = new File(command);
+//				System.out.println(parentFileName);
+//				System.out.println(selectedFileNameByJTree);
+//				String baseName = FilenameUtils.getBaseName(selectedFileNameByJTree);
+//				System.out.println(baseName);
+				runService.run(command, selectedFileNameByJTree);
+			}
+
+		};
+		th.start();
+	}
+
+	private void readFile() {
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				TreeSelectionModel treeModel = sqlTree.getSelectionModel();
+				selectedTreePath = treeModel.getLeadSelectionPath();
+//				System.out.println(treePath);
+				selectedFileNameByJTree = sqlTree.getPath(selectedTreePath);
+//				System.out.println(selectedFileNameByJTree);
+
+				StringBuilder sb = new StringBuilder(new String(""));
+				selectedFileByJTree = null;
+				selectedFileByJTree = new File(selectedFileNameByJTree);
+				FileReader fr = null;
+				BufferedReader br = null;
+				if (!selectedFileByJTree.isDirectory()) {
+					runButton.setEnabled(true);
+					try {
+						fr = new FileReader(selectedFileByJTree);
+						br = new BufferedReader(fr);
+						String s;
+						while ((s = br.readLine()) != null) {
+							sb.append(s + "\n");
+						}
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					textArea.setText(sb.toString());
+				} else {
+					runButton.setEnabled(false);
+					File[] folderFiles = selectedFileByJTree.listFiles();
+					for (File f : folderFiles) {
+						String fName = f.getName();
+						sb.append(fName + "\n");
+					}
+					textArea.setText(sb.toString());
+					repaint();
+
+				}
+				try {
+					if (fr != null) {
+						fr.close();
+
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		th.start();
+
+	}
 
 	private void addTextAreaCenterPanel() {
 		textAreaCenterPanel = new JPanel();
@@ -129,7 +178,17 @@ public class DatabaseManagerFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new DatabaseManagerFrame();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DatabaseManagerFrame window = new DatabaseManagerFrame();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 	}
 
 	protected JPanel getSouthPanel() {

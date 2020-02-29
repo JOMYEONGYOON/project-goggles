@@ -1,34 +1,61 @@
 package object;
 
 public class MySQL {
-	private String id;
-	private String password;
-	private String properties;
-	private String ip;
+	private String id = "root";
+	private String password = "1234";
+	private String properties = "?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
+	private String ip = "127.0.0.1";
+	private String port = "3306";
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+
+	public MySQL() {
+
+	}
+	public MySQL(String id, String password, String properties, String ip, String port) {
+		this.id=id;
+		this.password=password;
+		this.properties=properties;
+		this.ip=ip;
+		this.port=port;
+
+	}
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getProperties() {
 		return properties;
 	}
+
 	public void setProperties(String properties) {
 		this.properties = properties;
 	}
+
 	public String getIp() {
 		return ip;
 	}
+
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
-	
+
 }

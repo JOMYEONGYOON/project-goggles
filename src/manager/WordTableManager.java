@@ -1,4 +1,4 @@
-package manager.db;
+package manager;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
-import manager.ResourceManager;
 import object.Word;
 
 public class WordTableManager extends DictionaryDatabaseManager {

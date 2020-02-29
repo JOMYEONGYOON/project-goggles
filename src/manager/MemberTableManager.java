@@ -1,4 +1,4 @@
-package manager.db;
+package manager;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import manager.ResourceManager;
 import object.Member;
 
 public class MemberTableManager extends DictionaryDatabaseManager {

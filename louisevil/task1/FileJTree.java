@@ -61,17 +61,19 @@ public class FileJTree extends JTree {
 		}
 	}
 
-	public String getPath(TreePath treePath) {
+	synchronized public String getPath(TreePath treePath) {
+
 		String tempPath1 = treePath.toString().replace("[", "");
-//		System.out.println(tempPath1);
+//			System.out.println(tempPath1);
 		String tempPath2 = tempPath1.replace("]", "");
-//		System.out.println(tempPath2);
+//			System.out.println(tempPath2);
 		String path = tempPath2.replace(", ", "\\");
 		return path;
+
 	}
 
 	private boolean isDirEmpty(File file) {
-		
+
 		if (file.isDirectory() && file.list().length == 0) {
 			System.out.println(true);
 			return true;
