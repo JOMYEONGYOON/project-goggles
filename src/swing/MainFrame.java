@@ -106,7 +106,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				int y = textField.getY();
 				while (true) {
 					if (y < 50) {
-						System.out.println(x + "/" + y);
+//						System.out.println(x + "/" + y);
 						JTextArea resultArea = new JTextArea();
 						rootPanel.add(resultArea);
 						break;
