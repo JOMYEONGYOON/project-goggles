@@ -9,10 +9,10 @@ import java.util.Scanner;
 import object.Member;
 
 public class MemberTableManager extends DatabaseManager {
-	final static String SELECT_MEMBER_BY_ID_SQL = "SELECT id,name,def,category FROM word WHERE id=?";
-	final static String SELECT_MEMBER_BY_NAME_SQL = "SELECT id,name,def,category FROM word WHERE name=?";
-	final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
-	final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
+	protected final static String SELECT_MEMBER_BY_ID_SQL = "SELECT id,name,def,category FROM word WHERE id=?";
+	protected final static String SELECT_MEMBER_BY_NAME_SQL = "SELECT id,name,def,category FROM word WHERE name=?";
+	protected final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
+	protected final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
 
 
 	public void createMemberTable() {

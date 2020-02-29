@@ -199,7 +199,14 @@ public class DatabaseManagerFrame extends JFrame {
 		});
 
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
 	protected JPanel getSouthPanel() {
 		return southPanel;
 	}
