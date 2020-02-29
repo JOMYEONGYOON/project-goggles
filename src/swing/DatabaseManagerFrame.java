@@ -1,4 +1,4 @@
-package task1;
+package swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -25,6 +25,8 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.apache.commons.io.FilenameUtils;
+
+import runner.FileRunner;
 
 public class DatabaseManagerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;

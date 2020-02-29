@@ -1,4 +1,4 @@
-package task1;
+package runner;
 
 import java.io.File;
 

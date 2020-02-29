@@ -1,4 +1,4 @@
-package task1;
+package swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;

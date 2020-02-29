@@ -1,4 +1,4 @@
-package task1;
+package manager;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +8,6 @@ import org.apache.commons.lang3.RandomUtils;
 
 import com.thedeanda.lorem.LoremIpsum;
 
-import manager.MemberTableManager;
 import object.Member;
 import object.MySQL;
 

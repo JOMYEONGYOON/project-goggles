@@ -1,4 +1,4 @@
-package task1;
+package swing;
 
 import java.io.File;
 
