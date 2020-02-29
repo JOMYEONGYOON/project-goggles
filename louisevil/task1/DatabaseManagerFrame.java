@@ -26,10 +26,6 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.apache.commons.io.FilenameUtils;
 
-import manager.DatabaseManager;
-import manager.ResourceManager;
-import object.MySQL;
-
 public class DatabaseManagerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
@@ -143,7 +139,8 @@ public class DatabaseManagerFrame extends JFrame {
 				System.out.println(command);
 
 				// 실행
-				runService.run(command, selectedFileNameByJTree, stateLabel);
+				runService.run(command, selectedFileNameByJTree, stateLabel, textArea);
+
 			}
 
 		};

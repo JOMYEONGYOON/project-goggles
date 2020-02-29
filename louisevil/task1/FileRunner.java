@@ -3,6 +3,7 @@ package task1;
 import java.io.File;
 
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -11,7 +12,8 @@ import object.MySQL;
 
 public class FileRunner {
 	private DatabaseManager databaseManager;
-	public void run(String command, String target, JLabel stateLabel) {
+
+	public void run(String command, String target, JLabel stateLabel, JTextArea textArea) {
 		// 실행파일 명령, 대상 출력
 		System.err.println("----------------------------------------------");
 		System.out.printf("%10s %8s \n%10s %20s\n", "command", command, "target", target);
@@ -22,7 +24,7 @@ public class FileRunner {
 		String result = "";
 		if (fileExtension.equals("sql")) {
 			System.out.println("sql");
-			
+
 			try {
 //				MySQL wrongPasswordMySQL = new MySQL();
 //				wrongPasswordMySQL.setPassword("wrong password");
@@ -47,7 +49,7 @@ public class FileRunner {
 				}
 				result = String.format("%s %s %s", command, target, "완료");
 				System.out.println(result);
-				
+
 			} catch (Exception e) {
 				result = String.format("%s %s %s", command, target, "실패");
 				System.out.println(result);
@@ -55,7 +57,7 @@ public class FileRunner {
 			}
 			stateLabel.setText(result);
 		} else {
-
+			result = "unknown command";
 		}
 	}
 
