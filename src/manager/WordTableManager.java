@@ -13,8 +13,8 @@ import object.Word;
 public class WordTableManager extends DatabaseManager {
 	private static final String INSERT_WORD_AUTO_INCREMENT_ID_SQL = "INSERT INTO word(name, def, category) VALUES(?, ?, ?)";
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
-	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";
-	private static final String SELECT_WORD_BY_NAME_SQL = "select id,name,def,category from word WHERE name=?";
+	private static final String SELECT_WORD_BY_NO_SQL = "select no,name,def,category from word WHERE no=?";
+	private static final String SELECT_WORD_BY_NAME_SQL = "select no,name,def,category from word WHERE name=?";
 
 	public WordTableManager() {
 
@@ -75,10 +75,10 @@ public class WordTableManager extends DatabaseManager {
 			words = new Vector<Word>();
 			while (rs.next()) {
 				Word word = new Word();
-				word.setId(rs.getInt(1));
+				word.setNo(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
-				word.setCatagory(rs.getString(4));
+				word.setCategory(rs.getString(4));
 				words.add(word);
 			}
 		} catch (Exception e) {
@@ -87,19 +87,19 @@ public class WordTableManager extends DatabaseManager {
 		return words;
 	}
 
-	public Word selectById(int id) {
+	public Word selectByNo(int id) {
 		Word word = null;
 		try {
 
-			PreparedStatement pstmt = connection.prepareStatement(SELECT_WORD_BY_ID_SQL);
+			PreparedStatement pstmt = connection.prepareStatement(SELECT_WORD_BY_NO_SQL);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				word = new Word();
-				word.setId(rs.getInt(1));
+				word.setNo(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
-				word.setCatagory(rs.getString(4));
+				word.setCategory(rs.getString(4));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,10 +116,10 @@ public class WordTableManager extends DatabaseManager {
 
 			while (rs.next()) {
 				word = new Word();
-				word.setId(rs.getInt(1));
+				word.setNo(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
-				word.setCatagory(rs.getString(4));
+				word.setCategory(rs.getString(4));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,7 +136,7 @@ public class WordTableManager extends DatabaseManager {
 			pstmt.setString(1, word.getName());
 
 			pstmt.setString(2, word.getDef());
-			pstmt.setString(3, word.getCatagory());
+			pstmt.setString(3, word.getCategory());
 			pstmt.execute();
 
 		} catch (SQLException e) {
@@ -159,10 +159,10 @@ public class WordTableManager extends DatabaseManager {
 			while (rs.next()) {
 				Word word = null;
 				word = new Word();
-				word.setId(rs.getInt(1));
+				word.setNo(rs.getInt(1));
 				word.setName(rs.getString(2));
 				word.setDef(rs.getString(3));
-				word.setCatagory(rs.getString(4));
+				word.setCategory(rs.getString(4));
 				words.add(word);
 			}
 		} catch (Exception e) {
