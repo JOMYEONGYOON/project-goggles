@@ -13,7 +13,6 @@ public class FileRunner {
 		// 실행파일 명령, 대상 출력
 		System.err.println("----------------------------------------------");
 		System.out.printf("%10s %8s \n%10s %20s\n", "command", command, "target", target);
-		File file = new File(target);
 		String fileExtension = FilenameUtils.getExtension(target);
 
 		// 파일 확장자가 SQL일 때만 데이터베이스 연결
@@ -25,25 +24,29 @@ public class FileRunner {
 //				MySQL wrongPasswordMySQL = new MySQL();
 //				wrongPasswordMySQL.setPassword("wrong password");
 //				databaseManager.connect(wrongPasswordMySQL);
-				databaseManager.connect(new MySQL());
+				MySQL mySQL = new MySQL();
+				databaseManager.connect(mySQL);
 				System.out.println("DB 연결성공");
 				// 명령어 판단하는 부분
-				System.out.println(command);
-				
-				//명령과 타겟에 따라 데이터베이스 매니저에서파일로 연결 실행
+//				System.out.println(command);
+				String baseName = FilenameUtils.getBaseName(target);
+				System.out.println(baseName);
+				// 명령과 타겟에 따라 데이터베이스 매니저에서파일로 연결 실행
+				if (!target.equals("resources\\sql\\create\\dictionary.sql")) {
+					databaseManager.connect(new MySQL());
+				}
 				if (command.equals("create")) {
-					
 					databaseManager.executeQueryByFile(new File(target));
-				}else if (command.equals("delete")) {
-					databaseManager.useDatabase();
+
+				} else if (command.equals("delete")) {
 					databaseManager.executeUpdateQueryByFile(new File(target));
-				}else if (command.equals("insert")) {
-					databaseManager.useDatabase();
+				} else if (command.equals("insert")) {
 					databaseManager.executeUpdateQueryByFile(new File(target));
-				}else {
-					
+				} else {
+
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				System.err.println("DB 연결실패");
 				return "DB 연결실패";
 			}

@@ -11,17 +11,19 @@ import java.util.Scanner;
 import object.MySQL;
 
 public class DatabaseManager {
-	protected MySQL mySQL;
 
 	// 데이터베이스 연결 객체
-	protected Connection connection;
+	protected static Connection connection;
 
 	public void connect(MySQL mySQL) throws Exception {
-		this.mySQL = mySQL;
-		Class.forName(ResourceManager.MYSQL_DRIVER);
-		connection = DriverManager.getConnection(
-				ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":" + mySQL.getPort() + mySQL.getProperties(),
-				mySQL.getId(), mySQL.getPassword());
+		if (connection == null) {
+			Class.forName(ResourceManager.MYSQL_DRIVER);
+			connection = DriverManager
+					.getConnection(
+							ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":" + mySQL.getPort() + "/"
+									+ mySQL.getDatabaseName() + mySQL.getProperties(),
+							mySQL.getId(), mySQL.getPassword());
+		}
 
 	}
 
@@ -31,7 +33,8 @@ public class DatabaseManager {
 		Scanner sc = new Scanner(file);
 		System.out.println("test");
 		while (sc.hasNext()) {
-			sql += sc.nextLine() + "\n";
+			sql += sc.next() + " ";
+
 		}
 		System.out.println(sql);
 		PreparedStatement prepareStatement = connection.prepareStatement(sql);
@@ -50,7 +53,7 @@ public class DatabaseManager {
 		System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
 		String answer = sc.next();
 		if (answer.equals("y") || answer.equals("Y")) {
-			useDatabase();
+
 		} else {
 			System.err.println(ResourceManager.PROGRAM_SHUTDOWN);
 			System.exit(0);
@@ -63,18 +66,6 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 		sc.close();
-
-	}
-
-	public void useDatabase() {
-		PreparedStatement prepareStatement;
-		try {
-			prepareStatement = connection.prepareStatement("use " + this.mySQL.getDatabaseName());
-			prepareStatement.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 

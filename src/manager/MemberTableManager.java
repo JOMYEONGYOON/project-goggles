@@ -14,9 +14,6 @@ public class MemberTableManager extends DatabaseManager {
 	final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
 	final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
 
-	public MemberTableManager() {
-		useDatabase();
-	}
 
 	public void createMemberTable() {
 		Scanner sc = null;

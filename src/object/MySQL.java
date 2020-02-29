@@ -6,7 +6,7 @@ public class MySQL {
 	private String properties = "?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 	private String ip = "127.0.0.1";
 	private String port = "3306";
-	private String databaseName;
+	private String databaseName = "dictionary";
 
 	public String getDatabaseName() {
 		return databaseName;

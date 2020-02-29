@@ -16,7 +16,7 @@ public class WordTableManager extends DatabaseManager {
 	private static final String SELECT_WORD_BY_ID_SQL = "select id,name,def,category from word WHERE id=?";
 	private static final String SELECT_WORD_BY_NAME_SQL = "select id,name,def,category from word WHERE name=?";
 	public WordTableManager() {
-		useDatabase();
+	
 	}
 	public void insertRows(String sqlPath) {
 		Scanner sc = null;
