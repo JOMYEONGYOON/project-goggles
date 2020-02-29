@@ -70,7 +70,7 @@ public class ResourceManager {
 	public static final String YES_NO_CREATE_TABLE = "테이블을 생성하시겠습니까?(y/n)";
 	public static final String ALREADY_INSERTED_TABLE_DATA = "이미 데이터가 입력되어 있습니다.";
 	public static final String DELETE_SQL_PATH = APP_PATH + "\\resources\\sql\\delete";
-	public static final String DELETE_DATABASE_SQL_PATH = APP_PATH + "\\dictionary.sql";
+	public static final String DELETE_DATABASE_SQL_PATH = APP_PATH + "\\resources\\sql\\dictionary.sql";
 	public static String MYSQL_ID = "root";
 	public static String MYSQL_PASSWORD = "1234";
 	public static String MYSQL_JDBC_URL = "jdbc:mysql://";

@@ -45,7 +45,7 @@ public class DatabaseManagerFrame extends JFrame {
 	private TreePath selectedTreePath;
 	private JButton runButton;
 	private JLabel stateLabel;
-	private JButton autoButton;
+//	private JButton autoButton;
 
 	public DatabaseManagerFrame() {
 		textArea = new JTextArea();
@@ -82,31 +82,31 @@ public class DatabaseManagerFrame extends JFrame {
 		stateLabel = new JLabel("");
 		northPanel.add(stateLabel, BorderLayout.CENTER);
 
-		autoButton = new JButton("자동생성");
-		autoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DatabaseManager database = new DatabaseManager();
-				database.connectServer(new MySQL());
-				if (autoButton.getText().equals("자동삭제")) {
-					FileRunner fileRunner = new FileRunner();
-					fileRunner.run("delete",ResourceManager.DELETE_DATABASE_SQL_PATH, stateLabel);
-					autoButton.setText("자동생성");
-				}else {
-					stateLabel.setText("데이터베이스 자동 생성 작업을 시작합니다.");
-					DatabaseManager databaseManager = new DatabaseManager();
-					databaseManager.connectServer(new MySQL());
-					FileRunner fileRunner = new FileRunner();
-					fileRunner.run("create", ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS, stateLabel);
-					fileRunner.run("create", ResourceManager.CREATE_MEMBER_SQL_PATH, stateLabel);
-					fileRunner.run("create", ResourceManager.CREATE_WORD_SQL_PATH, stateLabel);
-					fileRunner.run("insert", ResourceManager.INSERT_MEMBER_SQL_PATH, stateLabel);
-					fileRunner.run("insert", ResourceManager.INSERT_WORD_SQL_PATH, stateLabel);
-					stateLabel.setText("데이터베이스 자동 생성 작업이 완료되었습니다.");
-					autoButton.setText("자동삭제");
-				}
-			}
-		});
-		northPanel.add(autoButton, BorderLayout.WEST);
+//		autoButton = new JButton("자동생성");
+//		autoButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				DatabaseManager database = new DatabaseManager();
+//				database.connectServer(new MySQL());
+//				if (autoButton.getText().equals("자동삭제")) {
+//					FileRunner fileRunner = new FileRunner();
+//					fileRunner.run("delete",ResourceManager.DELETE_DATABASE_SQL_PATH, stateLabel);
+//					autoButton.setText("자동생성");
+//				}else {
+//					stateLabel.setText("데이터베이스 자동 생성 작업을 시작합니다.");
+//					DatabaseManager databaseManager = new DatabaseManager();
+//					databaseManager.connectServer(new MySQL());
+//					FileRunner fileRunner = new FileRunner();
+//					fileRunner.run("create", ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS, stateLabel);
+//					fileRunner.run("create", ResourceManager.CREATE_MEMBER_SQL_PATH, stateLabel);
+//					fileRunner.run("create", ResourceManager.CREATE_WORD_SQL_PATH, stateLabel);
+//					fileRunner.run("insert", ResourceManager.INSERT_MEMBER_SQL_PATH, stateLabel);
+//					fileRunner.run("insert", ResourceManager.INSERT_WORD_SQL_PATH, stateLabel);
+//					stateLabel.setText("데이터베이스 자동 생성 작업이 완료되었습니다.");
+//					autoButton.setText("자동삭제");
+//				}
+//			}
+//		});
+//		northPanel.add(autoButton, BorderLayout.WEST);
 
 		southPanel = new JPanel();
 		panel.add(southPanel, BorderLayout.SOUTH);
