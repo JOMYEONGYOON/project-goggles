@@ -85,6 +85,8 @@ public class DatabaseManagerFrame extends JFrame {
 		autoButton = new JButton("자동생성");
 		autoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DatabaseManager database = new DatabaseManager();
+				database.connectServer(new MySQL());
 				if (autoButton.getText().equals("자동삭제")) {
 					FileRunner fileRunner = new FileRunner();
 					fileRunner.run("delete",ResourceManager.DELETE_DATABASE_SQL_PATH, stateLabel);
