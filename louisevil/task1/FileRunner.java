@@ -36,9 +36,11 @@ public class FileRunner {
 				if (command.equals("create")) {
 					databaseManager.executeQueryByFile(new File(target));
 				} else if (command.equals("delete")) {
+					databaseManager.connect(mySQL);
 					databaseManager.executeUpdateQueryByFile(new File(target));
 					System.out.println(target);
 				} else if (command.equals("insert")) {
+					databaseManager.connect(mySQL);
 					databaseManager.executeUpdateInsertQueryByFile(new File(target), stateLabel);
 				} else {
 					System.out.println("Nothing..");

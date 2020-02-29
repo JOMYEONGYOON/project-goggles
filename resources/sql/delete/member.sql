@@ -1,1 +1,1 @@
-DROP TABLE dictionary.member
+DROP TABLE member
