@@ -5,7 +5,6 @@ import java.io.File;
 import org.apache.commons.io.FilenameUtils;
 
 import manager.DatabaseManager;
-import manager.ResourceManager;
 import object.MySQL;
 
 public class FileRunner {
@@ -31,16 +30,16 @@ public class FileRunner {
 				// 명령어 판단하는 부분
 				System.out.println(command);
 				
-				//사전 데이터베이스 연결
-				
+				//명령과 타겟에 따라 데이터베이스 매니저에서파일로 연결 실행
 				if (command.equals("create")) {
-					if (target.equals(ResourceManager.CREATE_DICTIONARY_SQL_PATH) ) {
-						databaseManager.executeQueryByFile(new File(ResourceManager.CREATE_DICTIONARY_SQL_PATH));
-					}
+					
+					databaseManager.executeQueryByFile(new File(target));
 				}else if (command.equals("delete")) {
-					
+					databaseManager.useDatabase();
+					databaseManager.executeUpdateQueryByFile(new File(target));
 				}else if (command.equals("insert")) {
-					
+					databaseManager.useDatabase();
+					databaseManager.executeUpdateQueryByFile(new File(target));
 				}else {
 					
 				}

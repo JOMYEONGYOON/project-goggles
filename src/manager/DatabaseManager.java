@@ -1,6 +1,7 @@
 package manager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ public class DatabaseManager {
 	protected MySQL mySQL;
 
 	// 데이터베이스 연결 객체
-	protected static Connection connection;
+	protected Connection connection;
 
 	public void connect(MySQL mySQL) throws Exception {
 		this.mySQL = mySQL;
@@ -25,14 +26,23 @@ public class DatabaseManager {
 	}
 
 	public void executeQueryByFile(File file) throws Exception {
+		
+		String sql= "";
+		Scanner sc = new Scanner(file);
+		System.out.println("test");
+		while(sc.hasNext()) {
+			sql += sc.nextLine()+"\n";
+		}
+		System.out.println(sql);
 		PreparedStatement prepareStatement = connection
-				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
+				.prepareStatement(sql);
 		prepareStatement.execute();
+		sc.close();
 	}
 	public void executeUpdateQueryByFile(File file) throws Exception {
-		PreparedStatement prepareStatement = connection
-				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
-		prepareStatement.execute();
+//		PreparedStatement prepareStatement = connection
+//				.prepareStatement(ResourceManager.SQL_CREATE_DATABASE_IF_NOT_EXISTS);
+//		prepareStatement.executeUpdate();
 	}
 	public void createTable() {
 		Scanner sc = new Scanner(System.in);
@@ -48,31 +58,28 @@ public class DatabaseManager {
 		try {
 			createTable(ResourceManager.CREATE_MEMBER_SQL_PATH);
 			createTable(ResourceManager.CREATE_WORD_SQL_PATH);
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		sc.close();
 
 	}
 
 	public void useDatabase() {
-		try {
-			Class.forName(ResourceManager.MYSQL_DRIVER);
-			connection = DriverManager.getConnection(
-					ResourceManager.MYSQL_DATABASE_URL + ResourceManager.MYSQL_DICTIONARY_PROPERTY,
-					ResourceManager.MYSQL_ID, ResourceManager.MYSQL_PASSWORD);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		PreparedStatement prepareStatement = connection
+				.prepareStatement("use"+ this.mySQL.getDatabase() );
+		prepareStatement.execute();
 
 	}
 
-	public void createTable(String sqlPath) throws Exception {
+	public void createTable(String sqlPath) {
 		Scanner sc = null;
-		System.out.println(ResourceManager.CREATE_SQL_PATH);
-		sc = new Scanner(new File(sqlPath));
+		try {
+			sc = new Scanner(new File(sqlPath));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String sql = "";
 
 		while (sc.hasNext()) {
@@ -85,8 +92,18 @@ public class DatabaseManager {
 
 		}
 		PreparedStatement prepareStatement = null;
-		prepareStatement = connection.prepareStatement(sql);
-		prepareStatement.execute();
+		try {
+			prepareStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			prepareStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		sc.close();
 	}
 
