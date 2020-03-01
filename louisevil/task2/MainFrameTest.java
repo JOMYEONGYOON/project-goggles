@@ -51,6 +51,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 
 		initComponents();
 		setLocationComponents();
+		setUndecorated(true);
 		setTheme();
 		startFocusLabel();
 		setGogglesButton();

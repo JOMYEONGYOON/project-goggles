@@ -30,7 +30,7 @@ public class SignInPanel extends JPanel {
 		setLayout(null);
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
-
+			
 		setSize(330, 171);
 
 		label = new WhiteLabel("아이디");
@@ -59,14 +59,13 @@ public class SignInPanel extends JPanel {
 				try {
 					member.connect(mySQL);
 					if (member.checkIdPassword(textField.getText(), passwordField.getText())) {
-
-						JOptionPane.showMessageDialog(mainFrameTest, "로그인 성공");
 						WhiteBorderTextField searchTextField = mainFrameTest.getSearchTextField();
-						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(0, 0, 128)));
+						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.CYAN));
 						searchTextField.setText("");
 						searchTextField.setEditable(true);
+						SignInPanel.this.setVisible(false);
+						JOptionPane.showMessageDialog(mainFrameTest, "로그인 성공");
 					} else {
-
 						JOptionPane.showMessageDialog(mainFrameTest, "로그인 실패");
 					}
 
