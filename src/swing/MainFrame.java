@@ -32,7 +32,6 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //	private EmptyBackgroundButton searchButton;
 	private EmptyBackgroundButton signUpButton;
 	private EmptyBackgroundButton signInButton;
-	private boolean checkSignIn = false;
 	private SignInPanel signInPanel;
 	private SignUpPanel signUpPanel;
 	private TimePannel timePanel;
@@ -367,7 +366,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				}
 				signInPanel = new SignInPanel(MainFrame.this);
 				signInPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,200);
+				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,300);
 				rootPanel.add(signInPanel);
 			}
 			

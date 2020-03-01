@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -15,7 +14,6 @@ import manager.ResourceManager;
 import object.Member;
 import object.MySQL;
 import runner.FadeLabelRunner;
-import javax.swing.JTextField;
 
 public class SignUpPanel extends JPanel {
 	
@@ -136,6 +134,8 @@ public class SignUpPanel extends JPanel {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
+				
+		
 				String id = idTF.getText();
 				String name = nameTF.getText();
 				String phone = phoneTF.getText();
@@ -144,6 +144,19 @@ public class SignUpPanel extends JPanel {
 				String gender = genderTextField.getText();
 				String etc = etcTA.getText();
 				String password = passwordFieldTF.getText();
+				String[] strs = {id,name,phone,birth,email,gender,etc,password};
+				for (String s : strs) {
+					if (s.equals("")) {
+						WhiteLabel successLabel = new WhiteLabel("모두 입력해주세요");
+						successLabel.setBounds(ResourceManager.FRAME_WIDTH-600,150,300,100);
+						mainFrameTest.getRootPanel().add(successLabel);
+						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
+						fade.start();
+						return;
+					}
+				}
+				
+				
 				Member member = new Member(id,name,phone,email,birth,gender,password,etc);
 				try {
 					MySQL mySQL = new MySQL();
@@ -151,14 +164,14 @@ public class SignUpPanel extends JPanel {
 					memberTable.connect(mySQL);
 					memberTable.insert(member);
 					WhiteLabel successLabel = new WhiteLabel("회원가입 성공");
-					successLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
+					successLabel.setBounds(ResourceManager.FRAME_WIDTH-600,100,100,100);
 					mainFrameTest.getRootPanel().add(successLabel);
 					FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 					fade.start();
 					SignUpPanel.this.setVisible(false);
 				}catch(Exception e){
 					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
-					failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH-600,100,100,100);
 					mainFrameTest.getRootPanel().add(failLabel);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 					fade.start();

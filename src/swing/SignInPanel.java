@@ -17,7 +17,7 @@ import runner.FadeLabelRunner;
 
 public class SignInPanel extends JPanel {
 	private WhiteLabel label;
-	private WhiteBorderTextField textField;
+	private WhiteBorderTextField idField;
 	private WhiteLabel pass;
 	private WhiteBorderPasswordField passwordField;
 	private EmptyBackgroundButton signInButton;
@@ -31,23 +31,23 @@ public class SignInPanel extends JPanel {
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
 			
-		setSize(330, 171);
+		setSize(352, 248);
 
 		label = new WhiteLabel("아이디");
-		label.setBounds(12, 74, 50, 15);
+		label.setBounds(29, 119, 50, 15);
 		add(label);
 
-		textField = new WhiteBorderTextField();
-		textField.setBounds(94, 73, 212, 21);
+		idField = new WhiteBorderTextField();
+		idField.setBounds(109, 106, 212, 39);
 
-		add(textField);
+		add(idField);
 
 		pass = new WhiteLabel("비밀번호");
-		pass.setBounds(12, 119, 69, 15);
+		pass.setBounds(26, 174, 69, 15);
 		add(pass);
 
 		passwordField = new WhiteBorderPasswordField();
-		passwordField.setBounds(95, 116, 211, 21);
+		passwordField.setBounds(109, 165, 212, 39);
 		add(passwordField);
 
 		signInButton = new EmptyBackgroundButton("[로그인]");
@@ -58,20 +58,31 @@ public class SignInPanel extends JPanel {
 
 				try {
 					member.connect(mySQL);
-					if (member.checkIdPassword(textField.getText(), passwordField.getText())) {
+					String[] strs = {idField.getText(), passwordField.getText()};
+					for (String s : strs) {
+						if (s.equals("")) {
+							WhiteLabel successLabel = new WhiteLabel("모두 입력해주세요");
+							successLabel.setBounds(ResourceManager.FRAME_WIDTH-600,150,300,100);
+							mainFrameTest.getRootPanel().add(successLabel);
+							FadeLabelRunner fade = new FadeLabelRunner(successLabel);
+							fade.start();
+							return;
+						}
+					}
+					if (member.checkIdPassword(idField.getText(), passwordField.getText())) {
 						WhiteBorderTextField searchTextField = mainFrameTest.getSearchTextField();
 						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.CYAN));
 						searchTextField.setText("");
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
-						WhiteLabel successLabel = new WhiteLabel("회원가입 성공");
+						WhiteLabel successLabel = new WhiteLabel("로그인 성공");
 						successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
 						mainFrameTest.getRootPanel().add(successLabel);
 						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 						fade.start();
 					} else {
-						WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
-						failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+						WhiteLabel failLabel = new WhiteLabel("로그인 실패");
+						failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
 						FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 						mainFrameTest.getRootPanel().add(failLabel);
 						fade.start();
@@ -80,7 +91,7 @@ public class SignInPanel extends JPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
-					failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 					mainFrameTest.getRootPanel().add(failLabel);
 					fade.start();
@@ -89,7 +100,7 @@ public class SignInPanel extends JPanel {
 			}
 		});
 		signInButton.setForeground(Color.WHITE);
-		signInButton.setBounds(140, 25, 77, 23);
+		signInButton.setBounds(155, 36, 77, 23);
 
 		add(signInButton);
 
@@ -97,7 +108,7 @@ public class SignInPanel extends JPanel {
 		title.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 32));
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.LEFT);
-		title.setBounds(12, 10, 133, 49);
+		title.setBounds(29, 25, 77, 49);
 		add(title);
 		
 		EmptyBackgroundButton cancelButton = new EmptyBackgroundButton("[로그인]");
@@ -108,7 +119,7 @@ public class SignInPanel extends JPanel {
 		});
 		cancelButton.setText("[취소]");
 		cancelButton.setForeground(Color.WHITE);
-		cancelButton.setBounds(229, 25, 77, 23);
+		cancelButton.setBounds(244, 36, 77, 23);
 		add(cancelButton);
 		setVisible(true);
 

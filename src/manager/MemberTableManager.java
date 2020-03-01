@@ -65,7 +65,7 @@ public class MemberTableManager extends DatabaseManager {
 		pstmt.setString(6, member.getGender());
 		pstmt.setString(7, member.getPassword());
 		pstmt.setString(8, member.getEtc());
-		pstmt.execute();
+		pstmt.executeUpdate();
 	}
 
 	public boolean checkIdPassword(String id, String password) throws Exception {
