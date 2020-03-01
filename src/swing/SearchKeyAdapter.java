@@ -25,7 +25,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
 //	private ColorPanel categoryPanel;
-
+	private boolean isEnter= false;
 	public SearchKeyAdapter(MainFrame mainFrame) {
 //		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
@@ -108,6 +108,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 							}
 
 							private void printResult() {
+							
 								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
 //								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
@@ -145,7 +146,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 						randomPanel.setVisible(false);
 					}
 					try {
-						Thread.sleep(5000);
+						if (!isEnter) {
+							Thread.sleep(5000);
+							
+						}
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -169,10 +173,14 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		
 		resultPanel.removeAll();
-		System.out.println(e.getKeyCode() == 10);
-		if (e.getKeyCode() == '\n') {
+		randomPanel.removeAll();
+//		System.out.println(e.getKeyCode() == 10);
+		if (e.getKeyCode() == 10) {
+			
 			if (!searchTextField.getText().equals("")) {
+				isEnter=true;
 				Word word = wordManager.selectByName(searchTextField.getText());
 				if (word != null) {
 					resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
@@ -188,28 +196,55 @@ public class SearchKeyAdapter extends KeyAdapter {
 					resultPanel.add(defLabel, BorderLayout.CENTER);
 					rootPanel.add(resultPanel);
 				} else {
-					ArrayList<Word> words =  wordManager.selectLimitByName(searchTextField.getText(), 0, 1);
-					if (words.size() >0 ) {
-						WhiteLabel foundWimiliarWord = new WhiteLabel("<html><div>" + "비슷한 단어를 찾았습니다." + "</div>");
-						foundWimiliarWord.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-						foundWimiliarWord.setVerticalAlignment(SwingConstants.TOP);
-						resultPanel.add(foundWimiliarWord, BorderLayout.NORTH);
-						rootPanel.add(resultPanel);
-					}else {
-						WhiteLabel notFoundLabel = new WhiteLabel("<html><div>" + "단어를 찾지 못하였습니다." + "</div>");
+					ArrayList<Word> words = wordManager.selectLimitByName(searchTextField.getText(), 0, 3);
+					for (int i = 0; i < words.size(); i++) {
+						String name = words.get(i).getName();
+						EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
+						nameButton.setHorizontalAlignment(SwingConstants.LEFT);
+						nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
+						nameButton.setTime(System.currentTimeMillis());
+						randomPanel.add(nameButton);
+						resultButtons.add(nameButton);
+						nameButton.addMouseListener(new MouseAdapter() {
+
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								printResult();
+							}
+							public void printResult() {
+								resultPanel.removeAll();
+								Word word = wordManager.selectByName(nameButton.getText());
+								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
+										(int) randomPanel.getSize().getWidth(), 250);
+								resultPanel.setLayout(new BorderLayout());
+								WhiteLabel head = new WhiteLabel(
+										word.getName() + "    [분류:" + word.getCategory() + "]");
+								head.setForeground(Color.yellow);
+								head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
+								WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
+								defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+								defLabel.setVerticalAlignment(SwingConstants.TOP);
+								resultPanel.add(head, BorderLayout.NORTH);
+								resultPanel.add(defLabel, BorderLayout.CENTER);
+								rootPanel.add(resultPanel);
+							}
+						});
+					}
+					if (words.size() <= 0) {
+						WhiteLabel notFoundLabel = new WhiteLabel("<html><div>" + "단어를 찾지 못하였습니다.<br/>" + "</div>");
 						notFoundLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 						notFoundLabel.setVerticalAlignment(SwingConstants.TOP);
 						resultPanel.add(notFoundLabel, BorderLayout.NORTH);
 						rootPanel.add(resultPanel);
+						isEnter= false;
 					}
-					
-					
-					
-					
+
 				}
+			}else {
+				isEnter = false;
 			}
 		}
 
 	}
-
+	
 }
