@@ -81,7 +81,7 @@ public class SignInPanel extends JPanel {
 							searchTextField.addKeyListener(new SearchKeyAdapter(mainFrame));
 
 						}
-						ColorPanel resultPanel = mainFrame.getResultPanel();
+						ColorPanel resultPanel = mainFrame.getRandomPanel();
 
 						Thread th = new Thread() {
 

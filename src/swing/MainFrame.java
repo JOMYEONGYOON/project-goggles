@@ -22,7 +22,8 @@ import runner.FadeLabelRunner;
 
 public class MainFrame extends JFrame implements ActionListener {
 //	private ImageIcon searchImageIcon;
-	private ColorPanel resultPanel;
+	private ColorPanel resultPanel ; 
+	private ColorPanel randomPanel;
 	private WhiteLabel leftFocusLabel;
 	private EmptyBackgroundButton gogglesButton;
 	private WhiteLabel rightFocusLabel;
@@ -46,12 +47,14 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.isLogin = isLogin;
 	}
 
-	public ColorPanel getResultPanel() {
-		return resultPanel;
+
+
+	public ColorPanel getRandomPanel() {
+		return randomPanel;
 	}
 
-	public void setResultPanel(ColorPanel resultPanel) {
-		this.resultPanel = resultPanel;
+	public void setRandomPanel(ColorPanel randomPanel) {
+		this.randomPanel = randomPanel;
 	}
 
 	public ImagePanel getRootPanel() {
@@ -188,7 +191,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void initComponents() {
-		resultPanel = new ColorPanel(ResourceManager.NONE);
+		resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
+		randomPanel = new ColorPanel(ResourceManager.NONE);
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();
@@ -379,12 +383,20 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	private void setLocationComponents() {
 
-		resultPanel.setBounds(250, 300, 750, 300);
+		randomPanel.setBounds(250, 300, 750, 80);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 25);
 		signInButton.setBounds(1048, 10, 100, 25);
 		timePanel.setBounds(25, 25, 239, 75);
+	}
+
+	public ColorPanel getResultPanel() {
+		return resultPanel;
+	}
+
+	public void setResultPanel(ColorPanel resultPanel) {
+		this.resultPanel = resultPanel;
 	}
 
 	private void setMainFrame() {
@@ -415,6 +427,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
 				if (signInPanel != null) {
 					if (signInButton.getText().equals("[로그아웃]")) {
+						resultPanel.setVisible(false);
+						randomPanel.setVisible(false);
 						signInButton.setText("[로그인]");
 						signUpButton.setVisible(true);
 						isLogin = false;
@@ -426,6 +440,7 @@ public class MainFrame extends JFrame implements ActionListener {
 						rootPanel.add(successLabel);
 						FadeLabelRunner label = new FadeLabelRunner(successLabel);
 						label.start();
+						repaint();
 						return;
 					}
 					rootPanel.remove(signInPanel);

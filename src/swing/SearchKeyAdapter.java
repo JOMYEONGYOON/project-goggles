@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -16,18 +18,19 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private MainFrame mainFrame;
 	private WhiteBorderTextField searchTextField;
 	private WordTableManager wordManager;
-	private ColorPanel resultPanel;
+	private ColorPanel randomPanel;
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
-
+	private ColorPanel resultPanel;
 	public SearchKeyAdapter(MainFrame mainFrame) {
+		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();
 		this.wordManager = mainFrame.getWordManager();
 		this.searchTextField = mainFrame.getSearchTextField();
 		this.mainFrame = mainFrame;
 		this.rootPanel = this.mainFrame.getRootPanel();
-		this.resultPanel = this.mainFrame.getResultPanel();
-		resultPanel.setLayout(new GridLayout(5, 1));
+		this.randomPanel = this.mainFrame.getRandomPanel();
+		randomPanel.setLayout(new GridLayout(1, 3));
 		mainFrame.setSearchFieldLocationThread();
 //		Thread checkThread = new Thread() {
 //
@@ -71,29 +74,47 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 			@Override
 			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				while (true) {
 					int count = wordManager.count();
-					if (mainFrame.isLogin()) {
-						resultPanel.setVisible(true);
-					} else {
-						resultPanel.setVisible(false);
-					}
 
 					String searchText = searchTextField.getText();
-					resultPanel.removeAll();
-					ArrayList<Word> words = wordManager.selectLimitByName(searchText, (int)(Math.random()*count), 5);
+					randomPanel.removeAll();
+					ArrayList<Word> words = wordManager.selectLimitByName(searchText, (int) (Math.random() * count), 3);
 					for (int i = 0; i < words.size(); i++) {
 						String name = words.get(i).getName();
 						EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
 						nameButton.setHorizontalAlignment(SwingConstants.LEFT);
 						nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
 						nameButton.setTime(System.currentTimeMillis());
-						resultPanel.add(nameButton);
+						randomPanel.add(nameButton);
 						resultButtons.add(nameButton);
+						nameButton.addMouseListener(new MouseAdapter() {
+
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								Word word = wordManager.selectByName(nameButton.getText());
+								System.out.println(word.getName()+"/"+word.getCategory()+"/"+word.getDef());
+								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY()+100,(int)randomPanel.getSize().getWidth(),300);
+								rootPanel.add(resultPanel);
+							}
+							
+						});
 					}
-					
+
+					if (mainFrame.isLogin()) {
+						randomPanel.setVisible(true);
+					} else {
+						resultPanel.setVisible(false);
+						randomPanel.setVisible(false);
+					}
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

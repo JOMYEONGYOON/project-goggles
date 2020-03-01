@@ -17,7 +17,7 @@ public class ResourceManager {
 	public final static Color WHITE_ALPHA = new Color(1.0F, 1.0F, 1.0F, 0.35F);
 	public final static Color BLACK_ALPHA = new Color(0.0F, 0.0F, 0.00F, 0.20F);
 	public final static Color YELLOW_ALPHA = new Color(1.0F, 1.0F, 0.00F, 0.20F);
-	public final static Color ORANGE_ALPHA = new Color(0.5F, 1.0F, 0.0F, 0.20F);
+//	public final static Color ORANGE_ALPHA = new Color(0.5F, 1.0F, 0.0F, 0.20F);
 	public final static Color NONE = new Color(1.0F, 1.0F, 1.00F, 0.0F);
 	public static final String APP_EXIT = "EXIT";
 	public static final String PARTICLE = "Particle";
