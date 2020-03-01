@@ -24,6 +24,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
+
 	public SearchKeyAdapter(MainFrame mainFrame) {
 		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();
@@ -102,23 +103,27 @@ public class SearchKeyAdapter extends KeyAdapter {
 							public void mouseClicked(MouseEvent e) {
 								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
-								System.out.println(word.getName()+"/"+word.getCategory()+"/"+word.getDef());
-								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY()+100,(int)randomPanel.getSize().getWidth(),300);
+								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
+								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
+										(int) randomPanel.getSize().getWidth(), 300);
 								resultPanel.setLayout(new BorderLayout());
 								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
 								nameAndDefPanel.setLayout(new BorderLayout());
 								WhiteLabel nameLabel = new WhiteLabel(word.getName());
-								nameLabel.setVerticalAlignment(SwingConstants.LEFT);
-								nameAndDefPanel.add(nameLabel,BorderLayout.WEST);
+								nameLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+								nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
 								WhiteLabel categoryLabel = new WhiteLabel(word.getCategory());
-								nameAndDefPanel.add(categoryLabel,BorderLayout.CENTER);
+								categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+								nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
 								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
-								WhiteLabel defLabel = new WhiteLabel("<html><p width='width:100%'>"+word.getDef()+"</p></html>");
+								WhiteLabel defLabel = new WhiteLabel(
+										"<html><p width='width:100%'>" + word.getDef() + "</p></html>");
+								defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 								defLabel.setVerticalAlignment(SwingConstants.TOP);
 								resultPanel.add(defLabel, BorderLayout.CENTER);
 								rootPanel.add(resultPanel);
 							}
-							
+
 						});
 					}
 
