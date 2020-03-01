@@ -8,10 +8,11 @@ import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
 
-public class EmptyBackgroundPasswordField extends JPasswordField {
-	public EmptyBackgroundPasswordField() {
+public class WhiteBorderPasswordField extends JPasswordField {
+	public WhiteBorderPasswordField() {
+		setForeground(Color.white);
 		setBackground(ResourceManager.NONE);
 		setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
-		setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
+		setFont(new Font("나눔손글씨 펜", Font.PLAIN, 12));
 	}
 }

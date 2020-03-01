@@ -1,32 +1,35 @@
 package task2;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import manager.MemberTableManager;
 import manager.ResourceManager;
+import object.Member;
+import object.MySQL;
 
 public class SignUpPanel extends JPanel {
 	
-	private WhiteTextField id;
-	private WhiteTextField name;
-	private WhiteTextField phone;
-	private WhiteTextField birth;
-	private WhiteTextField email;
-	private EmptyBackgroundPasswordField passwordField;
-	private EmptyBackgroundComboBox gender;
-
+	private WhiteBorderTextField idTF;
+	private WhiteBorderTextField nameTF;
+	private WhiteBorderTextField phoneTF;
+	private WhiteBorderTextField birthTF;
+	private WhiteBorderTextField emailTF;
+	private WhiteBorderPasswordField passwordFieldTF;
+	private EmptyBackgroundComboBox genderCB;
+	private EmptyBackgroundTextArea etcTA;
+	private MainFrameTest mainFrameTest;
 	/**
 	 * Create the application.
 	 */
-	public SignUpPanel() {
+	public SignUpPanel(MainFrameTest mainFrameTest) {
+		this.mainFrameTest=mainFrameTest;
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
 		initialize();
@@ -43,134 +46,128 @@ public class SignUpPanel extends JPanel {
 		
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("id");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel = new WhiteLabel("아이디");
 		lblNewLabel.setBounds(25, 79, 57, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("name");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel_1 = new WhiteLabel("이름");
 		lblNewLabel_1.setBounds(25, 163, 57, 15);
 		add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("phone");
+		WhiteLabel lblNewLabel_2 = new WhiteLabel("연락처");
 		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
-		lblNewLabel_2.setBounds(25, 200, 57, 15);
 		add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("birth");
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel_3 = new WhiteLabel("생년월일");
 		lblNewLabel_3.setBounds(25, 235, 57, 15);
 		add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("email");
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel_4 = new WhiteLabel("이메일");
 		lblNewLabel_4.setBounds(25, 271, 57, 15);
 		add(lblNewLabel_4);
 
-		id = new WhiteTextField();
-		id.setForeground(Color.WHITE);
-		id.setBounds(94, 79, 89, 21);
-		add(id);
-		id.setColumns(10);
+		idTF = new WhiteBorderTextField();
+		idTF.setBounds(94, 79, 89, 21);
+		add(idTF);
+		idTF.setColumns(10);
 
-		name = new WhiteTextField();
-		name.setForeground(Color.WHITE);
-		name.setBounds(94, 163, 89, 21);
-		add(name);
-		name.setColumns(10);
+		nameTF = new WhiteBorderTextField();
+		nameTF.setBounds(94, 163, 89, 21);
+		add(nameTF);
+		nameTF.setColumns(10);
 
-		phone = new WhiteTextField();
-		phone.setForeground(Color.WHITE);
-		phone.setColumns(10);
-		phone.setBounds(94, 200, 89, 21);
-		add(phone);
+		phoneTF = new WhiteBorderTextField();
+		phoneTF.setForeground(Color.WHITE);
+		phoneTF.setColumns(10);
+		phoneTF.setBounds(94, 200, 89, 21);
+		add(phoneTF);
 
-		birth = new WhiteTextField();
-		birth.setForeground(Color.WHITE);
-		birth.setColumns(10);
-		birth.setBounds(94, 235, 89, 21);
-		add(birth);
+		birthTF = new WhiteBorderTextField();
+		birthTF.setForeground(Color.WHITE);
+		birthTF.setColumns(10);
+		birthTF.setBounds(94, 235, 89, 21);
+		add(birthTF);
 
-		email = new WhiteTextField();
-		email.setForeground(Color.WHITE);
-		email.setColumns(10);
-		email.setBounds(94, 271, 89, 21);
-		add(email);
+		emailTF = new WhiteBorderTextField();
+		emailTF.setForeground(Color.WHITE);
+		emailTF.setColumns(10);
+		emailTF.setBounds(94, 271, 89, 21);
+		add(emailTF);
 
-		JLabel lblNewLabel_4_1 = new JLabel("gender");
-		lblNewLabel_4_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
-		lblNewLabel_4_1.setBounds(25, 299, 75, 18);
+		WhiteLabel lblNewLabel_4_1 = new WhiteLabel("성별");
+		lblNewLabel_4_1.setBounds(25, 302, 75, 18);
 		add(lblNewLabel_4_1);
 
-		JLabel lblNewLabel_5 = new JLabel("password");
-		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel_5 = new WhiteLabel("비밀번호");
 		lblNewLabel_5.setBounds(25, 123, 57, 15);
 		add(lblNewLabel_5);
 
-		passwordField = new EmptyBackgroundPasswordField();
-		passwordField.setForeground(Color.WHITE);
-		passwordField.setBounds(94, 123, 89, 21);
-		add(passwordField);
+		passwordFieldTF = new WhiteBorderPasswordField();
+		passwordFieldTF.setBounds(94, 123, 89, 21);
+		add(passwordFieldTF);
 
-		JTextArea etc = new JTextArea();
-		etc.setForeground(Color.WHITE);
-		etc.setBounds(241, 77, 99, 91);
-		add(etc);
+		etcTA = new EmptyBackgroundTextArea();
+		etcTA.setForeground(Color.WHITE);
+		etcTA.setBounds(206, 106, 134, 180);
+		add(etcTA);
 
-		JLabel lblNewLabel_6 = new JLabel("etc");
-		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
+		WhiteLabel lblNewLabel_6 = new WhiteLabel("etc");
 		lblNewLabel_6.setBounds(206, 81, 57, 15);
 		add(lblNewLabel_6);
 
-		JLabel lblNewLabel_7 = new JLabel("회원가입");
-		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 22));
+		WhiteLabel lblNewLabel_7 = new WhiteLabel("회원가입");
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_7.setBounds(25, 10, 366, 55);
+		lblNewLabel_7.setBounds(25, 10, 322, 55);
 
 		add(lblNewLabel_7);
 
-		gender = new EmptyBackgroundComboBox();
-		gender.setForeground(Color.WHITE);
-		gender.setModel(new DefaultComboBoxModel<String>(new String[] {"male", "female"}));
-		gender.setBounds(94, 302, 89, 21);
-		add(gender);
+		genderCB = new EmptyBackgroundComboBox();
+		genderCB.setModel(new DefaultComboBoxModel<String>(new String[] {"male", "female"}));
+		genderCB.setBounds(94, 302, 89, 21);
+		add(genderCB);
 
 		EmptyBackgroundButton btnNewButton = new EmptyBackgroundButton("[완료]");
+		
 		btnNewButton.setForeground(Color.WHITE);
 		
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idtxt = id.getText();
-				String nametxt = name.getText();
-				String phonetxt = phone.getText();
-				String birthtxt = birth.getText();
-				String emailtxt = email.getText();
-				String gendertxt = gender.getSelectedItem().toString();
-				String etctxt = etc.getText();
-				String passtxt = passwordField.getText();
+			public void actionPerformed(ActionEvent ae) {
+				String id = idTF.getText();
+				String name = nameTF.getText();
+				String phone = phoneTF.getText();
+				String birth = birthTF.getText();
+				String email = emailTF.getText();
+				String gender = genderCB.getSelectedItem().toString();
+				String etc = etcTA.getText();
+				String password = passwordFieldTF.getText();
+				Member member = new Member(id,name,phone,email,birth,gender,password,etc);
+				try {
+					MySQL mySQL = new MySQL();
+					MemberTableManager memberTable = new MemberTableManager();
+					memberTable.connect(mySQL);
+					memberTable.insert(member);
+					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 성공");
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 실패");
+				}
+				
 			}
 		});
-		btnNewButton.setBounds(241, 268, 99, 21);
+		btnNewButton.setBounds(206, 297, 60, 23);
 		add(btnNewButton);
 //		frame.getContentPane().add(panel);
 		add(panel);
 
-		setSize(359, 350);
+		setSize(360, 350);
 		
 		EmptyBackgroundButton btnCancel = new EmptyBackgroundButton("[취소]");
-		btnCancel.setForeground(Color.WHITE);
-		btnCancel.setBounds(241, 298, 99, 21);
+		btnCancel.setBounds(278, 296, 62, 24);
 		add(btnCancel);
+		
+		WhiteLabel lblNewLabel_1_1 = new WhiteLabel("이름");
+		lblNewLabel_1_1.setText("연락처");
+		lblNewLabel_1_1.setBounds(25, 200, 57, 15);
+		add(lblNewLabel_1_1);
 		setVisible(true);
 	}
 }

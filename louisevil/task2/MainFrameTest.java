@@ -12,10 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
@@ -27,16 +24,27 @@ import swing.ImagePanel;
 public class MainFrameTest extends JFrame implements KeyListener, ActionListener {
 //	private ImageIcon searchImageIcon;
 	private ColorPanel resultPanel; 
-	private JLabel leftFocusLabel;
-	private JButton gogglesButton;
-	private JLabel rightFocusLabel;
+	private WhiteLabel leftFocusLabel;
+	private EmptyBackgroundButton gogglesButton;
+	private WhiteLabel rightFocusLabel;
 	private ImagePanel rootPanel;
-	private JTextField textField;
-	private JLabel goggles;
-//	private JButton searchButton;
-	private JButton signUpButton;
-	private JButton signInButton;
+	private WhiteBorderTextField searchTextField;
+	private WhiteLabel goggles;
+//	private EmptyBackgroundButton searchButton;
+	private EmptyBackgroundButton signUpButton;
+	private EmptyBackgroundButton signInButton;
 	private boolean checkSignIn = false;
+	private SignInPanel signInPanel;
+	private SignUpPanel signUpPanel;
+	
+	public WhiteBorderTextField getSearchTextField() {
+		return searchTextField;
+	}
+
+	public void setSearchTextField(WhiteBorderTextField searchTextField) {
+		this.searchTextField = searchTextField;
+	}
+
 	public MainFrameTest() {
 
 		initComponents();
@@ -136,25 +144,30 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 		rootPanel.add(leftFocusLabel);
 		rootPanel.add(rightFocusLabel);
 		rootPanel.add(gogglesButton);
-		textField.addKeyListener(this);
+//		textField.addKeyListener(this);
 	}
 
 	private void initComponents() {
-		signUpButton = new JButton("[회원가입]");
-		signInButton = new JButton("[로그인]");
+		signUpButton = new EmptyBackgroundButton("[회원가입]");
+		signInButton = new EmptyBackgroundButton("[로그인]");
 
 //		searchImageIcon = new ImageIcon();
 //		setImageIcon();
-//		searchButton = new JButton(searchImageIcon);
+//		searchButton = new EmptyBackgroundButton(searchImageIcon);
 
-		goggles = new JLabel("Goggles");
+		goggles = new WhiteLabel("Goggles");
 		rootPanel = new ImagePanel(ResourceManager.KNOWLEDGE_2_IMG_PATH);
-
+	
 		rootPanel.setBackground(ResourceManager.BLACK);
 		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField = new JTextField(10);
-		leftFocusLabel = new JLabel(">>");
-		rightFocusLabel = new JLabel("<<");
+		searchTextField = new WhiteBorderTextField();
+//		searchTextField.setForeground(Color.yellow);
+		searchTextField.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
+		searchTextField.setText("    단어를 검색하려면 로그인이 필요합니다.");
+		searchTextField.setEditable(false);
+//		textField.setFont(new F);
+		leftFocusLabel = new WhiteLabel(">>");
+		rightFocusLabel = new WhiteLabel("<<");
 		leftFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
 		rightFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
 		signInButton.setForeground(Color.white);
@@ -192,8 +205,8 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 			@Override
 			public void run() {
 				int step = 1;
-				int textField_x = textField.getX();
-				int textField_y = textField.getY();
+				int textField_x = searchTextField.getX();
+				int textField_y = searchTextField.getY();
 				int goggles_x = goggles.getX();
 				int goggles_y = goggles.getY();
 				while (true) {
@@ -214,11 +227,11 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 //						if (word == null) {
 //							wordVector = wordTableManager.selectByFirstName(textField.getText().charAt(0));
 //							for (Word w : wordVector) {
-//								jList.add(new JButton(w.getName()));
+//								jList.add(new EmptyBackgroundButton(w.getName()));
 //							}
 //						} else {
 //							wordVector.add(word);
-//							jList.add(new JButton(word.getName()));
+//							jList.add(new EmptyBackgroundButton(word.getName()));
 //						}
 //						listPanel.add(jList, BorderLayout.CENTER);
 //						repaint();
@@ -234,7 +247,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 						e.printStackTrace();
 					}
 					goggles.setLocation(goggles_x, goggles_y);
-					textField.setLocation(textField_x, textField_y);
+					searchTextField.setLocation(textField_x, textField_y);
 
 				}
 				Thread googleMoveThread = new Thread() {
@@ -266,8 +279,8 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 
 					@Override
 					public void run() {
-						int textField_x = textField.getX();
-						int textField_y = textField.getY();
+						int textField_x = searchTextField.getX();
+						int textField_y = searchTextField.getY();
 						while (true) {
 							if (textField_y < 50) {
 								break;
@@ -279,7 +292,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							textField.setLocation(textField_x, textField_y);
+							searchTextField.setLocation(textField_x, textField_y);
 						}
 					}
 
@@ -334,15 +347,18 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				SignInPanel signUpPanel = new SignInPanel();
-				if (resultPanel != null) {
-					rootPanel.remove(resultPanel);
+				
+				if (signInPanel != null) {
+					rootPanel.remove(signInPanel);
+					
 				}
-				resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
-				resultPanel.setLayout(new BorderLayout());
-//				resultPanel.add(signInPanel, BorderLayout.CENTER);
-				resultPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,500);
-				rootPanel.add(resultPanel, BorderLayout.CENTER);
+				if (signUpPanel != null) {
+					rootPanel.remove(signUpPanel);
+				}
+				signInPanel = new SignInPanel(MainFrameTest.this);
+				signInPanel.setBackground(ResourceManager.BLACK_ALPHA);
+				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,350);
+				rootPanel.add(signInPanel);
 			}
 			
 		});
@@ -359,16 +375,18 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SignUpPanel signUpPanel = new SignUpPanel();
-				signUpPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				if (resultPanel != null) {
-					rootPanel.remove(resultPanel);
+				if (signInPanel != null) {
+					rootPanel.remove(signInPanel);
+					
 				}
-				resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
-				resultPanel.setLayout(new BorderLayout());
-				resultPanel.add(signUpPanel, BorderLayout.CENTER);
-				resultPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,500);
-				rootPanel.add(resultPanel);
+				if (signUpPanel != null) {
+					rootPanel.remove(signUpPanel);
+				}
+
+				signUpPanel = new SignUpPanel(MainFrameTest.this);
+				signUpPanel.setBackground(ResourceManager.BLACK_ALPHA);
+				signUpPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,500);
+				rootPanel.add(signUpPanel);
 			}
 			
 		});
@@ -386,7 +404,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 //	}
 
 	private void setGogglesButton() {
-		gogglesButton = new JButton("Goggles");
+		gogglesButton = new EmptyBackgroundButton("Goggles");
 		gogglesButton.setBorderPainted(false);
 		gogglesButton.setBorder(null);
 		gogglesButton.setBackground(ResourceManager.BLACK_ALPHA);
@@ -450,13 +468,13 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 						while (true) {
 							goggles_y--;
 							if (goggles_y < 180) {
-								rootPanel.add(textField);
+								rootPanel.add(searchTextField);
 //								rootPanel.add(searchButton);
 //								searchButton.setBounds(790, 345, 64, 64);
-								textField.setBounds(470, 350, 300, 50);
-								textField.setBackground(ResourceManager.NONE);
-								textField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
-								textField.setFocusable(true);
+								searchTextField.setBounds(470, 350, 300, 50);
+//								textField.setBackground(ResourceManager.NONE);
+//								textField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
+								searchTextField.setFocusable(true);
 								Color color = ResourceManager.NONE;
 								int alpha = color.getAlpha();
 
@@ -468,7 +486,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 									color = new Color(1.0F, 1.0F, 1.0F, alpha / 256.0F);
 									try {
 										Thread.sleep(10);
-										textField.setBackground(color);
+//										textField.setBackground(color);
 										repaint();
 									} catch (InterruptedException e) {
 										e.printStackTrace();
