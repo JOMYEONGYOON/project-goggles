@@ -1,7 +1,6 @@
 package swing;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
@@ -105,11 +104,15 @@ public class SearchKeyAdapter extends KeyAdapter {
 								Word word = wordManager.selectByName(nameButton.getText());
 								System.out.println(word.getName()+"/"+word.getCategory()+"/"+word.getDef());
 								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY()+100,(int)randomPanel.getSize().getWidth(),300);
-								resultPanel.setLayout(new BorderLayout(1,1));
+								resultPanel.setLayout(new BorderLayout());
 								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
-								nameAndDefPanel.setLayout(new FlowLayout());
-								nameAndDefPanel.add(new WhiteLabel(word.getName()));
-								nameAndDefPanel.add(new WhiteLabel(word.getCategory()));
+								nameAndDefPanel.setLayout(new BorderLayout());
+								WhiteLabel nameLabel = new WhiteLabel(word.getName());
+								nameLabel.setVerticalAlignment(SwingConstants.LEFT);
+								nameAndDefPanel.add(nameAndDefPanel,BorderLayout.WEST);
+								WhiteLabel categoryLabel = new WhiteLabel(word.getCategory());
+								categoryLabel.setVerticalAlignment(SwingConstants.LEFT);
+								nameAndDefPanel.add(categoryLabel,BorderLayout.CENTER);
 								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
 								WhiteLabel defLabel = new WhiteLabel("<html><p width='width:100%'>"+word.getDef()+"</p></html>");
 								defLabel.setVerticalAlignment(SwingConstants.TOP);
