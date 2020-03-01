@@ -1,6 +1,8 @@
-package task2;
+package runner;
 
 import java.awt.Color;
+
+import swing.WhiteLabel;
 
 public class FadeLabelRunner extends Thread {
 	private WhiteLabel successLabel;

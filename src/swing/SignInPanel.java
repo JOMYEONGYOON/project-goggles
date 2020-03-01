@@ -1,4 +1,4 @@
-package task2;
+package swing;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,7 @@ import javax.swing.border.MatteBorder;
 import manager.MemberTableManager;
 import manager.ResourceManager;
 import object.MySQL;
+import runner.FadeLabelRunner;
 
 public class SignInPanel extends JPanel {
 	private WhiteLabel label;
@@ -21,9 +22,9 @@ public class SignInPanel extends JPanel {
 	private WhiteBorderPasswordField passwordField;
 	private EmptyBackgroundButton signInButton;
 	private WhiteLabel title;
-	private MainFrameTest mainFrameTest;
+	private MainFrame mainFrameTest;
 
-	public SignInPanel(MainFrameTest mainFrameTest) {
+	public SignInPanel(MainFrame mainFrameTest) {
 		setBorder(new LineBorder(Color.WHITE));
 		this.mainFrameTest = mainFrameTest;
 		setLayout(null);

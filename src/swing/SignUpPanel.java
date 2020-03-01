@@ -1,4 +1,4 @@
-package task2;
+package swing;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,6 +14,8 @@ import manager.MemberTableManager;
 import manager.ResourceManager;
 import object.Member;
 import object.MySQL;
+import runner.FadeLabelRunner;
+
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -31,11 +33,11 @@ public class SignUpPanel extends JPanel {
 	private WhiteBorderPasswordField passwordFieldTF;
 	private EmptyBackgroundComboBox genderCB;
 	private EmptyBackgroundTextArea etcTA;
-	private MainFrameTest mainFrameTest;
+	private MainFrame mainFrameTest;
 	/**
 	 * Create the application.
 	 */
-	public SignUpPanel(MainFrameTest mainFrameTest) {
+	public SignUpPanel(MainFrame mainFrameTest) {
 		setBorder(new LineBorder(Color.WHITE));
 		this.mainFrameTest=mainFrameTest;
 		setBackground(ResourceManager.NONE);
