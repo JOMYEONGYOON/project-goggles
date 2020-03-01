@@ -14,13 +14,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
-
-import javax.swing.border.LineBorder;
-import javax.swing.border.CompoundBorder;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //	private ImageIcon searchImageIcon;
@@ -37,7 +35,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private boolean checkSignIn = false;
 	private SignInPanel signInPanel;
 	private SignUpPanel signUpPanel;
-	
+	private TimePannel timePanel;
 	public ImagePanel getRootPanel() {
 		return rootPanel;
 	}
@@ -150,7 +148,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	}
 
 	private void addComponents() {
-
+		rootPanel.add(timePanel);
 		rootPanel.add(leftFocusLabel);
 		rootPanel.add(rightFocusLabel);
 		rootPanel.add(gogglesButton);
@@ -160,7 +158,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private void initComponents() {
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
-
+		timePanel = new TimePannel();
+		
 //		searchImageIcon = new ImageIcon();
 //		setImageIcon();
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
@@ -330,12 +329,13 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 25);
 		signInButton.setBounds(1048, 10, 100, 25);
+		timePanel.setBounds(50,50,500,120);
 	}
 
 	private void setMainFrame() {
-
+		
 		setSize(new Dimension(ResourceManager.FRAME_WIDTH, ResourceManager.FRAME_HEIGHT));
-
+		
 		setBackground(ResourceManager.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
