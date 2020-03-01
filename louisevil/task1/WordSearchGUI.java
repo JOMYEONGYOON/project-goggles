@@ -22,7 +22,7 @@ public class WordSearchGUI {
 
 	private JFrame frame;
 	private JTextField searchTextField;
-	private static DefaultListModel listModel;
+	private static DefaultListModel<Word> listModel;
 
 	public WordSearchGUI() {
 		
@@ -70,13 +70,19 @@ public class WordSearchGUI {
     public static void listItems(){
         listModel.clear();
         MySQL mySQL = new MySQL();
-        WordTableManager manager = new WordTableManager(mySQL);
+        WordTableManager manager = new WordTableManager();
+        try {
+			manager.connect(mySQL);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
-        ArrayList<Word> items =  manager.selectByName();
+        ArrayList<Word> items =  manager.select();
         for(int i=0;i<items.size();i++){
-        	Word i1 = items.get(i);
-        	System.out.println(i1);
-            listModel.addElement(i1); 
+        	Word word = items.get(i);
+        	System.out.println(word);
+            listModel.addElement(word); 
         }
     }
 

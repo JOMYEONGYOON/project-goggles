@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -67,12 +68,12 @@ public class WordTableManager extends DatabaseManager {
 		}
 	}
 
-	public Vector<Word> select() {
-		Vector<Word> words = null;
+	public ArrayList<Word> select() {
+		ArrayList<Word> words = null;
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(SELECT_WORD_ALL_SQL);
 			ResultSet rs = pstmt.executeQuery();
-			words = new Vector<Word>();
+			words = new ArrayList<Word>();
 			while (rs.next()) {
 				Word word = new Word();
 				word.setNo(rs.getInt(1));
