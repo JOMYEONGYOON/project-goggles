@@ -9,6 +9,16 @@ import javax.swing.border.MatteBorder;
 import manager.ResourceManager;
 
 public class EmptyBackgroundButton extends JButton{
+	private long time;
+	
+	public long getTime() {
+		return time;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
+	}
+
 	public EmptyBackgroundButton(String name) {
 		super(name);
 		setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));

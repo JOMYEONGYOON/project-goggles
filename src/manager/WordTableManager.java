@@ -23,6 +23,22 @@ public class WordTableManager extends DatabaseManager {
 
 	}
 
+	public int count() {
+		int r = 0;
+		try {
+
+			PreparedStatement pstmt = connection.prepareStatement("select count(*) from word");
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				r = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+
 	public void insertRows(String sqlPath) {
 		Scanner sc = null;
 		try {

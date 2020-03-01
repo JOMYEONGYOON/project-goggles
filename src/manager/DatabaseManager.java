@@ -24,7 +24,7 @@ public class DatabaseManager {
 				+ "/" + mySQL.getDatabaseName() + mySQL.getProperties(), mySQL.getId(), mySQL.getPassword());
 
 	}
-
+	
 	public void executeQueryByFile(File file) throws Exception {
 
 		String sql = "";

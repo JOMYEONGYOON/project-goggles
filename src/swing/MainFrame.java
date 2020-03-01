@@ -188,7 +188,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void initComponents() {
-		resultPanel = new ColorPanel(ResourceManager.WHITE_ALPHA);
+		resultPanel = new ColorPanel(ResourceManager.NONE);
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();

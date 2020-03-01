@@ -79,10 +79,40 @@ public class SignInPanel extends JPanel {
 						synchronized (this) {
 							mainFrame.setLogin(true);
 							searchTextField.addKeyListener(new SearchKeyAdapter(mainFrame));
-							
+
 						}
-						mainFrame.getRootPanel().add(mainFrame.getResultPanel());
+						ColorPanel resultPanel = mainFrame.getResultPanel();
+
+						Thread th = new Thread() {
+
+							@Override
+							public void run() {
+								int alpha = 0;
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								while (alpha <64) {
+									Color color = new Color(1.0F, 1.0F, 1.0F, alpha / 255.0F);
+									resultPanel.setBackground(color);
+									alpha++;
+									try {
+										Thread.sleep(5);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+
+						};
+						th.start();
+
+						mainFrame.getRootPanel().add(resultPanel);
 						mainFrame.getSignInButton().setText("[로그아웃]");
+//						mainFrame.getResultPanel().removeAll();
 						mainFrame.getSignUpButton().setVisible(false);
 						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 100, 100, 100);
 						mainFrame.getRootPanel().add(successLabel);
