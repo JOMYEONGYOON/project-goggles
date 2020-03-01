@@ -156,10 +156,18 @@ public class SignUpPanel extends JPanel {
 					memberTable.connect(mySQL);
 					memberTable.insert(member);
 					
-					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 성공");
+					WhiteLabel successLabel = new WhiteLabel("회원가입 성공");
+					successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					mainFrameTest.getRootPanel().add(successLabel);
+					FadeLabelRunner fade = new FadeLabelRunner(successLabel);
+					fade.start();
 					SignUpPanel.this.setVisible(false);
 				}catch(Exception e){
-					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 실패");
+					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					mainFrameTest.getRootPanel().add(failLabel);
+					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
+					fade.start();
 				}
 				
 			}

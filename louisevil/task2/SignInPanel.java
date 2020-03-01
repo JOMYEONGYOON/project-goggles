@@ -63,13 +63,13 @@ public class SignInPanel extends JPanel {
 						searchTextField.setText("");
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
-						WhiteLabel successLabel = new WhiteLabel("성공");
+						WhiteLabel successLabel = new WhiteLabel("회원가입 성공");
 						successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
 						mainFrameTest.getRootPanel().add(successLabel);
 						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 						fade.start();
 					} else {
-						WhiteLabel failLabel = new WhiteLabel("실패");
+						WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
 						failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
 						FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 						mainFrameTest.getRootPanel().add(failLabel);
@@ -78,7 +78,7 @@ public class SignInPanel extends JPanel {
 
 				} catch (Exception e) {
 					e.printStackTrace();
-					WhiteLabel failLabel = new WhiteLabel("실패");
+					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
 					failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 					mainFrameTest.getRootPanel().add(failLabel);
