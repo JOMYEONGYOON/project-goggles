@@ -23,7 +23,7 @@ public class SignInPanel extends JPanel {
 	private EmptyBackgroundButton signInButton;
 	private WhiteLabel title;
 //	private MainFrame mainFrame;
-	private ColorPanel categoryPanel;
+//	private ColorPanel categoryPanel;
 
 	public SignInPanel(MainFrame mainFrame) {
 //		this.categoryPanel = mainFrame.getCategoryPanel();
@@ -113,7 +113,7 @@ public class SignInPanel extends JPanel {
 						th.start();
 
 						mainFrame.getRootPanel().add(resultPanel);
-						mainFrame.getRootPanel().add(categoryPanel);
+//						mainFrame.getRootPanel().add(categoryPanel);
 						mainFrame.getSignInButton().setText("[로그아웃]");
 //						mainFrame.getResultPanel().removeAll();
 						mainFrame.getSignUpButton().setVisible(false);

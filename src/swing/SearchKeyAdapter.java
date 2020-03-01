@@ -25,7 +25,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
 //	private ColorPanel categoryPanel;
-	
+
 	public SearchKeyAdapter(MainFrame mainFrame) {
 //		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
@@ -103,6 +103,11 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 							@Override
 							public void mouseClicked(MouseEvent e) {
+								printResult();
+
+							}
+
+							private void printResult() {
 								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
 //								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
@@ -111,7 +116,8 @@ public class SearchKeyAdapter extends KeyAdapter {
 								resultPanel.setLayout(new BorderLayout());
 //								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
 //								nameAndDefPanel.setLayout(new BorderLayout());
-								WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
+								WhiteLabel head = new WhiteLabel(
+										word.getName() + "    [분류:" + word.getCategory() + "]");
 								head.setForeground(Color.yellow);
 								head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
 //								nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
@@ -126,7 +132,6 @@ public class SearchKeyAdapter extends KeyAdapter {
 //								resultPanel.add(categoryLabel, BorderLayout.SOUTH);
 								resultPanel.add(defLabel, BorderLayout.CENTER);
 								rootPanel.add(resultPanel);
-								
 							}
 
 						});
@@ -140,7 +145,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 						randomPanel.setVisible(false);
 					}
 					try {
-						Thread.sleep(10000);
+						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -164,7 +169,46 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		resultPanel.removeAll();
+		System.out.println(e.getKeyCode() == 10);
+		if (e.getKeyCode() == '\n') {
+			if (!searchTextField.getText().equals("")) {
+				Word word = wordManager.selectByName(searchTextField.getText());
+				if (word != null) {
+					resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
+							(int) randomPanel.getSize().getWidth(), 250);
+					resultPanel.setLayout(new BorderLayout());
+					WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
+					head.setForeground(Color.yellow);
+					head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
+					WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
+					defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+					defLabel.setVerticalAlignment(SwingConstants.TOP);
+					resultPanel.add(head, BorderLayout.NORTH);
+					resultPanel.add(defLabel, BorderLayout.CENTER);
+					rootPanel.add(resultPanel);
+				} else {
+					ArrayList<Word> words =  wordManager.selectLimitByName(searchTextField.getText(), 0, 1);
+					if (words.size() >0 ) {
+						WhiteLabel foundWimiliarWord = new WhiteLabel("<html><div>" + "비슷한 단어를 찾았습니다." + "</div>");
+						foundWimiliarWord.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+						foundWimiliarWord.setVerticalAlignment(SwingConstants.TOP);
+						resultPanel.add(foundWimiliarWord, BorderLayout.NORTH);
+						rootPanel.add(resultPanel);
+					}else {
+						WhiteLabel notFoundLabel = new WhiteLabel("<html><div>" + "단어를 찾지 못하였습니다." + "</div>");
+						notFoundLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+						notFoundLabel.setVerticalAlignment(SwingConstants.TOP);
+						resultPanel.add(notFoundLabel, BorderLayout.NORTH);
+						rootPanel.add(resultPanel);
+					}
+					
+					
+					
+					
+				}
+			}
+		}
 
 	}
 

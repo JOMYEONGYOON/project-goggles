@@ -407,7 +407,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	private void setLocationComponents() {
 //		categoryPanel.setBounds(250, 300, 750, 32);
-		randomPanel.setBounds(250, 350, 750, 80);
+		randomPanel.setBounds(250, 280, 750, 80);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 100);
