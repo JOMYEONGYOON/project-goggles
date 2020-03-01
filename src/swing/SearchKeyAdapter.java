@@ -109,9 +109,8 @@ public class SearchKeyAdapter extends KeyAdapter {
 								nameAndDefPanel.setLayout(new BorderLayout());
 								WhiteLabel nameLabel = new WhiteLabel(word.getName());
 								nameLabel.setVerticalAlignment(SwingConstants.LEFT);
-								nameAndDefPanel.add(nameAndDefPanel,BorderLayout.WEST);
+								nameAndDefPanel.add(nameLabel,BorderLayout.WEST);
 								WhiteLabel categoryLabel = new WhiteLabel(word.getCategory());
-								categoryLabel.setVerticalAlignment(SwingConstants.LEFT);
 								nameAndDefPanel.add(categoryLabel,BorderLayout.CENTER);
 								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
 								WhiteLabel defLabel = new WhiteLabel("<html><p width='width:100%'>"+word.getDef()+"</p></html>");
