@@ -1,6 +1,7 @@
 package swing;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
@@ -12,6 +13,7 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 
+import manager.ResourceManager;
 import manager.WordTableManager;
 import object.Word;
 
@@ -99,13 +101,19 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 							@Override
 							public void mouseClicked(MouseEvent e) {
+								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
 								System.out.println(word.getName()+"/"+word.getCategory()+"/"+word.getDef());
 								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY()+100,(int)randomPanel.getSize().getWidth(),300);
-								resultPanel.setLayout(new BorderLayout(10,10));
-								resultPanel.add(new WhiteLabel(word.getName()), BorderLayout.NORTH);
-								resultPanel.add(new WhiteLabel(word.getDef()), BorderLayout.CENTER);
-								resultPanel.add(new WhiteLabel(word.getCategory(), BorderLayout.SOUTH));
+								resultPanel.setLayout(new BorderLayout(1,1));
+								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
+								nameAndDefPanel.setLayout(new FlowLayout());
+								nameAndDefPanel.add(new WhiteLabel(word.getName()));
+								nameAndDefPanel.add(new WhiteLabel(word.getCategory()));
+								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
+								WhiteLabel defLabel = new WhiteLabel("<html><p width='width:100%'>"+word.getDef()+"</p></html>");
+								defLabel.setVerticalAlignment(SwingConstants.TOP);
+								resultPanel.add(defLabel, BorderLayout.CENTER);
 								rootPanel.add(resultPanel);
 							}
 							
