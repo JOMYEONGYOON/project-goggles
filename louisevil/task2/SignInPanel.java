@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -66,15 +64,25 @@ public class SignInPanel extends JPanel {
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
 						WhiteLabel successLabel = new WhiteLabel("성공");
-//						mainFrameTest.
-//						JOptionPane.showMessageDialog(mainFrameTest, "로그인 성공");
+						successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+						mainFrameTest.getRootPanel().add(successLabel);
+						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
+						fade.start();
 					} else {
-						JOptionPane.showMessageDialog(mainFrameTest, "로그인 실패");
+						WhiteLabel failLabel = new WhiteLabel("실패");
+						failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+						FadeLabelRunner fade = new FadeLabelRunner(failLabel);
+						mainFrameTest.getRootPanel().add(failLabel);
+						fade.start();
 					}
 
 				} catch (Exception e) {
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(mainFrameTest, "로그인 실패");
+					WhiteLabel failLabel = new WhiteLabel("실패");
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
+					mainFrameTest.getRootPanel().add(failLabel);
+					fade.start();
 				}
 
 			}

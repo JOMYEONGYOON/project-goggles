@@ -39,6 +39,14 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 	private SignInPanel signInPanel;
 	private SignUpPanel signUpPanel;
 	
+	public ImagePanel getRootPanel() {
+		return rootPanel;
+	}
+
+	public void setRootPanel(ImagePanel rootPanel) {
+		this.rootPanel = rootPanel;
+	}
+
 	public WhiteBorderTextField getSearchTextField() {
 		return searchTextField;
 	}
