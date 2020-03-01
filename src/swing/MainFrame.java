@@ -29,7 +29,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	private WhiteLabel rightFocusLabel;
 	private ImagePanel rootPanel;
 	private ColorPanel categoryPanel;
-
+//	private EmptyBackgroundButton hideButton;
+	private EmptyBackgroundButton exitButton;
 	private WhiteBorderTextField searchTextField;
 	private WhiteLabel goggles;
 //	private EmptyBackgroundButton searchButton;
@@ -187,10 +188,25 @@ public class MainFrame extends JFrame implements ActionListener {
 		rootPanel.add(leftFocusLabel);
 		rootPanel.add(rightFocusLabel);
 		rootPanel.add(gogglesButton);
+
+		rootPanel.add(exitButton);
+
+//		rootPanel.add(hideButton);
 //		textField.addKeyListener(this);
 	}
 
 	private void initComponents() {
+		exitButton = new EmptyBackgroundButton("x");
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		exitButton.setFont(new Font("굴림", Font.PLAIN, 12));
+		exitButton.setBounds(1219, 12, 47, 32);
+
+//		hideButton.setFont(new Font("굴림", Font.PLAIN, 10));
+//		hideButton.setBounds(1158, 12, 47, 32);
 		categoryPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		randomPanel = new ColorPanel(ResourceManager.NONE);
@@ -397,8 +413,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		randomPanel.setBounds(250, 350, 750, 80);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
-		signUpButton.setBounds(1160, 10, 100, 25);
-		signInButton.setBounds(1048, 10, 100, 25);
+		signUpButton.setBounds(1160, 10, 100, 100);
+		signInButton.setBounds(1048, 10, 100, 100);
 		timePanel.setBounds(25, 25, 239, 75);
 	}
 
