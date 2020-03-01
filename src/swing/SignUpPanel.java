@@ -15,6 +15,7 @@ import manager.ResourceManager;
 import object.Member;
 import object.MySQL;
 import runner.FadeLabelRunner;
+import javax.swing.JTextField;
 
 public class SignUpPanel extends JPanel {
 	
@@ -24,7 +25,7 @@ public class SignUpPanel extends JPanel {
 	private WhiteBorderTextField birthTF;
 	private WhiteBorderTextField emailTF;
 	private WhiteBorderPasswordField passwordFieldTF;
-	private EmptyBackgroundComboBox genderCB;
+	private WhiteBorderTextField genderTextField;
 	private EmptyBackgroundTextArea etcTA;
 	private MainFrame mainFrameTest;
 	/**
@@ -125,10 +126,9 @@ public class SignUpPanel extends JPanel {
 
 		add(lblNewLabel_7);
 
-		genderCB = new EmptyBackgroundComboBox();
-		genderCB.setModel(new DefaultComboBoxModel<String>(new String[] {"male", "female"}));
-		genderCB.setBounds(94, 302, 242, 21);
-		add(genderCB);
+		genderTextField = new WhiteBorderTextField();
+		genderTextField.setBounds(94, 302, 242, 21);
+		add(genderTextField);
 
 		EmptyBackgroundButton btnNewButton = new EmptyBackgroundButton("[완료]");
 		
@@ -141,7 +141,7 @@ public class SignUpPanel extends JPanel {
 				String phone = phoneTF.getText();
 				String birth = birthTF.getText();
 				String email = emailTF.getText();
-				String gender = genderCB.getSelectedItem().toString();
+				String gender = genderTextField.getText();
 				String etc = etcTA.getText();
 				String password = passwordFieldTF.getText();
 				Member member = new Member(id,name,phone,email,birth,gender,password,etc);
