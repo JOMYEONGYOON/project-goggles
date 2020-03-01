@@ -20,6 +20,8 @@ import javax.swing.border.MatteBorder;
 import manager.ResourceManager;
 import swing.ColorPanel;
 import swing.ImagePanel;
+import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
 
 public class MainFrameTest extends JFrame implements KeyListener, ActionListener {
 //	private ImageIcon searchImageIcon;
@@ -159,7 +161,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 		rootPanel = new ImagePanel(ResourceManager.KNOWLEDGE_2_IMG_PATH);
 	
 		rootPanel.setBackground(ResourceManager.BLACK);
-		rootPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		rootPanel.setBorder(new CompoundBorder(new LineBorder(ResourceManager.NONE, 5, true), new LineBorder(new Color(255, 255, 255), 1, true)));
 		searchTextField = new WhiteBorderTextField();
 //		searchTextField.setForeground(Color.yellow);
 		searchTextField.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
@@ -357,7 +359,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 				}
 				signInPanel = new SignInPanel(MainFrameTest.this);
 				signInPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,350);
+				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,200);
 				rootPanel.add(signInPanel);
 			}
 			
@@ -385,7 +387,7 @@ public class MainFrameTest extends JFrame implements KeyListener, ActionListener
 
 				signUpPanel = new SignUpPanel(MainFrameTest.this);
 				signUpPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				signUpPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,388,500);
+				signUpPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,500);
 				rootPanel.add(signUpPanel);
 			}
 			

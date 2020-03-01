@@ -73,8 +73,7 @@ public class MemberTableManager extends DatabaseManager {
 		}
 	}
 
-	public boolean checkIdPassword(String id, String password) {
-		try {
+	public boolean checkIdPassword(String id, String password) throws Exception{
 			PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_CHECK_ID_PASSWORD_SQL);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -83,10 +82,6 @@ public class MemberTableManager extends DatabaseManager {
 			while (rs.next()) {
 				return true;
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return false;
 
 	}

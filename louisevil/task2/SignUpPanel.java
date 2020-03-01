@@ -14,6 +14,12 @@ import manager.MemberTableManager;
 import manager.ResourceManager;
 import object.Member;
 import object.MySQL;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 
 public class SignUpPanel extends JPanel {
 	
@@ -30,6 +36,7 @@ public class SignUpPanel extends JPanel {
 	 * Create the application.
 	 */
 	public SignUpPanel(MainFrameTest mainFrameTest) {
+		setBorder(new LineBorder(Color.WHITE));
 		this.mainFrameTest=mainFrameTest;
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
