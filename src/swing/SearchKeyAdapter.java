@@ -24,7 +24,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
-	private boolean isRandom = true;
+//	private boolean isRandom = true;
 	private Thread addRandomThread;
 
 //	private ColorPanel categoryPanel;
@@ -99,16 +99,16 @@ public class SearchKeyAdapter extends KeyAdapter {
 		}
 		while (true) {
 
-			while (!isRandom) {
-				System.out.println("!");
-
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+////			while (!isRandom) {
+////				System.out.println("!");
+//
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
 			int count = wordManager.count();
 //			String searchText = searchTextField.getText();
 			randomPanel.removeAll();
@@ -126,10 +126,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						synchronized (addRandomThread) {
-							isRandom = false;
+//						synchronized (addRandomThread) {
+//							isRandom = false;
 
-						}
+//						}
 						printResult();
 
 					}
@@ -193,10 +193,8 @@ public class SearchKeyAdapter extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent e) {
 
-//		System.out.println(e.getKeyCode() == 10);
 		if (e.getKeyCode() == 10) {
 			resultPanel.removeAll();
-			randomPanel.removeAll();
 			if (!searchTextField.getText().equals("")) {
 				Word word = wordManager.selectByName(searchTextField.getText());
 				if (word != null) {
