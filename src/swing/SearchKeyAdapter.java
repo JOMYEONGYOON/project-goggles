@@ -1,5 +1,6 @@
 package swing;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
@@ -101,6 +102,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 								Word word = wordManager.selectByName(nameButton.getText());
 								System.out.println(word.getName()+"/"+word.getCategory()+"/"+word.getDef());
 								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY()+100,(int)randomPanel.getSize().getWidth(),300);
+								resultPanel.setLayout(new BorderLayout(10,10));
+								resultPanel.add(new WhiteLabel(word.getName()), BorderLayout.NORTH);
+								resultPanel.add(new WhiteLabel(word.getDef()), BorderLayout.CENTER);
+								resultPanel.add(new WhiteLabel(word.getCategory(), BorderLayout.SOUTH));
 								rootPanel.add(resultPanel);
 							}
 							
