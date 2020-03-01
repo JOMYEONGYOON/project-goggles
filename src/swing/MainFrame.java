@@ -22,12 +22,14 @@ import runner.FadeLabelRunner;
 
 public class MainFrame extends JFrame implements ActionListener {
 //	private ImageIcon searchImageIcon;
-	private ColorPanel resultPanel ; 
+	private ColorPanel resultPanel;
 	private ColorPanel randomPanel;
 	private WhiteLabel leftFocusLabel;
 	private EmptyBackgroundButton gogglesButton;
 	private WhiteLabel rightFocusLabel;
 	private ImagePanel rootPanel;
+	private ColorPanel categoryPanel;
+
 	private WhiteBorderTextField searchTextField;
 	private WhiteLabel goggles;
 //	private EmptyBackgroundButton searchButton;
@@ -46,8 +48,6 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void setLogin(boolean isLogin) {
 		this.isLogin = isLogin;
 	}
-
-
 
 	public ColorPanel getRandomPanel() {
 		return randomPanel;
@@ -191,12 +191,15 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void initComponents() {
+		categoryPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		randomPanel = new ColorPanel(ResourceManager.NONE);
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();
-
+		categoryPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.WHITE));
+		resultPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.WHITE));
+		randomPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.YELLOW));
 //		searchImageIcon = new ImageIcon();
 //		setImageIcon();
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
@@ -237,6 +240,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	public EmptyBackgroundButton getSignUpButton() {
 		return signUpButton;
+	}
+
+	public ColorPanel getCategoryPanel() {
+		return categoryPanel;
+	}
+
+	public void setCategoryPanel(ColorPanel categoryPanel) {
+		this.categoryPanel = categoryPanel;
 	}
 
 	public void setSignUpButton(EmptyBackgroundButton signUpButton) {
@@ -382,8 +393,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void setLocationComponents() {
-
-		randomPanel.setBounds(250, 300, 750, 80);
+		categoryPanel.setBounds(250, 300, 750, 32);
+		randomPanel.setBounds(250, 350, 750, 80);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 25);

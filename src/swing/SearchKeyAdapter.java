@@ -1,6 +1,7 @@
 package swing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
@@ -12,7 +13,6 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 
-import manager.ResourceManager;
 import manager.WordTableManager;
 import object.Word;
 
@@ -24,8 +24,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
-
+	private ColorPanel categoryPanel;
+	
 	public SearchKeyAdapter(MainFrame mainFrame) {
+		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();
 		this.wordManager = mainFrame.getWordManager();
@@ -105,23 +107,26 @@ public class SearchKeyAdapter extends KeyAdapter {
 								Word word = wordManager.selectByName(nameButton.getText());
 								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
 								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
-										(int) randomPanel.getSize().getWidth(), 300);
+										(int) randomPanel.getSize().getWidth(), 250);
 								resultPanel.setLayout(new BorderLayout());
-								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
-								nameAndDefPanel.setLayout(new BorderLayout());
-								WhiteLabel nameLabel = new WhiteLabel(word.getName());
-								nameLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-								nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
-								WhiteLabel categoryLabel = new WhiteLabel(word.getCategory());
-								categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-								nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
-								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
-								WhiteLabel defLabel = new WhiteLabel(
-										"<html><p width='width:100%'>" + word.getDef() + "</p></html>");
+//								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
+//								nameAndDefPanel.setLayout(new BorderLayout());
+								WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
+								head.setForeground(Color.yellow);
+								head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
+//								nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
+//								WhiteLabel categoryLabel = new WhiteLabel("[분류:"+word.getCategory()+"]");
+//								categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+//								nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
+//								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
+								WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
 								defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 								defLabel.setVerticalAlignment(SwingConstants.TOP);
+								resultPanel.add(head, BorderLayout.NORTH);
+//								resultPanel.add(categoryLabel, BorderLayout.SOUTH);
 								resultPanel.add(defLabel, BorderLayout.CENTER);
 								rootPanel.add(resultPanel);
+								
 							}
 
 						});
@@ -130,6 +135,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 					if (mainFrame.isLogin()) {
 						randomPanel.setVisible(true);
 					} else {
+						categoryPanel.setVisible(false);
 						resultPanel.setVisible(false);
 						randomPanel.setVisible(false);
 					}

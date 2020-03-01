@@ -22,11 +22,12 @@ public class SignInPanel extends JPanel {
 	private WhiteBorderPasswordField passwordField;
 	private EmptyBackgroundButton signInButton;
 	private WhiteLabel title;
-	private MainFrame mainFrameTest;
-
+	private MainFrame mainFrame;
+	private ColorPanel categoryPanel;
 	public SignInPanel(MainFrame mainFrame) {
+		this.categoryPanel = mainFrame.getCategoryPanel();
 		setBorder(new LineBorder(Color.WHITE));
-		this.mainFrameTest = mainFrame;
+		this.mainFrame = mainFrame;
 		setLayout(null);
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
@@ -111,6 +112,7 @@ public class SignInPanel extends JPanel {
 						th.start();
 
 						mainFrame.getRootPanel().add(resultPanel);
+						mainFrame.getRootPanel().add(categoryPanel);
 						mainFrame.getSignInButton().setText("[로그아웃]");
 //						mainFrame.getResultPanel().removeAll();
 						mainFrame.getSignUpButton().setVisible(false);
