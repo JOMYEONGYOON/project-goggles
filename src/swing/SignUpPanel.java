@@ -70,31 +70,31 @@ public class SignUpPanel extends JPanel {
 		add(lblNewLabel_4);
 
 		idTF = new WhiteBorderTextField();
-		idTF.setBounds(94, 79, 161, 21);
+		idTF.setBounds(94, 79, 242, 21);
 		add(idTF);
 		idTF.setColumns(10);
 
 		nameTF = new WhiteBorderTextField();
-		nameTF.setBounds(94, 163, 161, 21);
+		nameTF.setBounds(94, 163, 242, 21);
 		add(nameTF);
 		nameTF.setColumns(10);
 
 		phoneTF = new WhiteBorderTextField();
 		phoneTF.setForeground(Color.WHITE);
 		phoneTF.setColumns(10);
-		phoneTF.setBounds(94, 200, 161, 21);
+		phoneTF.setBounds(94, 200, 242, 21);
 		add(phoneTF);
 
 		birthTF = new WhiteBorderTextField();
 		birthTF.setForeground(Color.WHITE);
 		birthTF.setColumns(10);
-		birthTF.setBounds(94, 235, 161, 21);
+		birthTF.setBounds(94, 235, 242, 21);
 		add(birthTF);
 
 		emailTF = new WhiteBorderTextField();
 		emailTF.setForeground(Color.WHITE);
 		emailTF.setColumns(10);
-		emailTF.setBounds(94, 271, 161, 21);
+		emailTF.setBounds(94, 271, 242, 21);
 		add(emailTF);
 
 		WhiteLabel lblNewLabel_4_1 = new WhiteLabel("성별");
@@ -106,12 +106,12 @@ public class SignUpPanel extends JPanel {
 		add(lblNewLabel_5);
 
 		passwordFieldTF = new WhiteBorderPasswordField();
-		passwordFieldTF.setBounds(94, 123, 161, 21);
+		passwordFieldTF.setBounds(94, 123, 242, 21);
 		add(passwordFieldTF);
 
 		etcTA = new EmptyBackgroundTextArea();
 		etcTA.setForeground(Color.WHITE);
-		etcTA.setBounds(94, 358, 253, 80);
+		etcTA.setBounds(94, 358, 242, 67);
 		add(etcTA);
 
 		WhiteLabel lblNewLabel_6 = new WhiteLabel("etc");
@@ -127,7 +127,7 @@ public class SignUpPanel extends JPanel {
 
 		genderCB = new EmptyBackgroundComboBox();
 		genderCB.setModel(new DefaultComboBoxModel<String>(new String[] {"male", "female"}));
-		genderCB.setBounds(94, 302, 89, 21);
+		genderCB.setBounds(94, 302, 242, 21);
 		add(genderCB);
 
 		EmptyBackgroundButton btnNewButton = new EmptyBackgroundButton("[완료]");

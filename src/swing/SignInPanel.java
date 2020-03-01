@@ -89,7 +89,7 @@ public class SignInPanel extends JPanel {
 			}
 		});
 		signInButton.setForeground(Color.WHITE);
-		signInButton.setBounds(241, 21, 77, 23);
+		signInButton.setBounds(140, 25, 77, 23);
 
 		add(signInButton);
 
@@ -108,7 +108,7 @@ public class SignInPanel extends JPanel {
 		});
 		cancelButton.setText("[취소]");
 		cancelButton.setForeground(Color.WHITE);
-		cancelButton.setBounds(157, 21, 77, 23);
+		cancelButton.setBounds(229, 25, 77, 23);
 		add(cancelButton);
 		setVisible(true);
 
