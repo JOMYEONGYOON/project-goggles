@@ -72,8 +72,8 @@ public class ResourceManager {
 	public static final String ALREADY_INSERTED_TABLE_DATA = "이미 데이터가 입력되어 있습니다.";
 	public static final String DELETE_SQL_PATH = APP_PATH + "\\resources\\sql\\delete";
 	public static final String DELETE_DATABASE_SQL_PATH = APP_PATH + "\\resources\\sql\\dictionary.sql";
-	public static final String KNOWLEDGE_1_IMG_PATH = "resources\\image\\knowledge-1.jpg";
-	public static final String KNOWLEDGE_2_IMG_PATH = "resources\\image\\knowledge-2.jpg";
+//	public static final String KNOWLEDGE_1_IMG_PATH = "resources\\image\\knowledge-1.jpg";
+//	public static final String KNOWLEDGE_2_IMG_PATH = "resources\\image\\knowledge-2.jpg";
 	public static String MYSQL_ID = "root";
 	public static String MYSQL_PASSWORD = "1234";
 	public static String MYSQL_JDBC_URL = "jdbc:mysql://";

@@ -21,7 +21,7 @@ public class EmptyBackgroundButton extends JButton{
 		setContentAreaFilled(false);
 		addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        setForeground(Color.cyan);
+		        setForeground(Color.YELLOW);
 		    }
 
 		    public void mouseExited(java.awt.event.MouseEvent evt) {

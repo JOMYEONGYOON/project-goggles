@@ -30,7 +30,7 @@ public class SignInPanel extends JPanel {
 		setLayout(null);
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
-			
+
 		setSize(352, 248);
 
 		label = new WhiteLabel("아이디");
@@ -58,11 +58,11 @@ public class SignInPanel extends JPanel {
 
 				try {
 					member.connect(mySQL);
-					String[] strs = {idField.getText(), passwordField.getText()};
+					String[] strs = { idField.getText(), passwordField.getText() };
 					for (String s : strs) {
 						if (s.equals("")) {
 							WhiteLabel successLabel = new WhiteLabel("모두 입력해주세요");
-							successLabel.setBounds(ResourceManager.FRAME_WIDTH-600,150,300,100);
+							successLabel.setBounds(ResourceManager.FRAME_WIDTH - 600, 150, 300, 100);
 							mainFrameTest.getRootPanel().add(successLabel);
 							FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 							fade.start();
@@ -76,13 +76,18 @@ public class SignInPanel extends JPanel {
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
 						WhiteLabel successLabel = new WhiteLabel("로그인 성공");
-						successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+						synchronized (this) {
+							mainFrameTest.setLogin(true);
+						}
+						mainFrameTest.getSignInButton().setText("[로그아웃]");
+						mainFrameTest.getSignUpButton().setVisible(false);
+						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 100, 100, 100);
 						mainFrameTest.getRootPanel().add(successLabel);
 						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 						fade.start();
 					} else {
 						WhiteLabel failLabel = new WhiteLabel("로그인 실패");
-						failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
+						failLabel.setBounds(ResourceManager.FRAME_WIDTH - 500, 100, 100, 100);
 						FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 						mainFrameTest.getRootPanel().add(failLabel);
 						fade.start();
@@ -91,7 +96,7 @@ public class SignInPanel extends JPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
-					failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH - 500, 100, 100, 100);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 					mainFrameTest.getRootPanel().add(failLabel);
 					fade.start();
@@ -110,7 +115,7 @@ public class SignInPanel extends JPanel {
 		title.setHorizontalAlignment(SwingConstants.LEFT);
 		title.setBounds(29, 25, 77, 49);
 		add(title);
-		
+
 		EmptyBackgroundButton cancelButton = new EmptyBackgroundButton("[로그인]");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

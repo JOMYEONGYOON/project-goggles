@@ -3,7 +3,6 @@ package swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,10 +18,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
+import runner.FadeLabelRunner;
 
 public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //	private ImageIcon searchImageIcon;
-	private ColorPanel resultPanel; 
+	private ColorPanel resultPanel;
 	private WhiteLabel leftFocusLabel;
 	private EmptyBackgroundButton gogglesButton;
 	private WhiteLabel rightFocusLabel;
@@ -35,6 +35,24 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private SignInPanel signInPanel;
 	private SignUpPanel signUpPanel;
 	private TimePannel timePanel;
+	private boolean isLogin = false;
+	
+	public boolean isLogin() {
+		return isLogin;
+	}
+
+	public void setLogin(boolean isLogin) {
+		this.isLogin = isLogin;
+	}
+
+	public ColorPanel getResultPanel() {
+		return resultPanel;
+	}
+
+	public void setResultPanel(ColorPanel resultPanel) {
+		this.resultPanel = resultPanel;
+	}
+
 	public ImagePanel getRootPanel() {
 		return rootPanel;
 	}
@@ -75,7 +93,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //				rootPanel.setBackground(Color.WHI);
 				int imageIndex = 1;
 				while (true) {
-					if (imageIndex > 4) {
+					if (imageIndex > 11) {
 						imageIndex = 1;
 					}
 					try {
@@ -158,16 +176,17 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();
-		
+
 //		searchImageIcon = new ImageIcon();
 //		setImageIcon();
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
 
 		goggles = new WhiteLabel("Goggles");
-		rootPanel = new ImagePanel(ResourceManager.KNOWLEDGE_2_IMG_PATH);
-	
+		rootPanel = new ImagePanel("resources\\image\\goggles-" + ((int) (Math.random() * 11)+1) + ".jpg");
+
 		rootPanel.setBackground(ResourceManager.BLACK);
-		rootPanel.setBorder(new CompoundBorder(new LineBorder(ResourceManager.NONE, 5, true), new LineBorder(new Color(255, 255, 255), 1, true)));
+		rootPanel.setBorder(new CompoundBorder(new LineBorder(ResourceManager.NONE, 5, true),
+				new LineBorder(new Color(255, 255, 255), 1, true)));
 		searchTextField = new WhiteBorderTextField();
 //		searchTextField.setForeground(Color.yellow);
 		searchTextField.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
@@ -196,6 +215,22 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //
 //	}
 
+	public EmptyBackgroundButton getSignUpButton() {
+		return signUpButton;
+	}
+
+	public void setSignUpButton(EmptyBackgroundButton signUpButton) {
+		this.signUpButton = signUpButton;
+	}
+
+	public EmptyBackgroundButton getSignInButton() {
+		return signInButton;
+	}
+
+	public void setSignInButton(EmptyBackgroundButton signInButton) {
+		this.signInButton = signInButton;
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		repaint();
@@ -204,11 +239,12 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			System.out.println("!");
 			setTextFieldLocationThread();
 		}
 	}
 
-	private void setTextFieldLocationThread() {
+	public void setTextFieldLocationThread() {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
@@ -328,13 +364,13 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 25);
 		signInButton.setBounds(1048, 10, 100, 25);
-		timePanel.setBounds(50,50,500,120);
+		timePanel.setBounds(25, 25, 239, 75);
 	}
 
 	private void setMainFrame() {
-		
+
 		setSize(new Dimension(ResourceManager.FRAME_WIDTH, ResourceManager.FRAME_HEIGHT));
-		
+
 		setBackground(ResourceManager.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -358,18 +394,31 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				
 				if (signInPanel != null) {
+					if ( signInButton.getText().equals("[로그아웃]")) {
+						signInButton.setText("[로그인]");
+						signUpButton.setVisible(true);						
+						isLogin = false;
+						searchTextField.setEditable(false);
+						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
+						searchTextField.setText("   검색하려면 로그인이 필요합니다.");
+						WhiteLabel successLabel = new WhiteLabel("로그아웃 성공");
+						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 150, 100, 100);
+						rootPanel.add(successLabel);
+						FadeLabelRunner label = new FadeLabelRunner(successLabel);
+						label.start();
+						return;
+					}
 					rootPanel.remove(signInPanel);
-					
 				}
 				if (signUpPanel != null) {
 					rootPanel.remove(signUpPanel);
 				}
 				signInPanel = new SignInPanel(MainFrame.this);
 				signInPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				signInPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,300);
+				signInPanel.setBounds(ResourceManager.FRAME_WIDTH - 400, 100, 365, 300);
 				rootPanel.add(signInPanel);
 			}
-			
+
 		});
 	}
 
@@ -386,7 +435,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				if (signInPanel != null) {
 					rootPanel.remove(signInPanel);
-					
+
 				}
 				if (signUpPanel != null) {
 					rootPanel.remove(signUpPanel);
@@ -394,10 +443,10 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 				signUpPanel = new SignUpPanel(MainFrame.this);
 				signUpPanel.setBackground(ResourceManager.BLACK_ALPHA);
-				signUpPanel.setBounds(ResourceManager.FRAME_WIDTH-400,100,365,500);
+				signUpPanel.setBounds(ResourceManager.FRAME_WIDTH - 400, 100, 365, 500);
 				rootPanel.add(signUpPanel);
 			}
-			
+
 		});
 	}
 
@@ -571,18 +620,5 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 		};
 		focusLabelThread.start();
-	}
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame window = new MainFrame();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 }

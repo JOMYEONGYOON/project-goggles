@@ -14,6 +14,7 @@ import object.Word;
 public class WordTableManager extends DatabaseManager {
 	private static final String INSERT_WORD_AUTO_INCREMENT_ID_SQL = "INSERT INTO word(name, def, category) VALUES(?, ?, ?)";
 	private static final String SELECT_WORD_ALL_SQL = "SELECT * FROM word";
+	private static final String SELECT_WORD_ALL_SQL_LIMIT = "SELECT * FROM word limit ?,?";
 	private static final String SELECT_WORD_BY_NO_SQL = "select no,name,def,category from word WHERE no=?";
 	private static final String SELECT_WORD_BY_NAME_SQL = "select no,name,def,category from word WHERE name=?";
 
@@ -67,7 +68,6 @@ public class WordTableManager extends DatabaseManager {
 			e.printStackTrace();
 		}
 	}
-
 	public ArrayList<Word> select() {
 		ArrayList<Word> words = null;
 		try {
@@ -87,7 +87,43 @@ public class WordTableManager extends DatabaseManager {
 		}
 		return words;
 	}
-
+	public ArrayList<Word> getWordsLimit(int start, int end) {
+		ArrayList<Word> words = null;
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(SELECT_WORD_ALL_SQL_LIMIT);
+			pstmt.setInt(1,start);
+			pstmt.setInt(2, end);
+			ResultSet rs = pstmt.executeQuery();
+			words = new ArrayList<Word>();
+			while (rs.next()) {
+				Word word = new Word();
+				word.setNo(rs.getInt(1));
+				word.setName(rs.getString(2));
+				word.setDef(rs.getString(3));
+				word.setCategory(rs.getString(4));
+				words.add(word);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return words;
+	}
+	public ArrayList<String> getNamesLimit(int start, int end) {
+		ArrayList<String> words = null;
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(SELECT_WORD_ALL_SQL_LIMIT);
+			pstmt.setInt(1,start);
+			pstmt.setInt(2, end);
+			ResultSet rs = pstmt.executeQuery();
+			words = new ArrayList<String>();
+			while (rs.next()) {
+				words.add(rs.getString(2));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return words;
+	}
 	public Word selectByNo(int id) {
 		Word word = null;
 		try {
