@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -64,7 +65,9 @@ public class SignInPanel extends JPanel {
 						searchTextField.setText("");
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
-						JOptionPane.showMessageDialog(mainFrameTest, "로그인 성공");
+						WhiteLabel successLabel = new WhiteLabel("성공");
+//						mainFrameTest.
+//						JOptionPane.showMessageDialog(mainFrameTest, "로그인 성공");
 					} else {
 						JOptionPane.showMessageDialog(mainFrameTest, "로그인 실패");
 					}

@@ -20,7 +20,7 @@ public class RandomInsertManager extends MemberTableManager {
 			String sql = INSERT_MEMBER_AUTO_INCREMENT_NO_SQL;
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			LoremIpsum loremIpsum = new LoremIpsum();
-			pstmt.setString(1, loremIpsum.getName());
+			pstmt.setString(1, loremIpsum.getWords(1));
 			int r = ((int) (Math.random() * 2));
 			String gender = "";
 			if (r == 1) {
@@ -59,7 +59,7 @@ public class RandomInsertManager extends MemberTableManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (int i = 0; i < 1500; i++) {
+		for (int i = 0; i < 10; i++) {
 			ri.randomInsert();
 		}
 	}
