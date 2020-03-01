@@ -1,6 +1,7 @@
 package task2;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -67,31 +68,31 @@ public class SignUpPanel extends JPanel {
 		add(lblNewLabel_4);
 
 		idTF = new WhiteBorderTextField();
-		idTF.setBounds(94, 79, 89, 21);
+		idTF.setBounds(94, 79, 161, 21);
 		add(idTF);
 		idTF.setColumns(10);
 
 		nameTF = new WhiteBorderTextField();
-		nameTF.setBounds(94, 163, 89, 21);
+		nameTF.setBounds(94, 163, 161, 21);
 		add(nameTF);
 		nameTF.setColumns(10);
 
 		phoneTF = new WhiteBorderTextField();
 		phoneTF.setForeground(Color.WHITE);
 		phoneTF.setColumns(10);
-		phoneTF.setBounds(94, 200, 89, 21);
+		phoneTF.setBounds(94, 200, 161, 21);
 		add(phoneTF);
 
 		birthTF = new WhiteBorderTextField();
 		birthTF.setForeground(Color.WHITE);
 		birthTF.setColumns(10);
-		birthTF.setBounds(94, 235, 89, 21);
+		birthTF.setBounds(94, 235, 161, 21);
 		add(birthTF);
 
 		emailTF = new WhiteBorderTextField();
 		emailTF.setForeground(Color.WHITE);
 		emailTF.setColumns(10);
-		emailTF.setBounds(94, 271, 89, 21);
+		emailTF.setBounds(94, 271, 161, 21);
 		add(emailTF);
 
 		WhiteLabel lblNewLabel_4_1 = new WhiteLabel("성별");
@@ -103,21 +104,22 @@ public class SignUpPanel extends JPanel {
 		add(lblNewLabel_5);
 
 		passwordFieldTF = new WhiteBorderPasswordField();
-		passwordFieldTF.setBounds(94, 123, 89, 21);
+		passwordFieldTF.setBounds(94, 123, 161, 21);
 		add(passwordFieldTF);
 
 		etcTA = new EmptyBackgroundTextArea();
 		etcTA.setForeground(Color.WHITE);
-		etcTA.setBounds(206, 106, 134, 180);
+		etcTA.setBounds(94, 358, 253, 80);
 		add(etcTA);
 
 		WhiteLabel lblNewLabel_6 = new WhiteLabel("etc");
-		lblNewLabel_6.setBounds(206, 81, 57, 15);
+		lblNewLabel_6.setBounds(25, 358, 57, 15);
 		add(lblNewLabel_6);
 
 		WhiteLabel lblNewLabel_7 = new WhiteLabel("회원가입");
+		lblNewLabel_7.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 32));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_7.setBounds(25, 10, 322, 55);
+		lblNewLabel_7.setBounds(25, 10, 161, 55);
 
 		add(lblNewLabel_7);
 
@@ -146,22 +148,24 @@ public class SignUpPanel extends JPanel {
 					MemberTableManager memberTable = new MemberTableManager();
 					memberTable.connect(mySQL);
 					memberTable.insert(member);
+					
 					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 성공");
+					SignUpPanel.this.setVisible(false);
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(mainFrameTest, "회원 가입 실패");
 				}
 				
 			}
 		});
-		btnNewButton.setBounds(206, 297, 60, 23);
+		btnNewButton.setBounds(214, 28, 60, 23);
 		add(btnNewButton);
 //		frame.getContentPane().add(panel);
 		add(panel);
 
-		setSize(360, 350);
+		setSize(360, 448);
 		
 		EmptyBackgroundButton btnCancel = new EmptyBackgroundButton("[취소]");
-		btnCancel.setBounds(278, 296, 62, 24);
+		btnCancel.setBounds(286, 27, 62, 24);
 		add(btnCancel);
 		
 		WhiteLabel lblNewLabel_1_1 = new WhiteLabel("이름");
