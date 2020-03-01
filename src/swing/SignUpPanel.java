@@ -173,6 +173,11 @@ public class SignUpPanel extends JPanel {
 		setSize(360, 448);
 		
 		EmptyBackgroundButton btnCancel = new EmptyBackgroundButton("[취소]");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrameTest.getRootPanel().remove(SignUpPanel.this);
+			}
+		});
 		btnCancel.setBounds(286, 27, 62, 24);
 		add(btnCancel);
 		

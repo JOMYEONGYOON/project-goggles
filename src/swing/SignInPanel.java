@@ -97,10 +97,20 @@ public class SignInPanel extends JPanel {
 		title.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 32));
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.LEFT);
-		title.setBounds(12, 10, 336, 49);
+		title.setBounds(12, 10, 133, 49);
 		add(title);
+		
+		EmptyBackgroundButton cancelButton = new EmptyBackgroundButton("[로그인]");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrameTest.getRootPanel().remove(SignInPanel.this);
+			}
+		});
+		cancelButton.setText("[취소]");
+		cancelButton.setForeground(Color.WHITE);
+		cancelButton.setBounds(157, 21, 77, 23);
+		add(cancelButton);
 		setVisible(true);
 
 	}
-
 }
