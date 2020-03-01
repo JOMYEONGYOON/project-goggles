@@ -24,8 +24,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
+	private boolean isRandom = true;
+	private Thread addRandomThread;
+
 //	private ColorPanel categoryPanel;
-	private boolean isEnter= false;
 	public SearchKeyAdapter(MainFrame mainFrame) {
 //		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
@@ -35,6 +37,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 		this.mainFrame = mainFrame;
 		this.rootPanel = this.mainFrame.getRootPanel();
 		this.randomPanel = this.mainFrame.getRandomPanel();
+
 		randomPanel.setLayout(new GridLayout(1, 3));
 		mainFrame.setSearchFieldLocationThread();
 //		Thread checkThread = new Thread() {
@@ -75,90 +78,106 @@ public class SearchKeyAdapter extends KeyAdapter {
 //
 //		};
 //		checkThread.start();
-		Thread addThread = new Thread() {
+		addRandomThread = new Thread() {
 
 			@Override
 			public void run() {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				while (true) {
-					int count = wordManager.count();
-
-					String searchText = searchTextField.getText();
-					randomPanel.removeAll();
-					ArrayList<Word> words = wordManager.selectLimitByName(searchText, (int) (Math.random() * count), 3);
-					for (int i = 0; i < words.size(); i++) {
-						String name = words.get(i).getName();
-						EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
-						nameButton.setHorizontalAlignment(SwingConstants.LEFT);
-						nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
-						nameButton.setTime(System.currentTimeMillis());
-						randomPanel.add(nameButton);
-						resultButtons.add(nameButton);
-						nameButton.addMouseListener(new MouseAdapter() {
-
-							@Override
-							public void mouseClicked(MouseEvent e) {
-								printResult();
-
-							}
-
-							private void printResult() {
-							
-								resultPanel.removeAll();
-								Word word = wordManager.selectByName(nameButton.getText());
-//								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
-								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
-										(int) randomPanel.getSize().getWidth(), 250);
-								resultPanel.setLayout(new BorderLayout());
-//								ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
-//								nameAndDefPanel.setLayout(new BorderLayout());
-								WhiteLabel head = new WhiteLabel(
-										word.getName() + "    [분류:" + word.getCategory() + "]");
-								head.setForeground(Color.yellow);
-								head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
-//								nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
-//								WhiteLabel categoryLabel = new WhiteLabel("[분류:"+word.getCategory()+"]");
-//								categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-//								nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
-//								resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
-								WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
-								defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-								defLabel.setVerticalAlignment(SwingConstants.TOP);
-								resultPanel.add(head, BorderLayout.NORTH);
-//								resultPanel.add(categoryLabel, BorderLayout.SOUTH);
-								resultPanel.add(defLabel, BorderLayout.CENTER);
-								rootPanel.add(resultPanel);
-							}
-
-						});
-					}
-
-					if (mainFrame.isLogin()) {
-						randomPanel.setVisible(true);
-					} else {
-//						categoryPanel.setVisible(false);
-						resultPanel.setVisible(false);
-						randomPanel.setVisible(false);
-					}
-					try {
-						if (!isEnter) {
-							Thread.sleep(5000);
-							
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+				addRandom();
 			}
 
 		};
-		addThread.start();
+		addRandomThread.start();
+
+	}
+
+	public void addRandom() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		while (true) {
+
+			while (!isRandom) {
+				System.out.println("!");
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			int count = wordManager.count();
+//			String searchText = searchTextField.getText();
+			randomPanel.removeAll();
+//			ArrayList<Word> words = wordManager.selectLimitByName(searchText, (int) (Math.random() * count), 3);
+			ArrayList<Word> words = wordManager.selectLimit((int) (Math.random() * count), 3);
+			for (int i = 0; i < words.size(); i++) {
+				String name = words.get(i).getName();
+				EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
+				nameButton.setHorizontalAlignment(SwingConstants.LEFT);
+				nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
+				nameButton.setTime(System.currentTimeMillis());
+				randomPanel.add(nameButton);
+				resultButtons.add(nameButton);
+				nameButton.addMouseListener(new MouseAdapter() {
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						synchronized (addRandomThread) {
+							isRandom = false;
+
+						}
+						printResult();
+
+					}
+
+					private void printResult() {
+
+						resultPanel.removeAll();
+						Word word = wordManager.selectByName(nameButton.getText());
+//						System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
+						resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
+								(int) randomPanel.getSize().getWidth(), 250);
+						resultPanel.setLayout(new BorderLayout());
+//						ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
+//						nameAndDefPanel.setLayout(new BorderLayout());
+						WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
+						head.setForeground(Color.yellow);
+						head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
+//						nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
+//						WhiteLabel categoryLabel = new WhiteLabel("[분류:"+word.getCategory()+"]");
+//						categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+//						nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
+//						resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
+						WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
+						defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+						defLabel.setVerticalAlignment(SwingConstants.TOP);
+						resultPanel.add(head, BorderLayout.NORTH);
+//						resultPanel.add(categoryLabel, BorderLayout.SOUTH);
+						resultPanel.add(defLabel, BorderLayout.CENTER);
+						rootPanel.add(resultPanel);
+					}
+
+				});
+			}
+
+			if (mainFrame.isLogin()) {
+				randomPanel.setVisible(true);
+			} else {
+//				categoryPanel.setVisible(false);
+				resultPanel.setVisible(false);
+				randomPanel.setVisible(false);
+			}
+			try {
+				Thread.sleep(5000);
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -173,14 +192,12 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
-		resultPanel.removeAll();
-		randomPanel.removeAll();
+
 //		System.out.println(e.getKeyCode() == 10);
 		if (e.getKeyCode() == 10) {
-			
+			resultPanel.removeAll();
+			randomPanel.removeAll();
 			if (!searchTextField.getText().equals("")) {
-				isEnter=true;
 				Word word = wordManager.selectByName(searchTextField.getText());
 				if (word != null) {
 					resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
@@ -209,8 +226,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 
 							@Override
 							public void mouseClicked(MouseEvent e) {
+
 								printResult();
 							}
+
 							public void printResult() {
 								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
@@ -236,15 +255,13 @@ public class SearchKeyAdapter extends KeyAdapter {
 						notFoundLabel.setVerticalAlignment(SwingConstants.TOP);
 						resultPanel.add(notFoundLabel, BorderLayout.NORTH);
 						rootPanel.add(resultPanel);
-						isEnter= false;
 					}
 
 				}
-			}else {
-				isEnter = false;
+			} else {
 			}
 		}
 
 	}
-	
+
 }
