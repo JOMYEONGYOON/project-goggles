@@ -24,10 +24,10 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
-	private ColorPanel categoryPanel;
+//	private ColorPanel categoryPanel;
 	
 	public SearchKeyAdapter(MainFrame mainFrame) {
-		this.categoryPanel=mainFrame.getCategoryPanel();
+//		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();
 		this.wordManager = mainFrame.getWordManager();
@@ -105,7 +105,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 							public void mouseClicked(MouseEvent e) {
 								resultPanel.removeAll();
 								Word word = wordManager.selectByName(nameButton.getText());
-								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
+//								System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
 								resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
 										(int) randomPanel.getSize().getWidth(), 250);
 								resultPanel.setLayout(new BorderLayout());
@@ -135,7 +135,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 					if (mainFrame.isLogin()) {
 						randomPanel.setVisible(true);
 					} else {
-						categoryPanel.setVisible(false);
+//						categoryPanel.setVisible(false);
 						resultPanel.setVisible(false);
 						randomPanel.setVisible(false);
 					}

@@ -28,7 +28,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private EmptyBackgroundButton gogglesButton;
 	private WhiteLabel rightFocusLabel;
 	private ImagePanel rootPanel;
-	private ColorPanel categoryPanel;
+//	private ColorPanel categoryPanel;
 //	private EmptyBackgroundButton hideButton;
 	private EmptyBackgroundButton exitButton;
 	private WhiteBorderTextField searchTextField;
@@ -179,7 +179,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		System.out.println(command);
+//		System.out.println(command);
 
 	}
 
@@ -207,15 +207,12 @@ public class MainFrame extends JFrame implements ActionListener {
 
 //		hideButton.setFont(new Font("굴림", Font.PLAIN, 10));
 //		hideButton.setBounds(1158, 12, 47, 32);
-		categoryPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
+//		categoryPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		resultPanel = new ColorPanel(ResourceManager.BLACK_ALPHA);
 		randomPanel = new ColorPanel(ResourceManager.NONE);
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();
-		categoryPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.WHITE));
-		resultPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.WHITE));
-		randomPanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.YELLOW));
 //		searchImageIcon = new ImageIcon();
 //		setImageIcon();
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
@@ -258,13 +255,13 @@ public class MainFrame extends JFrame implements ActionListener {
 		return signUpButton;
 	}
 
-	public ColorPanel getCategoryPanel() {
-		return categoryPanel;
-	}
-
-	public void setCategoryPanel(ColorPanel categoryPanel) {
-		this.categoryPanel = categoryPanel;
-	}
+//	public ColorPanel getCategoryPanel() {
+//		return categoryPanel;
+//	}
+//
+//	public void setCategoryPanel(ColorPanel categoryPanel) {
+//		this.categoryPanel = categoryPanel;
+//	}
 
 	public void setSignUpButton(EmptyBackgroundButton signUpButton) {
 		this.signUpButton = signUpButton;
@@ -409,7 +406,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void setLocationComponents() {
-		categoryPanel.setBounds(250, 300, 750, 32);
+//		categoryPanel.setBounds(250, 300, 750, 32);
 		randomPanel.setBounds(250, 350, 750, 80);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
