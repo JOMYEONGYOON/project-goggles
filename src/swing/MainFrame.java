@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,9 +16,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import manager.ResourceManager;
+import manager.WordTableManager;
+import object.MySQL;
 import runner.FadeLabelRunner;
 
-public class MainFrame extends JFrame implements KeyListener, ActionListener {
+public class MainFrame extends JFrame implements ActionListener {
 //	private ImageIcon searchImageIcon;
 	private ColorPanel resultPanel;
 	private WhiteLabel leftFocusLabel;
@@ -36,7 +36,8 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	private SignUpPanel signUpPanel;
 	private TimePannel timePanel;
 	private boolean isLogin = false;
-	
+	private WordTableManager wordManager;
+
 	public boolean isLogin() {
 		return isLogin;
 	}
@@ -70,7 +71,13 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	}
 
 	public MainFrame() {
-
+		wordManager = new WordTableManager();
+		try {
+			wordManager.connect(new MySQL());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		initComponents();
 		setLocationComponents();
 		setUndecorated(true);
@@ -83,6 +90,14 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		setMainFrame();
 		runUIRepaintThread();
 		changeImageThread();
+	}
+
+	public WordTableManager getWordManager() {
+		return wordManager;
+	}
+
+	public void setWordManager(WordTableManager wordManager) {
+		this.wordManager = wordManager;
 	}
 
 	private void changeImageThread() {
@@ -173,6 +188,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 	}
 
 	private void initComponents() {
+		resultPanel = new ColorPanel(ResourceManager.WHITE_ALPHA);
 		signUpButton = new EmptyBackgroundButton("[회원가입]");
 		signInButton = new EmptyBackgroundButton("[로그인]");
 		timePanel = new TimePannel();
@@ -182,7 +198,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
 
 		goggles = new WhiteLabel("Goggles");
-		rootPanel = new ImagePanel("resources\\image\\goggles-" + ((int) (Math.random() * 11)+1) + ".jpg");
+		rootPanel = new ImagePanel("resources\\image\\goggles-" + ((int) (Math.random() * 11) + 1) + ".jpg");
 
 		rootPanel.setBackground(ResourceManager.BLACK);
 		rootPanel.setBorder(new CompoundBorder(new LineBorder(ResourceManager.NONE, 5, true),
@@ -231,20 +247,28 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 		this.signInButton = signInButton;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		repaint();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			System.out.println("!");
-			setTextFieldLocationThread();
-		}
-	}
-
-	public void setTextFieldLocationThread() {
+	public void setSearchFieldLocationThread() {
+//		Thread timePanelLocationThread = new Thread() {
+//
+//			@Override
+//			public void run() {
+//				int a = 0;
+//				while (a < 255) {
+//					a++;
+//					Color c = new Color(1.0F, 1.0F, 1.0F, (a / 255.0F));
+//					timePanel.setForeground(c);
+//					try {
+//						Thread.sleep(10);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//				timePanel.setVisible(false);
+//			}
+//
+//		};
+//		timePanelLocationThread.start();
 		Thread th = new Thread() {
 			@Override
 			public void run() {
@@ -254,7 +278,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 				int goggles_x = goggles.getX();
 				int goggles_y = goggles.getY();
 				while (true) {
-					if (textField_y < 150) {
+					if (textField_y < 200) {
 
 //						JPanel listPanel = new JPanel();
 //						listPanel.setLayout(new BorderLayout());
@@ -294,18 +318,18 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 					searchTextField.setLocation(textField_x, textField_y);
 
 				}
-				Thread googleMoveThread = new Thread() {
+				Thread gogglesMoveThread = new Thread() {
 
 					@Override
 					public void run() {
 						int goggles_x = goggles.getX();
 						int goggles_y = goggles.getY();
 						while (true) {
-							if (goggles_x < 100) {
+							if (goggles_x < 0) {
 								break;
 							}
 //							textField_x -= step;
-							goggles_x -= step;
+//							goggles_x -= step;
 							try {
 								sleep(1);
 
@@ -318,7 +342,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 					}
 
 				};
-				googleMoveThread.start();
+				gogglesMoveThread.start();
 				Thread tfMoveThread = new Thread() {
 
 					@Override
@@ -326,7 +350,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 						int textField_x = searchTextField.getX();
 						int textField_y = searchTextField.getY();
 						while (true) {
-							if (textField_y < 50) {
+							if (textField_y < 250) {
 								break;
 							}
 							textField_y -= step;
@@ -349,17 +373,13 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		repaint();
-
-	}
-
 	private void sertRootPanel() {
 		rootPanel.setLayout(null);
 	}
 
 	private void setLocationComponents() {
+
+		resultPanel.setBounds(250, 300, 750, 300);
 		leftFocusLabel.setBounds(25, 309, 100, 100);
 		rightFocusLabel.setBounds(1160, 309, 100, 100);
 		signUpButton.setBounds(1160, 10, 100, 25);
@@ -392,11 +412,11 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				if (signInPanel != null) {
-					if ( signInButton.getText().equals("[로그아웃]")) {
+					if (signInButton.getText().equals("[로그아웃]")) {
 						signInButton.setText("[로그인]");
-						signUpButton.setVisible(true);						
+						signUpButton.setVisible(true);
 						isLogin = false;
 						searchTextField.setEditable(false);
 						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
@@ -489,14 +509,14 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 					public void run() {
 						int alpha = 0;
 						while (true) {
-							if (alpha > 255) {
+							if (alpha > 254) {
 
 								leftFocusLabel.setVisible(false);
 								rightFocusLabel.setVisible(false);
 								break;
 							}
 							Color color = new Color(1.0F, 1.0F, 1.0F, alpha / 255.0F);
-							alpha = alpha + 1;
+							alpha = alpha + 5;
 							signInButton.setForeground(color);
 							signUpButton.setForeground(color);
 							try {
@@ -522,7 +542,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 						rootPanel.add(goggles);
 						gogglesButton.setVisible(false);
 						int goggles_y = goggles.getY();
-
+						int goggles_x = goggles.getX();
 						while (true) {
 							goggles_y--;
 							if (goggles_y < 180) {
@@ -558,7 +578,7 @@ public class MainFrame extends JFrame implements KeyListener, ActionListener {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							goggles.setLocation(goggles.getX(), goggles_y);
+							goggles.setLocation(goggles_x, goggles_y);
 						}
 
 //						

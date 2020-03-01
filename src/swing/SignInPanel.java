@@ -24,9 +24,9 @@ public class SignInPanel extends JPanel {
 	private WhiteLabel title;
 	private MainFrame mainFrameTest;
 
-	public SignInPanel(MainFrame mainFrameTest) {
+	public SignInPanel(MainFrame mainFrame) {
 		setBorder(new LineBorder(Color.WHITE));
-		this.mainFrameTest = mainFrameTest;
+		this.mainFrameTest = mainFrame;
 		setLayout(null);
 		setBackground(ResourceManager.NONE);
 		setForeground(Color.WHITE);
@@ -63,33 +63,36 @@ public class SignInPanel extends JPanel {
 						if (s.equals("")) {
 							WhiteLabel successLabel = new WhiteLabel("모두 입력해주세요");
 							successLabel.setBounds(ResourceManager.FRAME_WIDTH - 600, 150, 300, 100);
-							mainFrameTest.getRootPanel().add(successLabel);
+							mainFrame.getRootPanel().add(successLabel);
 							FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 							fade.start();
 							return;
 						}
 					}
 					if (member.checkIdPassword(idField.getText(), passwordField.getText())) {
-						WhiteBorderTextField searchTextField = mainFrameTest.getSearchTextField();
-						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.CYAN));
+						WhiteBorderTextField searchTextField = mainFrame.getSearchTextField();
+						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.YELLOW));
 						searchTextField.setText("");
 						searchTextField.setEditable(true);
 						SignInPanel.this.setVisible(false);
 						WhiteLabel successLabel = new WhiteLabel("로그인 성공");
 						synchronized (this) {
-							mainFrameTest.setLogin(true);
+							mainFrame.setLogin(true);
+							searchTextField.addKeyListener(new SearchKeyAdapter(mainFrame));
+							
 						}
-						mainFrameTest.getSignInButton().setText("[로그아웃]");
-						mainFrameTest.getSignUpButton().setVisible(false);
+						mainFrame.getRootPanel().add(mainFrame.getResultPanel());
+						mainFrame.getSignInButton().setText("[로그아웃]");
+						mainFrame.getSignUpButton().setVisible(false);
 						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 100, 100, 100);
-						mainFrameTest.getRootPanel().add(successLabel);
+						mainFrame.getRootPanel().add(successLabel);
 						FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 						fade.start();
 					} else {
 						WhiteLabel failLabel = new WhiteLabel("로그인 실패");
 						failLabel.setBounds(ResourceManager.FRAME_WIDTH - 500, 100, 100, 100);
 						FadeLabelRunner fade = new FadeLabelRunner(failLabel);
-						mainFrameTest.getRootPanel().add(failLabel);
+						mainFrame.getRootPanel().add(failLabel);
 						fade.start();
 					}
 
@@ -98,7 +101,7 @@ public class SignInPanel extends JPanel {
 					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
 					failLabel.setBounds(ResourceManager.FRAME_WIDTH - 500, 100, 100, 100);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
-					mainFrameTest.getRootPanel().add(failLabel);
+					mainFrame.getRootPanel().add(failLabel);
 					fade.start();
 				}
 
@@ -119,7 +122,7 @@ public class SignInPanel extends JPanel {
 		EmptyBackgroundButton cancelButton = new EmptyBackgroundButton("[로그인]");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainFrameTest.getRootPanel().remove(SignInPanel.this);
+				mainFrame.getRootPanel().remove(SignInPanel.this);
 			}
 		});
 		cancelButton.setText("[취소]");
