@@ -14,7 +14,6 @@ public class MemberTableManager extends DatabaseManager {
 	protected final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
 	protected final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
 
-
 	public void createMemberTable() {
 		Scanner sc = null;
 		String sql = "";
@@ -55,33 +54,29 @@ public class MemberTableManager extends DatabaseManager {
 		return member;
 	}
 
-	public void insert(Member member) {
+	public void insert(Member member) throws Exception {
 
-		try {
-			PreparedStatement pstmt = connection.prepareStatement(INSERT_MEMBER_AUTO_INCREMENT_NO_SQL);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getPhone());
-			pstmt.setString(4, member.getBirth());
-			pstmt.setString(5, member.getEmail());
-			pstmt.setString(6, member.getGender());
-			pstmt.setString(7, member.getPassword());
-			pstmt.setString(8, member.getEtc());
-			pstmt.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		PreparedStatement pstmt = connection.prepareStatement(INSERT_MEMBER_AUTO_INCREMENT_NO_SQL);
+		pstmt.setString(1, member.getId());
+		pstmt.setString(2, member.getName());
+		pstmt.setString(3, member.getPhone());
+		pstmt.setString(4, member.getBirth());
+		pstmt.setString(5, member.getEmail());
+		pstmt.setString(6, member.getGender());
+		pstmt.setString(7, member.getPassword());
+		pstmt.setString(8, member.getEtc());
+		pstmt.execute();
 	}
 
-	public boolean checkIdPassword(String id, String password) throws Exception{
-			PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_CHECK_ID_PASSWORD_SQL);
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
-			ResultSet rs = pstmt.executeQuery();
+	public boolean checkIdPassword(String id, String password) throws Exception {
+		PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_CHECK_ID_PASSWORD_SQL);
+		pstmt.setString(1, id);
+		pstmt.setString(2, password);
+		ResultSet rs = pstmt.executeQuery();
 
-			while (rs.next()) {
-				return true;
-			}
+		while (rs.next()) {
+			return true;
+		}
 		return false;
 
 	}

@@ -6,22 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import manager.MemberTableManager;
 import manager.ResourceManager;
 import object.Member;
 import object.MySQL;
 import runner.FadeLabelRunner;
-
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 
 public class SignUpPanel extends JPanel {
 	
@@ -157,16 +150,15 @@ public class SignUpPanel extends JPanel {
 					MemberTableManager memberTable = new MemberTableManager();
 					memberTable.connect(mySQL);
 					memberTable.insert(member);
-					
 					WhiteLabel successLabel = new WhiteLabel("회원가입 성공");
-					successLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					successLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
 					mainFrameTest.getRootPanel().add(successLabel);
 					FadeLabelRunner fade = new FadeLabelRunner(successLabel);
 					fade.start();
 					SignUpPanel.this.setVisible(false);
 				}catch(Exception e){
 					WhiteLabel failLabel = new WhiteLabel("회원가입 실패");
-					failLabel.setBounds(ResourceManager.FRAME_WIDTH-450,100,100,100);
+					failLabel.setBounds(ResourceManager.FRAME_WIDTH-500,100,100,100);
 					mainFrameTest.getRootPanel().add(failLabel);
 					FadeLabelRunner fade = new FadeLabelRunner(failLabel);
 					fade.start();
@@ -176,7 +168,6 @@ public class SignUpPanel extends JPanel {
 		});
 		btnNewButton.setBounds(214, 28, 60, 23);
 		add(btnNewButton);
-//		frame.getContentPane().add(panel);
 		add(panel);
 
 		setSize(360, 448);
