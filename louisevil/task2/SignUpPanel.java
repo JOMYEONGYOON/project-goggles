@@ -45,31 +45,31 @@ public class SignUpPanel extends JPanel {
 
 		JLabel lblNewLabel = new JLabel("id");
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel.setBounds(25, 79, 57, 15);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("name");
 		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_1.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_1.setBounds(25, 163, 57, 15);
 		add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("phone");
 		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_2.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_2.setBounds(25, 200, 57, 15);
 		add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("birth");
 		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_3.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_3.setBounds(25, 235, 57, 15);
 		add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel("email");
 		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_4.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_4.setBounds(25, 271, 57, 15);
 		add(lblNewLabel_4);
 
@@ -105,13 +105,13 @@ public class SignUpPanel extends JPanel {
 
 		JLabel lblNewLabel_4_1 = new JLabel("gender");
 		lblNewLabel_4_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_4_1.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_4_1.setBounds(25, 299, 75, 18);
 		add(lblNewLabel_4_1);
 
 		JLabel lblNewLabel_5 = new JLabel("password");
 		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_5.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_5.setBounds(25, 123, 57, 15);
 		add(lblNewLabel_5);
 
@@ -127,13 +127,13 @@ public class SignUpPanel extends JPanel {
 
 		JLabel lblNewLabel_6 = new JLabel("etc");
 		lblNewLabel_6.setForeground(Color.WHITE);
-		lblNewLabel_6.setFont(new Font("굴림", Font.ITALIC, 12));
+		lblNewLabel_6.setFont(new Font("나눔손글씨 펜", Font.ITALIC, 12));
 		lblNewLabel_6.setBounds(206, 81, 57, 15);
 		add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("회원가입");
 		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setFont(new Font("굴림", Font.PLAIN, 22));
+		lblNewLabel_7.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 22));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_7.setBounds(25, 10, 366, 55);
 
