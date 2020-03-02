@@ -112,7 +112,7 @@ public class MainFrame extends JFrame implements ActionListener {
 //				rootPanel.setBackground(Color.WHI);
 				int imageIndex = 1;
 				while (true) {
-					if (imageIndex > 11) {
+					if (imageIndex > 6) {
 						imageIndex = 1;
 					}
 					try {
