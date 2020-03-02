@@ -1,4 +1,4 @@
-package swing;
+package manager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,10 +13,15 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 
-import manager.WordTableManager;
 import object.Word;
+import swing.ColorPanel;
+import swing.EmptyBackgroundButton;
+import swing.ImagePanel;
+import swing.MainFrame;
+import swing.WhiteBorderTextField;
+import swing.WhiteLabel;
 
-public class SearchKeyAdapter extends KeyAdapter {
+public class SearchKeyEventManager extends KeyAdapter {
 	private MainFrame mainFrame;
 	private WhiteBorderTextField searchTextField;
 	private WordTableManager wordManager;
@@ -28,7 +33,7 @@ public class SearchKeyAdapter extends KeyAdapter {
 	private Thread addRandomThread;
 
 //	private ColorPanel categoryPanel;
-	public SearchKeyAdapter(MainFrame mainFrame) {
+	public SearchKeyEventManager(MainFrame mainFrame) {
 //		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();

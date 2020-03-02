@@ -12,6 +12,7 @@ import javax.swing.border.MatteBorder;
 
 import manager.MemberTableManager;
 import manager.ResourceManager;
+import manager.SearchKeyEventManager;
 import object.MySQL;
 import runner.FadeLabelRunner;
 
@@ -80,7 +81,7 @@ public class SignInPanel extends JPanel {
 						WhiteLabel successLabel = new WhiteLabel("로그인 성공");
 						synchronized (this) {
 							mainFrame.setLogin(true);
-							searchTextField.addKeyListener(new SearchKeyAdapter(mainFrame));
+							searchTextField.addKeyListener(new SearchKeyEventManager(mainFrame));
 
 						}
 						ColorPanel resultPanel = mainFrame.getRandomPanel();
@@ -114,7 +115,8 @@ public class SignInPanel extends JPanel {
 
 						mainFrame.getRootPanel().add(resultPanel);
 //						mainFrame.getRootPanel().add(categoryPanel);
-						mainFrame.getSignInButton().setText("[로그아웃]");
+//						mainFrame.getSignInButton().setText("[로그아웃]");
+						mainFrame.getSignInButton().setVisible(false);
 //						mainFrame.getResultPanel().removeAll();
 						mainFrame.getSignUpButton().setVisible(false);
 						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 100, 100, 100);

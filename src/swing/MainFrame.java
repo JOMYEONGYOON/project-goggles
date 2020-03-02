@@ -112,9 +112,7 @@ public class MainFrame extends JFrame implements ActionListener {
 //				rootPanel.setBackground(Color.WHI);
 				int imageIndex = 1;
 				while (true) {
-					if (imageIndex > 6) {
-						imageIndex = 1;
-					}
+					
 					try {
 						ColorPanel stopPanel = new ColorPanel(ResourceManager.WHITE);
 						sleep(7000);
@@ -146,7 +144,9 @@ public class MainFrame extends JFrame implements ActionListener {
 //						};
 //						th.start();
 						rootPanel.changeImage("resources\\image\\goggles-" + imageIndex + ".jpg");
-
+						if (imageIndex >= 5) {
+							imageIndex = 1;
+						}
 						imageIndex++;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -218,7 +218,7 @@ public class MainFrame extends JFrame implements ActionListener {
 //		searchButton = new EmptyBackgroundButton(searchImageIcon);
 
 		goggles = new WhiteLabel("Goggles");
-		rootPanel = new ImagePanel("resources\\image\\goggles-" + ((int) (Math.random() * 11) + 1) + ".jpg");
+		rootPanel = new ImagePanel("resources\\image\\goggles-" + ((int) (Math.random() * 5) + 1) + ".jpg");
 
 		rootPanel.setBackground(ResourceManager.BLACK);
 		rootPanel.setBorder(new CompoundBorder(new LineBorder(ResourceManager.NONE, 5, true),
@@ -450,23 +450,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 
 				if (signInPanel != null) {
-					if (signInButton.getText().equals("[로그아웃]")) {
-						resultPanel.setVisible(false);
-						randomPanel.setVisible(false);
-						signInButton.setText("[로그인]");
-						signUpButton.setVisible(true);
-						isLogin = false;
-						searchTextField.setEditable(false);
-						searchTextField.setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
-						searchTextField.setText("   검색하려면 로그인이 필요합니다.");
-						WhiteLabel successLabel = new WhiteLabel("로그아웃 성공");
-						successLabel.setBounds(ResourceManager.FRAME_WIDTH - 450, 150, 100, 100);
-						rootPanel.add(successLabel);
-						FadeLabelRunner label = new FadeLabelRunner(successLabel);
-						label.start();
-						repaint();
-						return;
-					}
+//					
 					rootPanel.remove(signInPanel);
 				}
 				if (signUpPanel != null) {
