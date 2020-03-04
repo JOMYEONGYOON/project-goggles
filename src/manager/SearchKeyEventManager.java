@@ -47,6 +47,8 @@ public class SearchKeyEventManager extends KeyAdapter {
 
 		randomPanel.setLayout(new GridLayout(1, 3));
 		mainFrame.setSearchFieldLocationThread();
+		
+		//random integ
 		addRandomThread = new Thread() {
 
 			@Override
@@ -58,7 +60,7 @@ public class SearchKeyEventManager extends KeyAdapter {
 		addRandomThread.start();
 
 	}
-
+	//add random words set
 	public void addRandom() {
 		try {
 			Thread.sleep(1000);
@@ -124,15 +126,8 @@ public class SearchKeyEventManager extends KeyAdapter {
 		}
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-
-	}
+	
+	// if key released, set ui location set searchtextfield
 
 	@Override
 	public void keyReleased(KeyEvent e) {
