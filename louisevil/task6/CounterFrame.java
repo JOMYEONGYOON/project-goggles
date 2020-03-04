@@ -49,7 +49,7 @@ public class CounterFrame extends JFrame {
 
 		// 타이머 값을 출력할 레이블 생성
 		timerLabel = new JLabel();
-		timerLabel.setFont(new Font("Gothic", Font.ITALIC, 80));
+		timerLabel.setFont(new Font("Gothic", Font.ITALIC, 100));
 		JLabelCounterRunnable jLabelCounterRunnable = new JLabelCounterRunnable();
 		c.add(timerLabel);
 		Thread thread = new Thread(jLabelCounterRunnable);

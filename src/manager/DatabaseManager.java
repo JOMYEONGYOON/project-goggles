@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -18,13 +17,15 @@ public class DatabaseManager {
 	// 데이터베이스 연결 객체
 	protected static Connection connection;
 
+	// mysql connect method , driver, connection set
 	public void connect(MySQL mySQL) throws Exception {
 		Class.forName(ResourceManager.MYSQL_DRIVER);
 		connection = DriverManager.getConnection(ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":" + mySQL.getPort()
 				+ "/" + mySQL.getDatabaseName() + mySQL.getProperties(), mySQL.getId(), mySQL.getPassword());
 
 	}
-	
+
+	// run by file query
 	public void executeQueryByFile(File file) throws Exception {
 
 		String sql = "";
@@ -40,6 +41,7 @@ public class DatabaseManager {
 		sc.close();
 	}
 
+	// run by file query , insert, delete, update query
 	public void executeUpdateQueryByFile(File file) throws Exception {
 		String sql = "";
 		Scanner sc = new Scanner(file);
@@ -52,6 +54,7 @@ public class DatabaseManager {
 		sc.close();
 	}
 
+	// creat table method by sql path if fail retry to path force
 	public void createTable() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(ResourceManager.YES_NO_CREATE_TABLE);
@@ -73,6 +76,7 @@ public class DatabaseManager {
 
 	}
 
+	// create table sql path by scanner
 	public void createTable(String sqlPath) {
 		Scanner sc = null;
 		try {
@@ -94,30 +98,27 @@ public class DatabaseManager {
 		}
 		PreparedStatement prepareStatement = null;
 		try {
+			// get connection
 			prepareStatement = connection.prepareStatement(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			prepareStatement.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		sc.close();
 	}
-
+	// drop table by table string name
 	public void dropTable(String tableName) {
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = connection.prepareStatement(ResourceManager.SQL_DROP_TABLE + tableName);
 			prepareStatement.execute();
 		} catch (SQLException e) {
+			//error print
+			e.printStackTrace();
 			System.err.printf("%s %s %s", getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
 		}
 	}
-
+	// connect server, mysql server by mysql object (defined)
 	public void connectServer(MySQL mySQL) {
 		try {
 			Class.forName(ResourceManager.MYSQL_DRIVER);
@@ -129,7 +130,7 @@ public class DatabaseManager {
 		}
 
 	}
-
+	// execute by update insert query by file sql set file path
 	public void executeUpdateInsertQueryByFile(File file) {
 		Scanner sc = null;
 		try {
@@ -157,6 +158,7 @@ public class DatabaseManager {
 
 	}
 
+	// execute update set state jlabel set by file
 	public void executeUpdateInsertQueryByFile(File file, JLabel stateLabel) {
 		Scanner fileLineCheckSC = null;
 		try {

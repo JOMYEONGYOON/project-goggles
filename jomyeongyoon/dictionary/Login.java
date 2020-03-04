@@ -1,11 +1,10 @@
 package dictionary;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.imageio.ImageReader;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,11 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import swing.ImagePanel;
-import java.awt.Toolkit;
-import java.awt.Color;
-import javax.swing.ImageIcon;
 
 public class Login extends JFrame {
 	private JButton btnNewButton;

@@ -6,8 +6,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import manager.ResourceManager;
-import swing.ColorPanel;
-import swing.ImagePanel;
 
 public class ColorImageFrame extends JFrame{
 

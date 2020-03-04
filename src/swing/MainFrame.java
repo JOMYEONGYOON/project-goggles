@@ -18,7 +18,6 @@ import javax.swing.border.MatteBorder;
 import manager.ResourceManager;
 import manager.WordTableManager;
 import object.MySQL;
-import runner.FadeLabelRunner;
 
 public class MainFrame extends JFrame implements ActionListener {
 //	private ImageIcon searchImageIcon;

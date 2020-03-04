@@ -21,7 +21,7 @@ public class CustomerTableTest {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setLocation(0, 0);
 		scrollPane.setSize(600, 400);
-		table.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+		table.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 18));
 		table.setRowHeight(30);
 		
 		frame.add(scrollPane);

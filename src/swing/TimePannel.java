@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,14 +21,14 @@ public class TimePannel extends JPanel {
 		timerLabel = new JLabel("");
 		add(timerLabel);
 		timerLabel.setSize(500, 100);
-		timerLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
+		timerLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 36));
 		timerLabel.setForeground(Color.white);
 		
 		Thread th = new Thread() {
 			@Override
 			public void run() {
 				while (true) { // 무한 루프
-					SimpleDateFormat formatter = new SimpleDateFormat("YY-MM-DD HH:mm:ss", Locale.KOREA);
+					SimpleDateFormat formatter = new SimpleDateFormat("YY-MM-dd HH:mm:ss", Locale.KOREA);
 					Calendar c = Calendar.getInstance();
 					String dTime = formatter.format(c.getTime());
 					timerLabel.setText(dTime);
