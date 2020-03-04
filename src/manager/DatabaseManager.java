@@ -82,7 +82,7 @@ public class DatabaseManager {
 		try {
 			sc = new Scanner(new File(sqlPath));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		String sql = "";
@@ -106,6 +106,7 @@ public class DatabaseManager {
 		}
 		sc.close();
 	}
+
 	// drop table by table string name
 	public void dropTable(String tableName) {
 		PreparedStatement prepareStatement = null;
@@ -113,11 +114,12 @@ public class DatabaseManager {
 			prepareStatement = connection.prepareStatement(ResourceManager.SQL_DROP_TABLE + tableName);
 			prepareStatement.execute();
 		} catch (SQLException e) {
-			//error print
+			// error print
 			e.printStackTrace();
 			System.err.printf("%s %s %s", getClass().getName(), Exception.class.getName(), ResourceManager.ERROR);
 		}
 	}
+
 	// connect server, mysql server by mysql object (defined)
 	public void connectServer(MySQL mySQL) {
 		try {
@@ -125,11 +127,12 @@ public class DatabaseManager {
 			connection = DriverManager.getConnection(ResourceManager.MYSQL_JDBC_URL + mySQL.getIp() + ":"
 					+ mySQL.getPort() + "/" + mySQL.getProperties(), mySQL.getId(), mySQL.getPassword());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
 	}
+
 	// execute by update insert query by file sql set file path
 	public void executeUpdateInsertQueryByFile(File file) {
 		Scanner sc = null;
@@ -164,7 +167,7 @@ public class DatabaseManager {
 		try {
 			fileLineCheckSC = new Scanner(new File(file.getPath()));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		int lineTotalCount = 0;

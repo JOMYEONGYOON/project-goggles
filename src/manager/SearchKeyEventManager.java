@@ -21,7 +21,10 @@ import swing.MainFrame;
 import swing.WhiteBorderTextField;
 import swing.WhiteLabel;
 
+//SerchKeyEventManager jTextField, keyAdapter add, key released listener event set
 public class SearchKeyEventManager extends KeyAdapter {
+	
+	// Search key vent field
 	private MainFrame mainFrame;
 	private WhiteBorderTextField searchTextField;
 	private WordTableManager wordManager;
@@ -29,12 +32,11 @@ public class SearchKeyEventManager extends KeyAdapter {
 	private ImagePanel rootPanel;
 	private Vector<EmptyBackgroundButton> resultButtons;
 	private ColorPanel resultPanel;
-//	private boolean isRandom = true;
 	private Thread addRandomThread;
 
-//	private ColorPanel categoryPanel;
+	
+	// public constructor mainframe get, to set field
 	public SearchKeyEventManager(MainFrame mainFrame) {
-//		this.categoryPanel=mainFrame.getCategoryPanel();
 		resultPanel = mainFrame.getResultPanel();
 		resultButtons = new Vector<EmptyBackgroundButton>();
 		this.wordManager = mainFrame.getWordManager();
@@ -45,44 +47,6 @@ public class SearchKeyEventManager extends KeyAdapter {
 
 		randomPanel.setLayout(new GridLayout(1, 3));
 		mainFrame.setSearchFieldLocationThread();
-//		Thread checkThread = new Thread() {
-//
-//			@Override
-//			public void run() {
-//				try {
-//					Thread.sleep(2000);
-//				} catch (InterruptedException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				while (true) {
-//					if (mainFrame.isLogin()) {
-//						resultButtons = new Vector<EmptyBackgroundButton>();
-//						for (int i = 0; i < resultButtons.size(); i++) {
-//							long step = System.currentTimeMillis() - resultButtons.get(i).getTime();
-//							float color = step / 7000.0F;
-//							System.out.println(i + "/" + color);
-//							resultPanel.setForeground(new Color(1.0F, 1.0F, 1.0F, color));
-//							if (step > 7000) {
-//								resultPanel.remove(resultButtons.get(i));
-//
-//							}
-//						}
-//						resultPanel.removeAll();
-//					}
-//					try {
-//						Thread.sleep(100);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//
-//				}
-//
-//			}
-//
-//		};
-//		checkThread.start();
 		addRandomThread = new Thread() {
 
 			@Override
@@ -99,25 +63,12 @@ public class SearchKeyEventManager extends KeyAdapter {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		while (true) {
 
-////			while (!isRandom) {
-////				System.out.println("!");
-//
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 			int count = wordManager.count();
-//			String searchText = searchTextField.getText();
 			randomPanel.removeAll();
-//			ArrayList<Word> words = wordManager.selectLimitByName(searchText, (int) (Math.random() * count), 3);
 			ArrayList<Word> words = wordManager.selectLimit((int) (Math.random() * count), 3);
 			for (int i = 0; i < words.size(); i++) {
 				String name = words.get(i).getName();
@@ -131,10 +82,7 @@ public class SearchKeyEventManager extends KeyAdapter {
 
 					@Override
 					public void mouseClicked(MouseEvent e) {
-//						synchronized (addRandomThread) {
-//							isRandom = false;
 
-//						}
 						printResult();
 
 					}
@@ -143,25 +91,16 @@ public class SearchKeyEventManager extends KeyAdapter {
 
 						resultPanel.removeAll();
 						Word word = wordManager.selectByName(nameButton.getText());
-//						System.out.println(word.getName() + "/" + word.getCategory() + "/" + word.getDef());
 						resultPanel.setBounds(randomPanel.getX(), randomPanel.getY() + 100,
 								(int) randomPanel.getSize().getWidth(), 250);
 						resultPanel.setLayout(new BorderLayout());
-//						ColorPanel nameAndDefPanel = new ColorPanel(ResourceManager.NONE);
-//						nameAndDefPanel.setLayout(new BorderLayout());
 						WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
 						head.setForeground(Color.yellow);
 						head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
-//						nameAndDefPanel.add(nameLabel, BorderLayout.WEST);
-//						WhiteLabel categoryLabel = new WhiteLabel("[분류:"+word.getCategory()+"]");
-//						categoryLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-//						nameAndDefPanel.add(categoryLabel, BorderLayout.CENTER);
-//						resultPanel.add(nameAndDefPanel, BorderLayout.NORTH);
 						WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
 						defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 						defLabel.setVerticalAlignment(SwingConstants.TOP);
 						resultPanel.add(head, BorderLayout.NORTH);
-//						resultPanel.add(categoryLabel, BorderLayout.SOUTH);
 						resultPanel.add(defLabel, BorderLayout.CENTER);
 						rootPanel.add(resultPanel);
 					}

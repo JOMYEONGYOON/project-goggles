@@ -12,7 +12,8 @@ import object.Member;
 import object.MySQL;
 
 public class RandomInsertManager extends MemberTableManager {
-
+	
+	// random insert member loremIpsum
 	public void randomInsert() {
 
 		Member member = new Member();
@@ -50,6 +51,8 @@ public class RandomInsertManager extends MemberTableManager {
 		}
 	}
 
+	
+	// random integer manager
 	public static void main(String[] args) {
 
 		RandomInsertManager ri = new RandomInsertManager();

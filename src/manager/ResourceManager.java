@@ -2,6 +2,7 @@ package manager;
 
 import java.awt.Color;
 
+//final static variable define
 public class ResourceManager {
 
 	public final static Color RED = Color.red;

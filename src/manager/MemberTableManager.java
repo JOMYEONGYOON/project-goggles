@@ -8,12 +8,16 @@ import java.util.Scanner;
 
 import object.Member;
 
+// databasemanager extends to member table manager
 public class MemberTableManager extends DatabaseManager {
+
+	// sql query member table
 	protected final static String SELECT_MEMBER_BY_ID_SQL = "SELECT id,name,def,category FROM word WHERE id=?";
 	protected final static String SELECT_MEMBER_BY_NAME_SQL = "SELECT id,name,def,category FROM word WHERE name=?";
 	protected final static String INSERT_MEMBER_AUTO_INCREMENT_NO_SQL = "INSERT INTO member(id,name,phone,birth,email,gender,password, etc) VALUES(?,?,?,?,?,?,?,?)";
 	protected final static String SELECT_MEMBER_CHECK_ID_PASSWORD_SQL = "SELECT * FROM member WHERE id=? AND password=?";
 
+	// create member table sql path by scanner
 	public void createMemberTable() {
 		Scanner sc = null;
 		String sql = "";
@@ -35,6 +39,7 @@ public class MemberTableManager extends DatabaseManager {
 		}
 	}
 
+	// get by id member talbe get member set id , sql connect server
 	public Member selectById(String id) {
 		Member member = null;
 		try {
@@ -48,14 +53,13 @@ public class MemberTableManager extends DatabaseManager {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return member;
 	}
 
+	// insert member, exception throws
 	public void insert(Member member) throws Exception {
-
 		PreparedStatement pstmt = connection.prepareStatement(INSERT_MEMBER_AUTO_INCREMENT_NO_SQL);
 		pstmt.setString(1, member.getId());
 		pstmt.setString(2, member.getName());
@@ -67,7 +71,8 @@ public class MemberTableManager extends DatabaseManager {
 		pstmt.setString(8, member.getEtc());
 		pstmt.executeUpdate();
 	}
-
+	
+	// checkId Password, id, password
 	public boolean checkIdPassword(String id, String password) throws Exception {
 		PreparedStatement pstmt = connection.prepareStatement(SELECT_MEMBER_CHECK_ID_PASSWORD_SQL);
 		pstmt.setString(1, id);
