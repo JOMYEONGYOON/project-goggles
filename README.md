@@ -11,7 +11,7 @@
 <span>
 <img src="https://github.com/louisevil/goggles/blob/master/resources/image/%ED%99%98%EA%B2%BD.png" width="400" height="240">
 </span><span>
-<img src="https://github.com/louisevil/goggles/blob/master/resources/image/%ED%8C%A8%ED%82%A4%EC%A7%80%EA%B5%AC%EC%84%B1%ED%8A%B8%EB%A6%AC.png" width="320" height="180">
+<img src="https://github.com/louisevil/goggles/blob/master/resources/image/%ED%8C%A8%ED%82%A4%EC%A7%80%EA%B5%AC%EC%84%B1%ED%8A%B8%EB%A6%AC.png" width="400" height="240">
 </span><span>
 <img src="https://github.com/louisevil/goggles/blob/master/resources/image/Lorem.png" width="400" height="240">
 </span>
