@@ -21,7 +21,7 @@ public class TimePannel extends JPanel {
 		timerLabel = new JLabel("");
 		add(timerLabel);
 		timerLabel.setSize(500, 100);
-		timerLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+		timerLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 36));
 		timerLabel.setForeground(Color.white);
 		
 		Thread th = new Thread() {

@@ -76,7 +76,7 @@ public class SearchKeyEventManager extends KeyAdapter {
 				String name = words.get(i).getName();
 				EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
 				nameButton.setHorizontalAlignment(SwingConstants.LEFT);
-				nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 10));
+				nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
 				nameButton.setTime(System.currentTimeMillis());
 				randomPanel.add(nameButton);
 				resultButtons.add(nameButton);
@@ -98,9 +98,9 @@ public class SearchKeyEventManager extends KeyAdapter {
 						resultPanel.setLayout(new BorderLayout());
 						WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
 						head.setForeground(Color.yellow);
-						head.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+						head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
 						WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
-						defLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+						defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 						defLabel.setVerticalAlignment(SwingConstants.TOP);
 						resultPanel.add(head, BorderLayout.NORTH);
 						resultPanel.add(defLabel, BorderLayout.CENTER);
@@ -142,9 +142,9 @@ public class SearchKeyEventManager extends KeyAdapter {
 					resultPanel.setLayout(new BorderLayout());
 					WhiteLabel head = new WhiteLabel(word.getName() + "    [분류:" + word.getCategory() + "]");
 					head.setForeground(Color.yellow);
-					head.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+					head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
 					WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
-					defLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+					defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 					defLabel.setVerticalAlignment(SwingConstants.TOP);
 					resultPanel.add(head, BorderLayout.NORTH);
 					resultPanel.add(defLabel, BorderLayout.CENTER);
@@ -155,7 +155,7 @@ public class SearchKeyEventManager extends KeyAdapter {
 						String name = words.get(i).getName();
 						EmptyBackgroundButton nameButton = new EmptyBackgroundButton(name);
 						nameButton.setHorizontalAlignment(SwingConstants.LEFT);
-						nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 10));
+						nameButton.setFont(new Font("맑은고딕", Font.PLAIN, 14));
 						nameButton.setTime(System.currentTimeMillis());
 						randomPanel.add(nameButton);
 						resultButtons.add(nameButton);
@@ -176,9 +176,9 @@ public class SearchKeyEventManager extends KeyAdapter {
 								WhiteLabel head = new WhiteLabel(
 										word.getName() + "    [분류:" + word.getCategory() + "]");
 								head.setForeground(Color.yellow);
-								head.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+								head.setFont(new Font("나눔고딕", Font.PLAIN, 14));
 								WhiteLabel defLabel = new WhiteLabel("<html><div>" + word.getDef() + "</div>");
-								defLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+								defLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 								defLabel.setVerticalAlignment(SwingConstants.TOP);
 								resultPanel.add(head, BorderLayout.NORTH);
 								resultPanel.add(defLabel, BorderLayout.CENTER);
@@ -188,7 +188,7 @@ public class SearchKeyEventManager extends KeyAdapter {
 					}
 					if (words.size() <= 0) {
 						WhiteLabel notFoundLabel = new WhiteLabel("<html><div>" + "단어를 찾지 못하였습니다.<br/>" + "</div>");
-						notFoundLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+						notFoundLabel.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 						notFoundLabel.setVerticalAlignment(SwingConstants.TOP);
 						resultPanel.add(notFoundLabel, BorderLayout.NORTH);
 						rootPanel.add(resultPanel);
