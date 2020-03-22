@@ -1,4 +1,6 @@
 ##### Goggles 자바 스윙 사전 프로그램
+##### 네이버 나눔폰트 사용했습니다.! 설치가 필요합니다.
+##### !(https://hangeul.naver.com/2017/nanum) 
 <span>
 <img src="https://github.com/louisevil/goggles/blob/master/resources/image/start.gif" width="430" height="250">
 </span>
