@@ -1,8 +1,1 @@
-bin/
-.project
-*.class
-.classpath
-.metadata/
-__pycache__/
-.vscode/
-.settings
+/bin/

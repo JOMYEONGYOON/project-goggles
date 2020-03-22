@@ -1,6 +1,7 @@
 package manager;
 
 import java.awt.Color;
+import java.awt.Font;
 
 //final static variable define
 public class ResourceManager {
@@ -79,5 +80,6 @@ public class ResourceManager {
 	public static String MYSQL_PASSWORD = "1234";
 	public static String MYSQL_JDBC_URL = "jdbc:mysql://";
 	public static String MYSQL_PORT = "3306";
+	public static String MAIN_FONT = Font.SANS_SERIF;
 
 }

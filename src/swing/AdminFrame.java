@@ -28,7 +28,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import runner.FileRunner;
 
-public class DatabaseManagerFrame extends JFrame {
+public class AdminFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel southPanel;
 	private JPanel panel;
@@ -45,7 +45,7 @@ public class DatabaseManagerFrame extends JFrame {
 	private JLabel stateLabel;
 //	private JButton autoButton;
 
-	public DatabaseManagerFrame() {
+	public AdminFrame() {
 		setTitle("데이터베이스 관리");
 		textArea = new JTextArea();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -220,7 +220,7 @@ public class DatabaseManagerFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DatabaseManagerFrame window = new DatabaseManagerFrame();
+					AdminFrame window = new AdminFrame();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -148,7 +148,7 @@ public class SignInPanel extends JPanel {
 		add(signInButton);
 
 		title = new WhiteLabel("로그인");
-		title.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 32));
+		title.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.LEFT);
 		title.setBounds(29, 25, 77, 49);

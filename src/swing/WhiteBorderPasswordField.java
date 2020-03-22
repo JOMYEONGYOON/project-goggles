@@ -13,6 +13,6 @@ public class WhiteBorderPasswordField extends JPasswordField {
 		setForeground(Color.white);
 		setBackground(ResourceManager.NONE);
 		setBorder(new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255)));
-		setFont(new Font("나눔손글씨 펜", Font.PLAIN, 16));
+		setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 	}
 }

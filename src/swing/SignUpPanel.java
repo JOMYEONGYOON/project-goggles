@@ -118,7 +118,7 @@ public class SignUpPanel extends JPanel {
 		add(lblNewLabel_6);
 
 		WhiteLabel lblNewLabel_7 = new WhiteLabel("회원가입");
-		lblNewLabel_7.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 32));
+		lblNewLabel_7.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_7.setBounds(25, 10, 161, 55);
 

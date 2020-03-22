@@ -201,7 +201,7 @@ public class MainFrame extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		});
-		exitButton.setFont(new Font("굴림", Font.PLAIN, 12));
+		exitButton.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 		exitButton.setBounds(1219, 12, 47, 32);
 
 //		hideButton.setFont(new Font("굴림", Font.PLAIN, 10));
@@ -224,18 +224,18 @@ public class MainFrame extends JFrame implements ActionListener {
 				new LineBorder(new Color(255, 255, 255), 1, true)));
 		searchTextField = new WhiteBorderTextField();
 //		searchTextField.setForeground(Color.yellow);
-		searchTextField.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
+		searchTextField.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 		searchTextField.setText("    단어를 검색하려면 로그인이 필요합니다.");
 		searchTextField.setEditable(false);
 //		textField.setFont(new F);
 		leftFocusLabel = new WhiteLabel(">>");
 		rightFocusLabel = new WhiteLabel("<<");
-		leftFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
-		rightFocusLabel.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
+		leftFocusLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 48));
+		rightFocusLabel.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 48));
 		signInButton.setForeground(Color.white);
 		signUpButton.setForeground(Color.white);
-		signInButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
-		signUpButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 24));
+		signInButton.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
+		signUpButton.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 10));
 	}
 
 //	private void setImageIcon() {
@@ -557,7 +557,7 @@ public class MainFrame extends JFrame implements ActionListener {
 					@Override
 					public void run() {
 
-						goggles.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
+						goggles.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 48));
 						goggles.setForeground(Color.WHITE);
 						goggles.setHorizontalAlignment(SwingConstants.CENTER);
 						goggles.setBounds(465, 259, 300, 200);
@@ -613,7 +613,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		});
 		gogglesButton.setLocation(25, 25);
-		gogglesButton.setFont(new Font("나눔손글씨 펜", Font.PLAIN, 96));
+		gogglesButton.setFont(new Font(ResourceManager.MAIN_FONT, Font.PLAIN, 48));
 		gogglesButton.setForeground(Color.WHITE);
 		gogglesButton.setSize(1235, 668);
 		gogglesButton.setSize(ResourceManager.FRAME_WIDTH - 100, ResourceManager.FRAME_HEIGHT - 100);
