@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Evernote Export</title>
+  <title>Goggles</title>
   <basefont face="Segoe UI" size="2" />
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="exporter-version" content="Evernote Windows/308919 (ko-KR, DDL); Windows/10.0.0 (Win64);"/>
@@ -14,8 +14,566 @@
 </head>
 <body>
  <div>
-<span><div><div style="text-align: center;"><div style="text-align: left;"><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트</span></div><div style="text-align: left;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 130px;"></col><col style="width: 1130px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 130px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 제목</span></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 1130px; padding: 8px;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Goggles</span></div></td></tr></tbody></table><div style="margin-top: 0pt; margin-bottom: 0pt;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1259px;"></col></colgroup><tbody><tr><td style="width: 1259px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">GOGGLES 프로젝트라고 이름을 지어진 이유는 GOGGLE과 똑같이 검색엔진을 만들면 어떨까 해서</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">GOGGLE 느낌나게 GOGGLES 지었고, 테마는 미니언즈 캐릭터 들일 고글을 다 쓰고 있어서 미니언즈 배경을 사용하였습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">사전을 구현한 이유는</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">검색엔진을 구현하려면 검색엔진에서 찾을 때 매칭해야 될 키워드가 필요한데</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">이 키워드</span><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">를 저장하기 위한 구조를 어떤것일지 생각해보다가 사전 이라는 형태로 구성하면 괜찮을 것 같아서 시작하게되었습니다.</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">현재 개발언어는 자바이지만, 파이썬 같은 경우에는 dictionary 자료형이 아예 존재하더군요..</span><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">이때 사전에 데이터를 넣을 고민을 하다가 data.go.kr에 용어 사전이 있을 거 같아서 검색을 해봤습니다.</span><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">data.go.kr 공공데이터 관련 웹사이트입니다. csv, api 형태로 자료를 얻을 수 있고,</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">GOGGLES 프로젝트에서는 csv 파일을 가져와서 mysql community에서 바로 csv를 query로 변환하여 테이블을 생성할 수 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">저장 후에 데이터베이스를 또 sql로 변환하여 저장하였고, 이것을 데이터베이스 관리하는 쿼리문으로 다시 사용하였습니다.</span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><hr/><div style="text-align: left;"></div><div style="text-align: left;"><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">진행과정</span></div></div><div><div style="margin-top: 0pt; margin-bottom: 0pt;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1259px;"></col></colgroup><tbody><tr><td style="width: 1259px; padding: 8px; border: 1px solid;"><div><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">분석, 설계, 환경설정, 구현, 테스트, 마무리 단계별로 진행하였습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">처음 일정을 계획할때 분석,설계,구현,테스트 4단계로 정하고 환경설정과 정리 과정을 추가하였습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">프로젝트 설계와 개발환경을 설정하는데 프로젝트 전체 일정의 절반을 차지했고 그 다음으로 구현의 비중이 높았습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">2월말 부터</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">코로나 여파로 프로젝트 발표일이 미뤄지면서, 3월 2일 이후부터는</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">프로젝트 유지보수를 하였고, 정리작업을 조금더 보완하였습니다.</span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(77, 206, 29); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">일정</span></div></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 180px;"></col><col style="width: 172px;"></col><col style="width: 183px;"></col><col style="width: 174px;"></col><col style="width: 180px;"></col><col style="width: 187px;"></col><col style="width: 179px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 180px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">일</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 172px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">월</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 183px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">화</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 174px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">수</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 180px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">목</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 187px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">금</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 179px; padding: 8px;"><div style="text-align: center;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">토</span></div></td></tr><tr><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 180px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 172px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 183px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 174px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 180px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 187px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 179px; padding: 8px;"><div><span style="color: rgb(0, 0, 0); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">2020.02.22</span></div></td></tr><tr><td style="width: 180px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 172px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 183px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 174px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 180px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 187px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 179px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">요구사항 분석</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td></tr><tr><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 180px; padding: 8px;"><div><span style="color: rgb(0, 0, 0); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">2020.02.23</span></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 172px; padding: 8px;"><div><span style="color: rgb(0, 0, 0); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">2020.02.24</span></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 183px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.02.</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">25</span></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 174px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.02.</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">26</span></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 180px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.02.</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">27</span></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 187px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.02.</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">28</span></font></div></td><td style="background-color: rgb(234, 234, 234); border: 1px solid rgb(187, 187, 187); width: 179px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.02.</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">29</span></font></div></td></tr><tr><td style="width: 180px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 기획</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 172px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 설계</span></div></td><td style="width: 183px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">개발 환경 설정</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 174px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">협업 관리 도구</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Git 환경 설정</span></div></td><td style="width: 180px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">데이터베이스</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">관리자 구현</span></div></td><td style="width: 187px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;"> UI</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">사용자 구현</span></div></td><td style="width: 179px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;"> UI</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">검색 구현</span></div></td></tr><tr><td style="background-color: rgb(234, 234, 234); width: 180px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">2020.03.0</span><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0);">1</span></font></div></td><td style="background-color: rgb(234, 234, 234); width: 172px; padding: 8px; border: 1px solid;"><div><span style="color: rgb(0, 0, 0); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">2020.03.02</span></div></td><td style="width: 183px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 174px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 180px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 187px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 179px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td></tr><tr><td style="width: 180px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">테스트</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">유지보수</span></div></td><td style="width: 172px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">정리</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">문서작성, 주석 작성</span></div></td><td style="width: 183px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 174px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 180px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 187px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 179px; padding: 8px; border: 1px solid;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td></tr></tbody></table><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">세부 정보</span></div><div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 146px;"></col><col style="width: 1105px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 146px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">목적 / 의도</span></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 1105px; padding: 8px;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">사전 (Dictionary)</span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><hr style="text-align: left;"/><div style="text-align: left;"></div><div style="text-align: left;"><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">분석/설계</span></div><div style="text-align: left;"><div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">프로젝트 분석, 설계, 그리고 기능들을 간단하게 소개해드리겠습니다. </span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">관리페이지에서 데이터베이스에 사전 데이터가 추가 되어있으면,</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">회원가입을 하면 로그인을 하여 사전 데이터를 검색할 수 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">주요 기능은 단어 검색과 프로젝트의 데이터베이스 관리를 할 수 있습니다.</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 321px;"></col><col style="width: 304px;"></col><col style="width: 343px;"></col><col style="width: 287px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 321px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">회원가입</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 304px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">로그인</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 343px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">검색</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 287px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">관리</span></div></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); width: 321px; padding: 8px;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">아이디 중복확인&gt;회원가입</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 304px; padding: 8px;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">회원가입&gt;로그인</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 343px; padding: 8px;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">로그인&gt;검색</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 287px; padding: 8px;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">데이터베이스 생성 및 삭제</span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;"><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 관리</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1245px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 1245px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Git</span></div></td></tr><tr><td style="width: 1245px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">소스코드 관리를 이클립스에서 Git을 통하여 관리할수도 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">또 다른 방법도 존재하는데요</span><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">Git SCM이라는 콘솔로만 할 수 있는 방식의 Git을 설치 후에</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">Github Desktop을 설치하여 GUI 방식으로 쉽게 간단한 것만 소스코드 버전관리를 하였습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">현재프로젝트에서 소스코드를 관리할 때 .gitignore 파일을 사용하여 필터링 하면 필요한 부분만 업로드 할 수 있습니다.</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">대체할 만한 도구로 Trello(트렐로), Asana(아사나)와 같은 프로그램을 추천합니다. </span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">작업을 하면서 메신저도 사용하는데 네이트온, 카카오톡과 같은 일반 채팅메신저가 아닌 개발 사무용 메신저도 존재합니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">잔디, 슬랙이 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">잔디 같은 경우에는 권한을 부여할 수 있고 다른 프로그램들 (git, 날씨 등등 유용한 프로그램들을 연동할 수 있습니다.)</span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 관리</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 649px;"></col><col style="width: 587px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 649px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Git Network Graph</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 587px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Github Project</span></div></td></tr><tr><td style="border: 1px solid rgb(219, 219, 219); width: 649px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;"><img src="goggles_files/Image.png" type="image/png" data-filename="Image.png"/></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 587px; padding: 8px;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;"><img src="goggles_files/Image [1].png" type="image/png" data-filename="Image.png"/></span></div></td></tr><tr><td style="border: 1px solid rgb(219, 219, 219); width: 649px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">Git에서 프로젝트를 팀원들과 함께 관리를 하다보면 , 그래프를 살펴보면 프로제트가 분리되었다가 합쳐지는 지점 쉽게 발견할 수 있습니다. </span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">이때 같은 소스코드를 동시에 편집 후 업로드를 하게되면 충돌이나는 문제가 발생할 수 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">이것을 방지하기 위한 방법으로  자바 프로젝트 src 폴더외에 작업 소스폴더를 추가하였습니다. 하지만 동일파일명 입력시 충돌이 날 수 있기 때문에 완벽한 방법은 아닙니다.</span></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 587px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">깃 허브 프로젝트 레퍼지토리를 잘 살펴보면 Project를 관리 할 수 있는 페이지가 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">PPT와 같은 형태로 프로젝트 작업 내역을 관리 할 수 있습니다. </span><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">Github Project에서 협업 관리는 F5를 계속 눌러 확인을 해야되는 문제가 있습니다.</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td></tr></tbody></table><div style="margin-top: 0pt; margin-bottom: 0pt;"><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(65, 173, 28); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">협업</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 302px;"></col><col style="width: 1023px;"></col></colgroup><tbody><tr><td style="border: 1px solid rgb(204, 204, 204); width: 302px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Project</span></span></div><div style="margin-left: 36pt; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">src</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Model.java</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">View.java</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Controller.java</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Resource.java</span></span></div><div style="margin-left: 36pt; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">32Lab</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Controller.java</span></span></div><div style="margin-left: 36pt; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">thm121</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ViewTest.java</span></span></div><div style="margin-left: 36pt; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">jomyeongyoon</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ControllerTest.java</span></span></div><div style="margin-left: 36pt; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">power8128</span></span></div><div style="margin-left: 76px; margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ResourceTest.java</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 1023px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">src에 공통 소스코드 원본 초기, 설계 코드를  작성하였고, 각각의 소스폴더 공간에서 Test라는 것을 추가하여 복사하였습니다.</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">그리고 이후에 관리자가 통합하는 형태로 진행하였습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; font-variant-numeric: normal; line-height: 1.2;">하지만, 실제 이렇게 관리 비중은 적었고 프로젝트 기간이 짧고, Git이라는 프로그램에 아직 익숙하지 않았기 때문에 주로 강의실이 아닌 장소일 경우 네이트온이나 카카오톡으로 작업내역을 확인하고, 소스코드를 공유하여 다시 통합하는 방식으로 부족한 부분을 해결하였습니다.</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="font-variant-numeric: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">이 방식에선 src에서는 통합하는 사람이 아닐 경우 웬만하면 수정하지 않고 작업을 진행하는 것을 추천합니다.</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">꼭 소스코드 관리를 이렇게 해야된다는 것은 아닙니다.</span></span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(72, 177, 65); line-height: 1.2;">지원</span></font></div><div style="line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;"></div><ul><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">구글 검색 ( in stackoverflow) </span></font></div></li><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">화면캡쳐</span></span></div></li><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">저장</span></span></div></li><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">공유</span></span></div></li><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">구글 원격데스크톱</span></span></div></li><li><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">원격 PC 제어</span></span></div></li></ul><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">일단 모르는 내용은 한글로 해도 검색이 되지 않으면 구글에서 검색할 주요 키워드를 1~2개 정도 입력 합니다. 그리고 앞에 how to 를 붙여서 검색을 하여 데이터를 얻습니다. 보통 개발 자료를 검색하려고 할 때에는 stackoverflow를 how to 단어 in stackoverflow를 추가하여 검색하면 stackoverflow에 있는 개발 관련, 한국으로 치면 네이버 지식인과 같은 영어 사이트가 있습니다. </span></span></div><div style="line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;"></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">한국에도 이런 사이트가 있지만 stackoverflow는 전세계사람들이 자주 사용하는 사이트이기 때문에 데이터 양이 어마어마해서 웬만한건 구현 방법, 오류 해결경험들을 공유할 수 있기 때문에 아주 좋습니다. 이렇게 얻은 지식을 PrintScreent이나 기타 캡쳐, Ctrl+C, V를 통하여 저장을 하고 팀원에게 보다 쉽게 공유를 하기 위해서 반디캠과 같은 동영상 캡쳐로 과정을 저장하여, 해당 기능을 수행하기 위한 작업영상을, 필요한 사람에 공유하여 팁을 줄 수 있습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">만약 이렇게 해도 어려움이 있을 시 구글 원격 데스크톱과 같은 원격으로 PC를 제어 할 수 있는 프로그램으로 작업을 도와줍니다.</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><hr/><div style="margin-top: 0pt; margin-bottom: 0pt;"><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div></div><div><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">라이브러리</span></div><div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 114px;"></col><col style="width: 322px;"></col><col style="width: 288px;"></col><col style="width: 367px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 114px; padding: 8px;"><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">이름</span></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 322px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">소스코드</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 288px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">결과</span></div></td><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 367px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">설명</span></div></td></tr><tr><td style="border: 1px solid rgb(219, 219, 219); width: 114px; padding: 8px;"><div><span style="white-space: pre-wrap; background-color: rgb(255, 255, 255);"><span style="background-color: rgb(255, 255, 255);"><span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-variant: normal; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Lorem Ipsum</span></span></span></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 322px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">LoremIpsum loremIpSum = new LoremIpsum();</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">loremIpSum.getEmail();</span></span></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 288px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:lorie.townsend@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">lorie.townsend@example.com</font></a></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:stacey.olsen@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">stacey.olsen@example.com</font></a></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:andrea.mcfarland@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">andrea.mcfarland@example.com</font></a></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:shaun.trevino@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">shaun.trevino@example.com</font></a></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:kurt.ray@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">kurt.ray@example.com</font></a></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><a href="mailto:louise.ramirez@example.com" style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29); font-variant: normal; line-height: 1.2;"><font face="나눔고딕 Light" style="font-size: 10pt;">louise.ramirez@example.com</font></a></div></td><td style="border: 1px solid rgb(219, 219, 219); width: 367px; padding: 8px;"><div><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">무작위 단어, 문장을 생성하여 글 컨텐츠를 의미없는 텍스트로 생성해주는 라이브러리입니다</span></span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div><span style="color: rgb(72, 177, 65); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">프로젝트 구조 </span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 198px;"></col><col style="width: 1032px;"></col></colgroup><tbody><tr><td style="border: 1px solid rgb(204, 204, 204); width: 198px; padding: 8px;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;"><img src="goggles_files/Image [2].png" type="image/png" data-filename="Image.png" width="178"/></span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 1032px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><div><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">구현을 하고 최종적으로 다음과 같은 패키지로 구성이 된 프로젝트가 완성이 되었습니다.</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Goggles 프로젝트는 메인 src 폴더에 자바코드가 있으며 resources에는 sql, jar, 그림, 엑셀파일 등이 있습니다.</span></span></div><div><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">object패키지에는 Model에 해당하는 클래스파일들이 담겨져 있습니다. model에 해당합니다.</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">main 패키지는 주요 core 핵심코드가 있으며, manager 패키지는 주로 데이터베이스를 관리하기 위한 java 클래스 파일이 있습니다.</span></span></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ruuner 패키지는 ui의 event 처리 및 thread를 처리 하는 클래스가 모여 있습니다. controller에 해당합니다.</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">swing 패키지에는 jframe,jpanel, jcomponent에 해당하는 클래스가 모여 있으며 view에 해당하는 패키지 입니다.</span></div></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(77, 206, 29);">자원</span></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">주요 클래스들 중 상수값 변하지 않는 변수들을 전역 static 변수로 만들어 공유 클래스를 사용했습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">이것을 참조하는 것들이 존재할 때 한번에 쉽게 관리 할 수 있습니다.</span></div></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 139px;"></col><col style="width: 327px;"></col><col style="width: 261px;"></col><col style="width: 253px;"></col><col style="width: 262px;"></col></colgroup><tbody><tr><td style="width: 139px; padding: 8px; border: 1px solid;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ResourceManager</span></div></td><td style="width: 327px; padding: 8px; border: 1px solid;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">manager/ResourceManager.java</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">public static final int PADDING = 12;</span></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">public static final int FRAME_WIDTH = 1280;</span></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">public static final int FRAME_HEIGHT = 720;</span></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">public static final String DATABASE = &quot;database&quot;;</span></div></td><td style="width: 261px; padding: 8px; border: 1px solid;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">static</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2;">주요 클래스들 중 상수값 변하지 않는 변수들을 전역 static 변수로 만들어 공유 클래스를 사용했습니다.</span> <span style="white-space: pre-wrap; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt; line-height: 1.2;">이것을 참조하는 것들이 존재할 때 한번에 쉽게 관리 할 수 있습니다.</span></div></td><td style="width: 253px; padding: 8px; border: 1px solid;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">swing/MainFrame.java</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">ResourceManager.FRAME_WIDTH;</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td><td style="width: 262px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">resources/</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">csv/</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">font</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">image</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">jar</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">lorem.jar</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">sql</span></span></div></td></tr></tbody></table><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><hr/><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="color: rgb(77, 206, 29); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">사용자 인터페이스</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1258px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 1258px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">서서히 사라지는 컴포넌트</span></div></td></tr><tr><td style="width: 1258px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">투명한 패널 구현과 같은 원리</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">스레드를 추가</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">1000=1초</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">반복문 안에 Thread.sleep( 1000 );</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">스레드 안에서 JLabel의 색깔을 점점 투명하게 변경</span></div></td></tr><tr><td style="width: 1258px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; color: rgb(0, 0, 0); font-variant: normal; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">버튼을 누르면 문자를 서서히 나타내고, 서서히 사라지는 것을 구현하기 위해</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; color: rgb(0, 0, 0); font-variant: normal; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">JLabel에 스레드를 사용하여, 앞서 사용했던 RGBA 형태의 색상을 변경하여 반복문으로</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; color: rgb(0, 0, 0); font-variant: normal; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">증가, 감소를 표현하면 됩니다.</span></span></div></td></tr><tr><td style="width: 1258px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">JLabel label = new JLabel(“예제”);</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">int count = 255;</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">while (count &gt; 0) {</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    Color color = new Color(1.0F, 1.0F, 1.0F, count / 255.0F);</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    label.setForeground(color);</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    try {</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">        Thread.sleep(2);</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    } catch (InterruptedException e) {</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">        e.printStackTrace();</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    }</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">    count--;</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">}</span></div></td></tr><tr><td style="width: 1258px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">JLabel이 페이드인 효과 입니다.</span></span></div></td></tr></tbody></table><div><br/></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1256px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 1256px; padding: 8px;"><div><span style="color: rgb(255, 255, 255); line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">투명한 패널</span></div></td></tr><tr><td style="width: 1256px; padding: 8px; border: 1px solid;"><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">Color color = new Color(1.0F, 1.0F, 1.0F, 0.0F);</span></div><div><span style="line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">setBackground(color);</span></div></td></tr><tr><td style="width: 1256px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">자바 스윙 화면을 표시하면</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">기본적으로 frame 색깔은 회색입니다.</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">이 frame 배경을 변경하지 않고 </span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">frame에 패널을 add하면 회색 기본 배경으로 추가가 됩니다.</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">패널을 하나더 사용하여</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">그림 패널을 먼저 frame에 추가하고</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">그림패널위에 투명한 색깔을 패널을 추가하면 RGBA 형태의 색상을 표현하는 화면을 구성할 수 있습니다.</span></span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span style="color: rgb(0, 0, 0); font-variant: normal; line-height: 1.2; font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">투명한 패널을 적용하기 위한 색상 지정방법입니다.</span></span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></td></tr></tbody></table><div><br/></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1244px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 1244px; padding: 8px;"><div><span style="color: rgb(255, 255, 255);">움직이는 컴포넌트</span></div></td></tr><tr><td style="width: 1244px; padding: 8px; border: 1px solid;"><div><span style="font-family: &quot;나눔고딕 Light&quot;;">ActionEvent 발생시</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;;">ActionListener에 의해 시작</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;;">x,y 값을 변경하는 스레드 구현</span></div><div><br/></div><div><span style="font-family: &quot;나눔고딕 Light&quot;;">JLabel label = new JLabel(“움직이는 레이블”);</span></div><div><span style="font-family: &quot;나눔고딕 Light&quot;;">label.setLocation(x,y);</span></div><div><br/></div></td></tr><tr><td style="width: 1244px; padding: 8px; border: 1px solid;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; white-space: pre-wrap; line-height: 1.2; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal;">해당 레이블 또는, 버튼 등</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; white-space: pre-wrap; line-height: 1.2; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal;">JComponent ( Java Swing Component) - JButton, JPanel, JLabel… 등등</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; white-space: pre-wrap; line-height: 1.2; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal;">만약 움직이고 싶을 경우엔 setLocation을 이벤트 리스너와, 이벤트를 추가합니다.</span></div><div><br/></div></td></tr></tbody></table><div><br/></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 1246px;"></col></colgroup><tbody><tr><td style="background-color: rgb(0, 168, 45); border: 1px solid rgb(0, 134, 36); width: 1246px; padding: 8px;"><div><span style="color: rgb(255, 255, 255);">화면 레이아웃</span></div></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); width: 1246px; padding: 8px;"><div><span style="color: rgb(0, 0, 0);">JFrame &gt; JPanel</span></div></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); width: 1246px; padding: 8px;"><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; white-space: pre-wrap; line-height: 1.2; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal;">화면 부분을 JFrame을 구현하여 한 화면에 넣고 싶을 때 JPanel로 변경하여</span></div><div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 11pt; white-space: pre-wrap; line-height: 1.2; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal;">소스코드를 약간 수정하면 Panel로 담을 수 있습니다.</span></div></td></tr></tbody></table><div><br/></div><div><span style="font-family: &quot;나눔고딕 Light&quot;; font-size: 10pt;">...*</span></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div><div><font face="나눔고딕 Light" style="font-size: 10pt;"><br/></font></div></div><div><br/></div></span>
-</div>
+    <span>
+      <div>
+        <div style="text-align: center;">
+          <div style="text-align: left;">
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;"><u>Goggles</u></font>
+            </div>
+            <div style="margin-top: 0pt; margin-bottom: 0pt;">
+              <div
+                style="box-sizing: border-box; margin: 0pt 0px; padding: 0px; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; font-variant-numeric: normal; line-height: 1.2;">GOGGLES
+                    프로젝트라고 이름을 지어진 이유는 GOGGLE과 똑같이 검색엔진을 만들면 어떨까 해서</span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; line-height: 1.2;">GOGGLE
+                    느낌나게 GOGGLES 지었고, 테마는 미니언즈 캐릭터 들일 고글을 다 쓰고 있어서 미니언즈 배경을 사용하였습니다.</span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; line-height: 1.2;">사전을
+                    구현한 이유는</span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; line-height: 1.2;">검색엔진을
+                    구현하려면 검색엔진에서 찾을 때 매칭해야 될 키워드가 필요한데</span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; line-height: 1.2;">이
+                    키워드</span><span
+                    style="box-sizing: border-box; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; line-height: 1.2;">를
+                    저장하기 위한 구조를 어떤것일지 생각해보다가 사전 이라는 형태로 구성하면 괜찮을 것 같아서 시작하게되었습니다.</span> <span
+                    style="white-space: pre-wrap; line-height: 1.2;">현재 개발언어는 자바이지만, 파이썬 같은 경우에는 dictionary 자료형이 아예
+                    존재하더군요..</span><span
+                    style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">이때 사전에 데이터를 넣을 고민을
+                    하다가 data.go.kr에 용어 사전이 있을 거 같아서 검색을 해봤습니다.</span> <span
+                    style="white-space: pre-wrap; line-height: 1.2;">data.go.kr 공공데이터 관련 웹사이트입니다.</span> <span
+                    style="white-space: pre-wrap; line-height: 1.2;">csv, api 형태로 자료를 얻을 수 있고,</span> <span
+                    style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">GOGGLES 프로젝트에서는 csv
+                    파일을 가져와서 mysql community에서 바로 csv를 query로 변환하여 테이블을 생성할 수 있습니다.</span> <span
+                    style="white-space: pre-wrap; line-height: 1.2;">저장 후에 데이터베이스를 또 sql로 변환하여 저장하였고, 이것을 데이터베이스 관리하는
+                    쿼리문으로 다시 사용하였습니다.</span></font>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: left;"></div>
+          <div style="text-align: left;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </div>
+          <div style="text-align: left;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </div>
+          <div style="text-align: left;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><u>진행과정</u></font>
+          </div>
+          <div style="text-align: left;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant-numeric: normal; font-variant-east-asian: normal; line-height: 1.2;">분석,
+                설계, 환경설정, 구현, 테스트, 마무리 단계별로 진행하였습니다.</span> <span style="white-space: pre-wrap; line-height: 1.2;">처음
+                일정을 계획할때 분석,설계,구현,테스트 4단계로 정하고 환경설정과 정리 과정을 추가하였습니다.</span> <span
+                style="white-space: pre-wrap; line-height: 1.2;">프로젝트 설계와 개발환경을 설정하는데 프로젝트 전체 일정의 절반을 차지했고 그 다음으로 구현의
+                비중이 높았습니다.</span> <span
+                style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">2월말 부터</span> <span
+                style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">코로나 여파로 프로젝트 발표일이 미뤄지면서,
+                3월 2일 이후부터는</span> <span
+                style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">프로젝트 유지보수를 하였고, 정리작업을 조금더
+                보완하였습니다.</span><br /></font>
+          </div>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </div>
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </div>
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;"><u>일정</u></font>
+          </div>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">2020.02.23 ~ 2020.02.26 기획, 설계, 환경설정</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">2020.02.27 ~ 2020.03.01 구현, 테스트</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">2020.03.01 ~ 2020.03.02 <span>마무리</span></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><u>목적</u></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">사전</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div style="text-align: left;">
+          <font face="맑은 고딕" style="font-size: 14pt;"><u>설계</u></font>
+        </div>
+        <div style="text-align: left;">
+          <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">프로젝트 분석, 설계, 그리고 기능들을 간단하게
+                소개해드리겠습니다. </span> <span style="white-space: pre-wrap; line-height: 1.2;">관리페이지에서 데이터베이스에 사전 데이터가 추가
+                되어있으면,</span> <span style="white-space: pre-wrap; line-height: 1.2;">회원가입을 하면 로그인을 하여 사전 데이터를 검색할 수
+                있습니다.</span> <span style="white-space: pre-wrap;">주요 기능은 단어 검색과 프로젝트의 데이터베이스 관리를 할 수 있습니다.</span></font>
+          </div>
+          <ul>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><span style="white-space: pre-wrap;">회원가입</span></font>
+              </div>
+            </li>
+            <ul>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">아이디 중복 확인 </font>
+                </div>
+              </li>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">비밀번호 확인</font>
+                </div>
+              </li>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">공백 확인</font>
+                </div>
+              </li>
+            </ul>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                <font face="맑은 고딕" style="font-size: 14pt;">로그인</font>
+              </div>
+            </li>
+            <ul>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">아이디 확인</font>
+                </div>
+              </li>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">비밀번호 확인</font>
+                </div>
+              </li>
+            </ul>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                <font face="맑은 고딕" style="font-size: 14pt;">검색</font>
+              </div>
+            </li>
+            <ul>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">로그인 필요</font>
+                </div>
+              </li>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">단어 검색</font>
+                </div>
+              </li>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">랜덤 단어 추천</font>
+                </div>
+              </li>
+            </ul>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                <font face="맑은 고딕" style="font-size: 14pt;">관리</font>
+              </div>
+            </li>
+            <ul>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+                  <font face="맑은 고딕" style="font-size: 14pt;">DB </font>
+                </div>
+              </li>
+            </ul>
+          </ul>
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;"><u><br /></u></font>
+          </div>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt; text-align: left;">
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;"><u>관리</u></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">소스코드 관리를 이클립스에서 Git을 통하여 관리할수도
+                있습니다.</span> <span style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">또 다른
+                방법도 존재하는데요</span><span style="white-space: pre-wrap; line-height: 1.2;">Git SCM이라는 콘솔로만 할 수 있는 방식의 Git을
+                설치 후에</span> <span style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">Github
+                Desktop을 설치하여 GUI 방식으로 쉽게 간단한 것만 소스코드 버전관리를 하였습니다.</span> <span
+                style="white-space: pre-wrap; line-height: 1.2;">현재프로젝트에서 소스코드를 관리할 때 .gitignore 파일을 사용하여 필터링 하면 필요한 부분만
+                업로드 할 수 있습니다.</span></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">대체할 만한 도구로 Trello(트렐로),
+                Asana(아사나)와 같은 프로그램을 추천합니다. </span> <span style="white-space: pre-wrap; line-height: 1.2;">작업을 하면서 메신저도
+                사용하는데 네이트온, 카카오톡과 같은 일반 채팅메신저가 아닌 개발 사무용 메신저도 존재합니다.</span> <span
+                style="white-space: pre-wrap; line-height: 1.2;">잔디, 슬랙이 있습니다.</span> <span
+                style="white-space: pre-wrap; line-height: 1.2;">잔디 같은 경우에는 권한을 부여할 수 있고 다른 프로그램들 (git, 날씨 등등 유용한 프로그램들을
+                연동할 수 있습니다.)</span></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">깃 허브 프로젝트 레퍼지토리를 잘 살펴보면 Project를
+                관리 할 수 있는 페이지가 있습니다.</span> <span style="white-space: pre-wrap; line-height: 1.2;">PPT와 같은 형태로 프로젝트 작업
+                내역을 관리 할 수 있습니다. </span><span style="white-space: pre-wrap; line-height: 1.2;">Github Project에서 협업 관리는
+                F5를 계속 눌러 확인을 해야되는 문제가 있습니다.</span></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+            <div><span style="line-height: 1.2;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><u>협업</u></font>
+              </span></div>
+            <ul>
+              <li>
+                <div style="margin-top: 0pt; margin-bottom: 0pt;">
+                  <font face="맑은 고딕" style="font-size: 14pt;"><span
+                      style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">src</span><br /></font>
+                </div>
+              </li>
+              <ul>
+                <li>
+                  <div style="margin-top: 0pt; margin-bottom: 0pt;">
+                    <font face="맑은 고딕" style="font-size: 14pt;"><span
+                        style="white-space: pre-wrap;">louisevil</span><br /></font>
+                  </div>
+                </li>
+                <li>
+                  <div style="margin-top: 0pt; margin-bottom: 0pt;">
+                    <font face="맑은 고딕" style="font-size: 14pt;"><span
+                        style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">thm121</span><br />
+                    </font>
+                  </div>
+                </li>
+                <li>
+                  <div style="margin-top: 0pt; margin-bottom: 0pt;">
+                    <font face="맑은 고딕" style="font-size: 14pt;"><span
+                        style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">jomyeongyoon</span><br />
+                    </font>
+                  </div>
+                </li>
+                <li>
+                  <div style="margin-top: 0pt; margin-bottom: 0pt;"><span
+                      style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">
+                      <font face="맑은 고딕" style="font-size: 14pt;">power8128</font>
+                    </span></div>
+                </li>
+              </ul>
+            </ul>
+            <div style="margin-top: 0pt; margin-bottom: 0pt;">
+              <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+            </div>
+            <div style="margin-top: 0pt; margin-bottom: 0pt;">
+              <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+            </div>
+            <div style="margin-top: 0pt; margin-bottom: 0pt;">
+              <font face="맑은 고딕" style="font-size: 14pt;"><span style="white-space: pre-wrap; line-height: 1.2;">src에 공통
+                  소스코드 원본 초기, 설계 코드를  작성하였고, 각각의 소스폴더 공간에서 Test라는 것을 추가하여 복사하였습니다.</span> <span
+                  style="white-space: pre-wrap; font-variant-numeric: normal; font-variant-east-asian: normal; line-height: 1.2;">그리고
+                  이후에 관리자가 통합하는 형태로 진행하였습니다.</span> <span
+                  style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">하지만, 실제 이렇게 관리 비중은 적었고
+                  프로젝트 기간이 짧고, Git이라는 프로그램에 아직 익숙하지 않았기 때문에 주로 강의실이 아닌 장소일 경우 네이트온이나 카카오톡으로 작업내역을 확인하고, 소스코드를 공유하여 다시
+                  통합하는 방식으로 부족한 부분을 해결하였습니다.</span></font>
+            </div>
+            <div style="margin-top: 0pt; margin-bottom: 0pt;"><span
+                style="white-space: pre-wrap; font-variant-numeric: normal; line-height: 1.2;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+              </span></div>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span style="line-height: 1.2;"><u>지원</u></span></font>
+          </div>
+          <div style="line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;"></div>
+          <ul>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><span
+                    style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">구글 검색 ( in
+                    stackoverflow) </span></font>
+              </div>
+            </li>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                    style="font-variant: normal; line-height: 1.2;">
+                    <font face="맑은 고딕" style="font-size: 14pt;">화면캡쳐</font>
+                  </span></span></div>
+            </li>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                    style="font-variant: normal; line-height: 1.2;">
+                    <font face="맑은 고딕" style="font-size: 14pt;">저장</font>
+                  </span></span></div>
+            </li>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                    style="font-variant: normal; line-height: 1.2;">
+                    <font face="맑은 고딕" style="font-size: 14pt;">공유</font>
+                  </span></span></div>
+            </li>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                    style="font-variant: normal; line-height: 1.2;">
+                    <font face="맑은 고딕" style="font-size: 14pt;">구글 원격데스크톱</font>
+                  </span></span></div>
+            </li>
+            <li>
+              <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                    style="font-variant: normal; line-height: 1.2;">
+                    <font face="맑은 고딕" style="font-size: 14pt;">원격 PC 제어</font>
+                  </span></span></div>
+            </li>
+          </ul>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                style="font-variant: normal; line-height: 1.2;">
+                <font face="맑은 고딕" style="font-size: 14pt;">일단 모르는 내용은 한글로 해도 검색이 되지 않으면 구글에서 검색할 주요 키워드를 1~2개 정도 입력
+                  합니다. 그리고 앞에 how to 를 붙여서 검색을 하여 데이터를 얻습니다. 보통 개발 자료를 검색하려고 할 때에는 stackoverflow를 how to 단어 in
+                  stackoverflow를 추가하여 검색하면 stackoverflow에 있는 개발 관련, 한국으로 치면 네이버 지식인과 같은 영어 사이트가 있습니다. </font>
+              </span></span></div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;"><span style="white-space: pre-wrap;"><span
+                style="font-variant: normal; line-height: 1.2;">
+                <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+              </span></span></div>
+          <div style="line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;"></div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><span
+                style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">한국에도 이런 사이트가 있지만 stackoverflow는
+                전세계사람들이 자주 사용하는 사이트이기 때문에 데이터 양이 어마어마해서 웬만한건 구현 방법, 오류 해결경험들을 공유할 수 있기 때문에 아주 좋습니다. 이렇게 얻은 지식을
+                PrintScreent이나 기타 캡쳐, Ctrl+C, V를 통하여 저장을 하고 팀원에게 보다 쉽게 공유를 하기 위해서 반디캠과 같은 동영상 캡쳐로 과정을 저장하여, 해당 기능을 수행하기
+                위한 작업영상을, 필요한 사람에 공유하여 팁을 줄 수 있습니다.</span> <span style="white-space: pre-wrap; line-height: 1.2;">만약 이렇게
+                해도 어려움이 있을 시 구글 원격 데스크톱과 같은 원격으로 PC를 제어 할 수 있는 프로그램으로 작업을 도와줍니다.</span></font>
+          </div>
+          <div style="margin-top: 0pt; margin-bottom: 0pt;">
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+            </div>
+          </div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><u>Lorem Ipsum 라이브러리</u></font>
+        </div>
+        <div><span style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">
+            <font face="맑은 고딕" style="font-size: 14pt;">무작위 단어, 문장을 생성하여 글 컨텐츠를 의미없는 텍스트로 생성해주는 라이브러리입니다</font>
+          </span></div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <div
+            style="box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.15);-en-codeblock:true;">
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">LoremIpsum loremIpSum = new LoremIpsum();</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">loremIpSum.getEmail();</font>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <div
+            style="box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.15);-en-codeblock:true;">
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">lorie.townsend@example.com</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">stacey.olsen@example.com</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">andrea.mcfarland@example.com</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">shaun.trevino@example.com</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">kurt.ray@example.com</font>
+            </div>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">louise.ramirez@example.com</font>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;">
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;"><u>
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </u></div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><u>구조 </u></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><span style="white-space: pre-wrap; line-height: 1.2;">구현을 하고
+              최종적으로 다음과 같은 패키지로 구성이 된 프로젝트가 완성이 되었습니다.</span> <span style="white-space: pre-wrap;">Goggles 프로젝트는 메인 src
+              폴더에 자바코드가 있으며 resources에는 sql, jar, 그림, 엑셀파일 등이 있습니다.</span> <span
+              style="white-space: pre-wrap;">object패키지에는 Model에 해당하는 클래스파일들이 담겨져 있습니다. model에 해당합니다.</span> <span
+              style="white-space: pre-wrap;">main 패키지는 주요 core 핵심코드가 있으며, manager 패키지는 주로 데이터베이스를 관리하기 위한 java 클래스 파일이
+              있습니다.</span> ruuner 패키지는 ui의 event 처리 및 thread를 처리 하는 클래스가 모여 있습니다. controller에 해당합니다.  swing 패키지에는
+            jframe,jpanel, jcomponent에 해당하는 클래스가 모여 있으며 view에 해당하는 패키지 입니다.</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <ul>
+          <li>
+            <div>
+              <font face="맑은 고딕" style="font-size: 14pt;">Goggles<span>  </span></font>
+            </div>
+          </li>
+          <ul>
+            <li>
+              <div>
+                <font face="맑은 고딕" style="font-size: 14pt;">src</font>
+              </div>
+            </li>
+            <ul>
+              <li>
+                <div>
+                  <font face="맑은 고딕" style="font-size: 14pt;">main</font>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <font face="맑은 고딕" style="font-size: 14pt;">manager</font>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <font face="맑은 고딕" style="font-size: 14pt;">object</font>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <font face="맑은 고딕" style="font-size: 14pt;">runner</font>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <font face="맑은 고딕" style="font-size: 14pt;">swing</font>
+                </div>
+              </li>
+            </ul>
+            <li>
+              <div>
+                <font face="맑은 고딕" style="font-size: 14pt;">resources</font>
+              </div>
+            </li>
+          </ul>
+        </ul>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div style="margin-top: 0pt; margin-bottom: 0pt;"></div>
+        <div><u>
+            <font face="맑은 고딕" style="font-size: 14pt;">상수</font>
+          </u></div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><span
+              style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">주요 클래스들 중 상수값 변하지 않는 변수들을 전역 static
+              변수로 만들어 공유 클래스를 사용했습니다.</span> </font>
+        </div>
+        <div><span style="white-space: pre-wrap;">
+            <font face="맑은 고딕" style="font-size: 14pt;">이것을 참조하는 것들이 존재할 때 한번에 쉽게 관리 할 수 있습니다.</font>
+          </span></div>
+      </div>
+      <div><span style="line-height: 1.2;">
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </span></div>
+      <div
+        style="box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.15);-en-codeblock:true;">
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">public static final int PADDING = 12;<br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">public static final int FRAME_WIDTH = 1280;</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">public static final int FRAME_HEIGHT = 720;</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">public static final String DATABASE = &quot;database&quot;;</font>
+        </div>
+      </div>
+      <div style="margin-top: 0pt; margin-bottom: 0pt;">
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><u>유저 인터페이스</u><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><span
+              style="white-space: pre-wrap; font-variant: normal; line-height: 1.2;">자바 스윙 화면을 표시하면</span> <span
+              style="white-space: pre-wrap;">기본적으로 frame 색깔은 회색입니다.</span> <span style="white-space: pre-wrap;">이 frame
+              배경을 변경하지 않고 </span> <span style="white-space: pre-wrap;">frame에 패널을 add하면 회색 기본 배경으로 추가가 됩니다.</span> <span
+              style="white-space: pre-wrap;">패널을 하나더 사용하여</span> <span
+              style="white-space: pre-wrap; font-variant-numeric: normal; font-variant-east-asian: normal; line-height: 1.2;">그림
+              패널을 먼저 frame에 추가하고</span> <span style="white-space: pre-wrap;">그림패널위에 투명한 색깔을 패널을 추가하면 RGBA 형태의 색상을 표현하는
+              화면을 구성할 수 있습니다.</span><span style="white-space: pre-wrap;">투명한 패널을 적용하기 위한 색상 지정방법입니다.</span></font>
+        </div>
+        <div><span style="white-space: pre-wrap;">
+            <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+          </span></div>
+        <div
+          style="box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.15);-en-codeblock:true;">
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;">Color color = new Color(1.0F, 1.0F, 1.0F, 0.0F);</font>
+          </div>
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;">setBackground(color);</font>
+          </div>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;">움직이는 컴포넌트를 구현하였습니다. ActionEvent 발생시 ActionListener에 의해 시작합니다.
+            스레드는 x,y 값을 변경합니다.</font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div
+          style="box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.15);-en-codeblock:true;">
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;">JLabel label = new JLabel(“움직이는 레이블”);</font>
+          </div>
+          <div>
+            <font face="맑은 고딕" style="font-size: 14pt;">label.setLocation(x,y);</font>
+          </div>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+        <div>
+          <font face="맑은 고딕" style="font-size: 14pt;"><br /></font>
+        </div>
+      </div>
+      <div><br /></div>
+    </span>
+  </div>
 <div>
   <div>
     <video controls style="display:block; margin:0 auto;width:70%;height:auto;"
