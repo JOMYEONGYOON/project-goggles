@@ -66,4 +66,24 @@ GOGGLES 프로젝트라고 이름을 지어진 이유는 검색엔진을 구현�
 | while (count > 0) { <br>  &nbsp; &nbsp; Color color = new Color(1.0F, 1.0F, 1.0F, count / 255.0F); <br> &nbsp; &nbsp;    label.setForeground(color); <br>   &nbsp; &nbsp;  try { <br>   &nbsp; &nbsp;  &nbsp; &nbsp;    Thread.sleep(2); <br>   &nbsp; &nbsp;  } catch (InterruptedException e) { <br>       &nbsp; &nbsp; &nbsp; &nbsp;  e.printStackTrace(); <br>  &nbsp; &nbsp;   } <br>  &nbsp; &nbsp;   count--; <br>} &nbsp; &nbsp; <br> |
 | JLabel이 페이드인 효과 입니다. |
 
+#
+|투명한 패널|
+|--|
+|Color color = new Color(1.0F, 1.0F, 1.0F, 0.0F);<br>setBackground(color);|
+|자바 스윙 화면을 표시하면 기본적으로 frame 색깔은 회색입니다. 이 frame 배경을 변경하지 않고 frame에 패널을 add하면 회색 기본 배경으로 추가가 됩니다. 패널을 하나더 사용하여 그림 패널을 먼저 frame에 추가하고 그림패널위에 투명한 색깔을 패널을 추가하면 RGBA 형태의 색상을 표현하는 화면을 구성할 수 있습니다.투명한 패널을 적용하기 위한 색상 지정방법입니다.|
+
+
+| 움직이는 컴포넌트 |
+|------------------|
+| ActionEvent 발생시 <br> ActionListener에 의해 시작 <br> x,y 값을 변경하는 스레드 구현 |
+| JLabel label = new JLabel("움직이는 레이블"); <br> label.setLocation(x,y); <br> |
+| 해당 레이블 또는, 버튼 등 <br/> JComponent ( Java Swing Component) - JButton, JPanel, JLabel… 등등 만약 움직이고 싶을 경우엔 setLocation을 이벤트 리스너와, 이벤트를 추가합니다. |
+
+|화면 레이아웃|
+|------------|
+|JFrame > JPanel|
+|화면 부분을 JFrame을 구현하여 한 화면에 넣고 싶을 때 JPanel로 변경하여 소스코드를 변경하여 추가했습니다.|
+
+
+
 
