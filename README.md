@@ -2,7 +2,7 @@
 ##### 나눔폰트가 필요합니다. (나눔 손글씨)
 https://hangeul.naver.com/2017/nanum <br/>
 
-### 에버노트 
+### 문서
 https://www.evernote.com/pub/develogl/java-goggles-project
 
 <span>
