@@ -2,7 +2,7 @@
 ![mysql](https://img.shields.io/badge/데이터베이스-MySQL8.0_Community_Server-blue) 
 ![naver nanum font](https://img.shields.io/badge/폰트-네이버_나눔폰트-green)
 ![java se development kit](https://img.shields.io/badge/자바-1.8-red)
-
+![docs](http://img.shields.io/badge/문서-https://louisevil.github.com/goggles-yellow)
 <br>
 
 <span>
@@ -14,5 +14,4 @@
 
 <br>
 
-### 문서
-https://louisevil.github.io/goggles
+### 
