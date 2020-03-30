@@ -1,4 +1,3 @@
-# java-goggles
 ![mysql](https://img.shields.io/badge/DB-MySQL8.0_Community_Server-blue) <br>
 ![naver nanum font](https://img.shields.io/badge/폰트-네이버_나눔폰트-green) <br>
 ![java se development kit](https://img.shields.io/badge/자바-1.8-red) <br>
@@ -35,7 +34,7 @@ Color color = new Color(1.0F, 1.0F, 1.0F, 0.0F);
 setBackground(color);
 ```
 
-#### 움직이는 컴포넌트
+##### 움직이는 컴포넌트
 ```Java
 JLabel label = new JLabel(“움직이는 레이블”);
 label.setLocation(x,y);
