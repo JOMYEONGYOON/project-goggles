@@ -48,4 +48,5 @@ GOGGLES 프로젝트라고 이름을 지어진 이유는 검색엔진을 구현�
 # 라이브러리
 | 자바 	| 결과 	|
 |-------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-|  `LoremIpsum li = new LoremIpsum();` <br/> `li.getEmail();` 	| ``` lorie.townsend@example.com stacey.olsen@example.com farland@example.com shaun.trevino@example.com kurt.ray@example.com louise.ramirez@example.com  ``` 	|
+|  `LoremIpsum li = new LoremIpsum();` <br/> `li.getEmail();` 	| ` lorie.townsend@example.com` <br> `stacey.olsen@example.com` 	|
+
