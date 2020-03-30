@@ -11,4 +11,4 @@
   <img src="https://github.com/louisevil/goggles/blob/master/resources/image/main.gif" width="430" height="250">
 </span>
 <br>
-##### https://louisevil.github.io/goggles
+### githubio https://louisevil.github.io/goggles
