@@ -80,8 +80,6 @@ while (count > 0) {
     count--;
 }
 ```
-<br/>
-
 ### 투명한 패널
 
 ```
@@ -97,7 +95,6 @@ frame에 패널을 add하면 회색 기본 배경으로 추가가 됩니다.
 그림 패널을 먼저 frame에 추가하고
 그림패널위에 투명한 색깔을 패널을 추가하면 RGBA 형태의 색상을 표현하는 화면을 구성할 수 있습니다.
 투명한 패널을 적용하기 위한 색상 지정방법입니다.
-<br/>
 
 ### 움직이는 컴포넌트
 ActionEvent 발생시 ActionListener에 의해 시작 x,y 값을 변경하는 스레드
@@ -108,7 +105,6 @@ ActionEvent 발생시 ActionListener에 의해 시작 x,y 값을 변경하는 �
 JLabel label = new JLabel(“움직이는 레이블”);
 label.setLocation(x,y);
 ```
-<br/>
 
 ### 화면 레이아웃
 JFrame > JPanel
