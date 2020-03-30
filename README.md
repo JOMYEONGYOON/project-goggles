@@ -4,11 +4,15 @@
 ![java se development kit](https://img.shields.io/badge/자바-1.8-red)
 
 <br>
+
 <span>
   <img src="https://github.com/louisevil/goggles/blob/master/resources/image/start.gif" width="430" height="250">
 </span>
 <span>
   <img src="https://github.com/louisevil/goggles/blob/master/resources/image/main.gif" width="430" height="250">
 </span>
+
 <br>
-### github.io https://louisevil.github.io/goggles
+
+### 문서
+https://louisevil.github.io/goggles
