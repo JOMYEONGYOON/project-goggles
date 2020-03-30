@@ -1,8 +1,8 @@
 ## Goggles - Java GUI (swing) Dictionary 
-#### requires
-![mysql](https://img.shields.io/badge/mysql-8.0.19-blue)
-![naver nanum font](https://img.shields.io/badge/font-naver_nanum-green)
-![java se development kit](https://img.shields.io/badge/jdk-1.8-red)
+![mysql](https://img.shields.io/badge/mysql-8.0.19-blue) 
+![naver nanum font](https://img.shields.io/badge/font-naver_nanum_font-green)
+![java se development kit](https://img.shields.io/badge/java-1.8-red)
+![license](https://img.shields.io/badge/license-MIT-blue)
 
 <br/>
 
